@@ -1,0 +1,468 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="assets/css2-81626ed9559595b1e316af96e8f2aa0b" rel="stylesheet"><link href="assets/css2-5921624bf5bbe4c8c091ef09226fa76f" rel="stylesheet">
+<link href="assets/css2-a39f5c6fcbb87b419667ec984d2e579a" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-primary-fixed-variant": "#7c2e19",
+        "tertiary": "#c9c2e8",
+        "tertiary-fixed-dim": "#c9c2e8",
+        "surface-elevated": "#24201E",
+        "error-container": "#93000a",
+        "moss-bright": "#88B998",
+        "border-subtle": "#332C29",
+        "text-secondary": "#E0D5CE",
+        "surface-container-lowest": "#100e0c",
+        "on-surface-variant": "#dbc1ba",
+        "background": "#141211",
+        "primary-fixed-dim": "#ffb4a1",
+        "on-primary-container": "#5b1604",
+        "surface-bright": "#3c3836",
+        "on-secondary-fixed-variant": "#175034",
+        "on-secondary-fixed": "#002111",
+        "on-background": "#e9e1dd",
+        "on-tertiary-fixed": "#1c1734",
+        "inverse-on-surface": "#33302d",
+        "surface-tint": "#ffb4a1",
+        "surface-card": "#1C1917",
+        "on-secondary-container": "#9ED7B2",
+        "text-primary": "#F5EBE6",
+        "text-muted": "#A89B95",
+        "accent-coral": "#EB8A6E",
+        "surface-container-low": "#1e1b19",
+        "primary-container": "#e07a5f",
+        "secondary-fixed-dim": "#99d3ae",
+        "inverse-surface": "#e9e1dd",
+        "surface-container": "#221f1d",
+        "secondary-container": "#1d3627",
+        "border-focus": "#E07A5F",
+        "error": "#ffb4ab",
+        "tertiary-container": "#332d4a",
+        "primary-fixed": "#ffdbd2",
+        "surface-variant": "#2a2522",
+        "tertiary-fixed": "#e6deff",
+        "on-secondary": "#003920",
+        "primary": "#ffb4a1",
+        "on-primary-fixed": "#3c0800",
+        "on-surface": "#f5ebe6",
+        "surface-container-highest": "#2e2926",
+        "on-tertiary-container": "#c9c2e8",
+        "surface-dim": "#141211",
+        "bg-base": "#141211",
+        "on-error": "#690005",
+        "inverse-primary": "#9a442d",
+        "outline-variant": "#3d3430",
+        "moss-dim": "#4D7E60",
+        "on-error-container": "#ffdad6",
+        "outline": "#6d5c56",
+        "secondary": "#99d3ae",
+        "on-primary": "#5d1805",
+        "on-tertiary": "#312c4a",
+        "secondary-fixed": "#b5f0c9",
+        "surface": "#141211",
+        "surface-container-high": "#272220",
+        "on-tertiary-fixed-variant": "#484362",
+        "surface-overlay": "#2D2724"
+      },
+      "borderRadius": {
+        "DEFAULT": "1rem",
+        "lg": "2rem",
+        "xl": "3rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "gutter": "1rem",
+        "space-xs": "0.25rem",
+        "space-xl": "2rem",
+        "space-lg": "1.5rem",
+        "space-sm": "0.5rem",
+        "margin": "1.25rem",
+        "space-md": "1rem"
+      },
+      "fontFamily": {
+        "label-md": ["Plus Jakarta Sans"],
+        "headline-sm": ["Plus Jakarta Sans"],
+        "headline-lg-mobile": ["Plus Jakarta Sans"],
+        "label-sm": ["Plus Jakarta Sans"],
+        "label-lg": ["Plus Jakarta Sans"],
+        "headline-md": ["Plus Jakarta Sans"],
+        "headline-lg": ["Plus Jakarta Sans"],
+        "body-lg": ["Plus Jakarta Sans"],
+        "display": ["Plus Jakarta Sans"],
+        "body-sm": ["Plus Jakarta Sans"],
+        "title-md": ["Plus Jakarta Sans"],
+        "body-md": ["Plus Jakarta Sans"]
+      },
+      "fontSize": {
+        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+        "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+        "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+        "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+        "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+        "display": ["38px", { "lineHeight": "46px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+        "body-sm": ["12px", { "lineHeight": "17px", "fontWeight": "400" }],
+        "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600" }],
+        "body-md": ["14px", { "lineHeight": "21px", "fontWeight": "400" }]
+      }
+    }
+  }
+}</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-background text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-text-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-[#1E1A18]/90 backdrop-blur-xl border-b border-[#2B2623] shadow-[0_4px_20px_rgba(0,0,0,0.35)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Nudge App Logo" class="h-8 w-auto object-contain brightness-110" src="assets/AEtjO1UORFQG9DrH87fFQvwxoIma3iNuJhaiY7RVl6gUEt1CmBGXai47Oem9H3E_JRQCro2Wyz53LgKANld-R3xCWhvzjznHhs_G-5f88f1639b4b9b9c15013d0ea1004bd5"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-text-primary tracking-tight leading-none">Nudge</span><span class="inline-block w-1.5 h-1.5 rounded-full bg-accent-coral shadow-[0_0_8px_#EB8A6E]"></span></div><span class="font-label-sm text-label-sm text-text-muted">Home</span></div></div><div class="flex items-center gap-space-sm"><a class="flex items-center justify-center p-0.5 rounded-full ring-1 ring-border-subtle hover:ring-accent-coral/60 transition-all active:scale-95" data-path="account-settings" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="assets/AB6AXuD3dEJBC4oj706s5GN1v6WueAAUoocYVw5WaJxDzHwOZJFMfvA_cs94dls59Ax9qtG2Yy0gC10juaDRlp5Kq-NjF9eSNVHM-40a78750405a35c6bc6a8596b0dad4d3"></a></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin bg-background"><div class="flex flex-col w-full space-y-space-lg">
+<!-- Warm Greeting Section -->
+<section class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<h1 class="font-headline-md text-headline-md text-text-primary tracking-tight">Good morning, Maya 👋</h1>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e3427] border border-[#2a4d38] text-on-secondary-container font-label-sm text-label-sm shadow-[0_0_12px_rgba(78,138,104,0.15)]">
+<span class="w-2 h-2 rounded-full bg-moss-bright animate-pulse shadow-[0_0_6px_#88B998]"></span>
+        Balanced Day
+      </span>
+</div>
+<p class="font-body-md text-body-md text-text-muted">
+      You have 3 focus blocks &amp; 5 gentle habits mapped out for today.
+    </p>
+</section><div class="bg-surface-card rounded-lg p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.25)] flex flex-col gap-space-sm border border-border-subtle">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-coral text-[18px]">temp_preferences_custom</span>
+<span class="font-title-md text-title-md text-text-primary font-semibold">How's your energy today?</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted">Daily pulse</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded-full bg-surface-elevated hover:bg-surface-bright active:scale-95 transition-all text-text-secondary font-label-sm text-label-sm gap-1 border border-border-subtle/50">
+<span class="text-base">😴</span>
+<span class="">Low</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded-full bg-surface-elevated hover:bg-surface-bright active:scale-95 transition-all text-text-secondary font-label-sm text-label-sm gap-1 border border-border-subtle/50">
+<span class="text-base">⛅</span>
+<span class="">Okay</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded-full bg-[#203a2c] text-on-secondary-container border border-moss-dim font-semibold active:scale-95 transition-all font-label-sm text-label-sm gap-1 shadow-[0_0_12px_rgba(78,138,104,0.2)]">
+<span class="text-base">🌿</span>
+<span class="">Good</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded-full bg-surface-elevated hover:bg-surface-bright active:scale-95 transition-all text-text-secondary font-label-sm text-label-sm gap-1 border border-border-subtle/50">
+<span class="text-base">⚡</span>
+<span class="">Great</span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-border-subtle mt-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-text-muted">Last 7 days</span>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-moss-bright" title="Mon: Good"></span>
+<span class="w-2 h-2 rounded-full bg-moss-bright" title="Tue: Good"></span>
+<span class="w-2 h-2 rounded-full bg-accent-coral/70" title="Wed: Low"></span>
+<span class="w-2 h-2 rounded-full bg-moss-bright" title="Thu: Good"></span>
+<span class="w-2 h-2 rounded-full bg-accent-coral shadow-[0_0_6px_#EB8A6E]" title="Fri: Great"></span>
+<span class="w-2 h-2 rounded-full bg-moss-bright" title="Sat: Good"></span>
+<span class="w-2 h-2 rounded-full bg-moss-bright ring-2 ring-moss-dim" title="Sun (Today): Good"></span>
+</div>
+</div>
+<a class="font-label-sm text-label-sm text-accent-coral hover:text-primary transition-colors flex items-center gap-0.5 font-medium" data-path="summary" href="#">
+      Energy trend · Summary →
+    </a>
+</div>
+</div>
+<!-- Tactile Reset Nudge Banner -->
+<a class="group relative overflow-hidden bg-gradient-to-r from-[#2f1f1a] via-[#38231d] to-[#2a1b17] border border-[#4d2d23] rounded-lg p-space-md shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all duration-300 active:scale-[0.98] flex items-center justify-between" data-path="chat" href="#">
+<div class="flex items-center gap-space-md relative z-10">
+<div class="w-12 h-12 rounded-full bg-[#1e1512] border border-[#523025] flex items-center justify-center text-accent-coral shadow-[0_0_12px_rgba(235,138,110,0.2)] group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">psychology_alt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-accent-coral/90 font-semibold">Feeling overwhelmed?</span>
+<span class="font-title-md text-title-md text-text-primary font-bold">Need a quick reset? Chat with Nudge</span>
+</div>
+</div>
+<div class="relative z-10 w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_12px_rgba(224,122,95,0.4)] group-hover:bg-accent-coral transition-colors">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-0.5 text-[#300c03]">arrow_forward</span>
+</div>
+<!-- Subtle warm glow decor -->
+<div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-primary-container/20 blur-2xl pointer-events-none"></div>
+</a>
+<!-- Momentum Streaks Strip -->
+<div class="bg-[#192b21] border border-[#2d503b] rounded-lg p-space-sm shadow-[0_4px_16px_rgba(0,0,0,0.25)] flex items-center justify-between gap-space-sm transition-all">
+<a class="flex items-center gap-space-sm flex-1 min-w-0 group" data-path="milestones" href="#">
+<div class="w-9 h-9 rounded-full bg-[#244231] border border-[#3b664d] flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(136,185,152,0.15)] group-hover:scale-105 transition-transform">
+<span class="text-base">🌱</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm font-bold text-moss-bright uppercase tracking-wider">Milestone Reached</span>
+<span class="w-1 h-1 rounded-full bg-moss-bright"></span>
+<span class="font-label-sm text-label-sm text-text-muted font-medium">Campus Ride</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-tight truncate">
+<strong class="text-text-primary">'Sprout Milestone'</strong> unlocked! Tap to view badges →
+      </p>
+</div>
+</a>
+<button aria-label="Dismiss toast" class="w-6 h-6 rounded-full flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-surface-bright active:scale-90 transition-all shrink-0" onclick="this.closest('div').remove()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div><section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-title-md text-title-md text-text-primary font-semibold">Active Momentum</h2>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-text-muted">4 active streaks</span>
+<span class="text-border-subtle">•</span>
+<a class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#1e3427] border border-[#2a4d38] text-on-secondary-container font-label-sm text-label-sm font-semibold hover:bg-[#254332] transition-all active:scale-95 shadow-[0_0_8px_rgba(78,138,104,0.15)]" data-path="milestones" href="#">
+<span class="">🌿</span>
+<span class="">View Badges</span>
+</a>
+</div>
+</div>
+<div class="flex items-center gap-space-sm overflow-x-auto pb-1 -mx-margin px-margin scrollbar-none">
+<!-- Streak Badge 1 -->
+<div class="flex items-center gap-2 bg-surface-card border border-border-subtle px-3.5 py-2 rounded-full shadow-sm shrink-0">
+<span class="text-base drop-shadow-[0_0_6px_rgba(235,138,110,0.5)]">🔥</span>
+<div class="flex flex-col leading-none">
+<span class="font-label-md text-label-md text-text-primary font-bold">12 Days</span>
+<span class="font-label-sm text-label-sm text-text-muted">Deep Study</span>
+</div>
+</div>
+<!-- Streak Badge 2 -->
+<div class="flex items-center gap-2 bg-surface-card border border-border-subtle px-3.5 py-2 rounded-full shadow-sm shrink-0">
+<span class="text-base drop-shadow-[0_0_6px_rgba(136,185,152,0.5)]">🚴</span>
+<div class="flex flex-col leading-none">
+<span class="font-label-md text-label-md text-text-primary font-bold">5 Days</span>
+<span class="font-label-sm text-label-sm text-text-muted">Campus Ride</span>
+</div>
+</div>
+<!-- Streak Badge 3 -->
+<div class="flex items-center gap-2 bg-surface-card border border-border-subtle px-3.5 py-2 rounded-full shadow-sm shrink-0">
+<span class="text-base drop-shadow-[0_0_6px_rgba(153,211,174,0.5)]">💧</span>
+<div class="flex flex-col leading-none">
+<span class="font-label-md text-label-md text-text-primary font-bold">8 Days</span>
+<span class="font-label-sm text-label-sm text-text-muted">Hydration</span>
+</div>
+</div>
+<!-- Streak Badge 4 -->
+<div class="flex items-center gap-2 bg-surface-card border border-border-subtle px-3.5 py-2 rounded-full shadow-sm shrink-0">
+<span class="text-base drop-shadow-[0_0_6px_rgba(235,138,110,0.5)]">💰</span>
+<div class="flex flex-col leading-none">
+<span class="font-label-md text-label-md text-text-primary font-bold">14 Days</span>
+<span class="font-label-sm text-label-sm text-text-muted">Budget Check</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Today's Flow & Checklist -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h2 class="font-title-md text-title-md text-text-primary font-semibold">Today's Flow</h2>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-elevated border border-border-subtle text-text-muted font-medium" id="tasks-counter">1 / 5 done</span>
+</div>
+<button class="font-label-sm text-label-sm text-accent-coral font-semibold hover:underline" id="celebrate-btn">Cheer me on</button>
+</div>
+<div class="flex flex-col gap-space-sm" id="tasks-list">
+<!-- Task 1: Study -->
+<div class="task-card bg-surface-card rounded-lg p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.25)] border border-border-subtle transition-all flex items-start justify-between gap-space-sm" data-id="1">
+<div class="flex items-start gap-space-sm min-w-0">
+<button aria-label="Toggle task" class="checkbox-btn mt-0.5 w-6 h-6 rounded-lg bg-surface-elevated border border-border-subtle hover:border-accent-coral flex items-center justify-center text-transparent transition-all active:scale-90">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded-full bg-[#351e18] border border-[#502a20] text-accent-coral font-label-sm text-label-sm font-medium">Study</span>
+<span class="font-label-sm text-label-sm text-text-muted flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 3:00 PM
+              </span>
+</div>
+<span class="task-title font-body-md text-body-md text-text-primary font-semibold truncate">45m Organic Chemistry review</span>
+<span class="font-body-sm text-body-sm text-text-muted">Reaction mechanisms &amp; synthesis cards</span>
+</div>
+</div>
+<div class="w-1.5 h-10 rounded-full bg-accent-coral shadow-[0_0_8px_#EB8A6E] shrink-0 self-center"></div>
+</div>
+<!-- Task 2: Cycling -->
+<div class="task-card bg-surface-card rounded-lg p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.25)] border border-border-subtle transition-all flex items-start justify-between gap-space-sm" data-id="2">
+<div class="flex items-start gap-space-sm min-w-0">
+<button aria-label="Toggle task" class="checkbox-btn mt-0.5 w-6 h-6 rounded-lg bg-[#274834] border border-moss-bright text-on-secondary-container flex items-center justify-center transition-all active:scale-90 is-checked shadow-[0_0_8px_rgba(136,185,152,0.3)]">
+<span class="material-symbols-outlined text-[18px] text-moss-bright">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded-full bg-[#1e3427] border border-[#2a4d38] text-on-secondary-container font-label-sm text-label-sm font-medium">Movement</span>
+<span class="font-label-sm text-label-sm text-moss-bright font-medium">Completed 8:30 AM</span>
+</div>
+<span class="task-title font-body-md text-body-md text-text-primary font-semibold line-through opacity-60 truncate">20 min campus ride / commute</span>
+<span class="font-body-sm text-body-sm text-text-muted opacity-75">Brisk morning fresh air loop</span>
+</div>
+</div>
+<div class="w-1.5 h-10 rounded-full bg-moss-bright shadow-[0_0_8px_#88B998] shrink-0 self-center"></div>
+</div>
+<!-- Task 3: Chores -->
+<div class="task-card bg-surface-card rounded-lg p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.25)] border border-border-subtle transition-all flex items-start justify-between gap-space-sm" data-id="3">
+<div class="flex items-start gap-space-sm min-w-0">
+<button aria-label="Toggle task" class="checkbox-btn mt-0.5 w-6 h-6 rounded-lg bg-surface-elevated border border-border-subtle hover:border-tertiary flex items-center justify-center text-transparent transition-all active:scale-90">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded-full bg-[#27223b] border border-[#3e365e] text-tertiary font-label-sm text-label-sm font-medium">Space</span>
+<span class="font-label-sm text-label-sm text-text-muted">Evening</span>
+</div>
+<span class="task-title font-body-md text-body-md text-text-primary font-semibold truncate">Laundry &amp; tidy study desk</span>
+<span class="font-body-sm text-body-sm text-text-muted">Clear space = clear mind</span>
+</div>
+</div>
+<div class="w-1.5 h-10 rounded-full bg-tertiary shadow-[0_0_8px_rgba(201,194,232,0.4)] shrink-0 self-center"></div>
+</div>
+<!-- Task 4: Hydration (Progress Interactive Card) -->
+<div class="task-card bg-surface-card rounded-lg p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.25)] border border-border-subtle transition-all flex flex-col gap-space-sm" data-id="4">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-6 h-6 rounded-lg bg-surface-elevated border border-border-subtle flex items-center justify-center text-accent-coral">
+<span class="material-symbols-outlined text-[18px]">water_drop</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded-full bg-[#1e3427] border border-[#2a4d38] text-on-secondary-container font-label-sm text-label-sm font-medium">Hydration</span>
+<span class="font-label-sm text-label-sm text-text-muted">70% reached</span>
+</div>
+<span class="font-body-md text-body-md text-text-primary font-semibold">2.0L Daily target</span>
+</div>
+</div>
+<button class="px-3 py-1 rounded-full bg-surface-elevated border border-border-subtle hover:bg-surface-bright text-text-secondary font-label-sm text-label-sm flex items-center gap-1 active:scale-95 transition-all shadow-sm" id="add-water-btn">
+<span class="material-symbols-outlined text-[14px] text-accent-coral">add</span> 250ml
+          </button>
+</div>
+<!-- Friendly pill bar -->
+<div class="w-full bg-surface-elevated h-2.5 rounded-full overflow-hidden flex border border-border-subtle/60">
+<div class="bg-gradient-to-r from-moss-dim to-moss-bright h-full rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(136,185,152,0.5)]" id="water-bar" style="width: 70%;"></div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-text-muted">
+<span class="" id="water-label">1.4L of 2.0L logged</span>
+<span class="text-text-secondary">Almost there! 🥤</span>
+</div>
+</div>
+<!-- Task 5: Budget -->
+<div class="task-card bg-surface-card rounded-lg p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.25)] border border-border-subtle transition-all flex items-start justify-between gap-space-sm" data-id="5">
+<div class="flex items-start gap-space-sm min-w-0">
+<button aria-label="Toggle task" class="checkbox-btn mt-0.5 w-6 h-6 rounded-lg bg-surface-elevated border border-border-subtle hover:border-accent-coral flex items-center justify-center text-transparent transition-all active:scale-90">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded-full bg-[#351e18] border border-[#502a20] text-accent-coral font-label-sm text-label-sm font-medium">Mindful Spend</span>
+<span class="font-label-sm text-label-sm text-text-muted">&lt; $15 daily cap</span>
+</div>
+<span class="task-title font-body-md text-body-md text-text-primary font-semibold truncate">Log coffee &amp; midday lunch spend</span>
+<span class="font-body-sm text-body-sm text-text-muted">Current log: $4.25 (Oat latte)</span>
+</div>
+</div>
+<div class="w-1.5 h-10 rounded-full bg-accent-coral/70 shrink-0 self-center"></div>
+</div>
+</div>
+</section>
+<!-- Encouragement & Weekly Progress Nudge Card -->
+<section class="bg-surface-card rounded-lg p-space-md shadow-[0_4px_16px_rgba(0,0,0,0.25)] border border-border-subtle flex items-center gap-space-md">
+<!-- SVG Circular Progress Dial -->
+<div class="relative w-16 h-16 shrink-0 flex items-center justify-center">
+<svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 48 48">
+<circle class="text-surface-elevated" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-width="4.5"></circle>
+<circle class="text-accent-coral" cx="24" cy="24" fill="none" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="27.6" stroke-linecap="round" stroke-width="4.5" style="filter: drop-shadow(0 0 4px rgba(235,138,110,0.4));"></circle>
+</svg>
+<span class="absolute font-headline-sm text-headline-sm text-text-primary font-bold text-center">78%</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 text-accent-coral mb-0.5">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wide">Weekly Pace</span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary font-medium leading-snug">
+        You've crushed 78% of your weekly targets. One gentle step at a time!
+      </p>
+</div>
+</section>
+<!-- Gentle Ambient Micro-reminder (Warm footer note) -->
+<div class="flex items-center justify-center gap-2 py-space-xs text-text-muted">
+<span class="material-symbols-outlined text-[16px] text-moss-bright">eco</span>
+<span class="font-label-sm text-label-sm">Progress over perfection, Maya.</span>
+</div>
+</div>
+<script>
+  (function() {
+    // Checkbox toggling micro-interaction
+    const checklistButtons = document.querySelectorAll('.checkbox-btn');
+    const counterLabel = document.getElementById('tasks-counter');
+
+    function updateCounter() {
+      const checkedCount = document.querySelectorAll('.checkbox-btn.is-checked').length;
+      if (counterLabel) {
+        counterLabel.textContent = `${checkedCount} / 5 done`;
+      }
+    }
+
+    checklistButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isChecked = this.classList.contains('is-checked');
+        const card = this.closest('.task-card');
+        const title = card ? card.querySelector('.task-title') : null;
+
+        if (isChecked) {
+          this.classList.remove('is-checked', 'bg-[#274834]', 'border-moss-bright', 'text-on-secondary-container', 'shadow-[0_0_8px_rgba(136,185,152,0.3)]');
+          this.classList.add('bg-surface-elevated', 'border-border-subtle', 'text-transparent');
+          const checkIcon = this.querySelector('.material-symbols-outlined');
+          if (checkIcon) checkIcon.classList.remove('text-moss-bright');
+          if (title) {
+            title.classList.remove('line-through', 'opacity-60');
+          }
+        } else {
+          this.classList.add('is-checked', 'bg-[#274834]', 'border-moss-bright', 'text-on-secondary-container', 'shadow-[0_0_8px_rgba(136,185,152,0.3)]');
+          this.classList.remove('bg-surface-elevated', 'border-border-subtle', 'text-transparent');
+          const checkIcon = this.querySelector('.material-symbols-outlined');
+          if (checkIcon) checkIcon.classList.add('text-moss-bright');
+          if (title) {
+            title.classList.add('line-through', 'opacity-60');
+          }
+        }
+        updateCounter();
+      });
+    });
+
+    // Hydration quick bump
+    const addWaterBtn = document.getElementById('add-water-btn');
+    const waterBar = document.getElementById('water-bar');
+    const waterLabel = document.getElementById('water-label');
+    let currentLiters = 1.4;
+
+    if (addWaterBtn && waterBar && waterLabel) {
+      addWaterBtn.addEventListener('click', function() {
+        if (currentLiters < 2.0) {
+          currentLiters = Math.min(2.0, parseFloat((currentLiters + 0.25).toFixed(2)));
+          const percent = Math.min(100, Math.round((currentLiters / 2.0) * 100));
+          waterBar.style.width = percent + '%';
+          waterLabel.textContent = `${currentLiters}L of 2.0L logged`;
+          if (currentLiters >= 2.0) {
+            this.textContent = 'Goal reached 🎉';
+            this.classList.add('bg-[#1e3427]', 'text-on-secondary-container', 'border-moss-bright');
+          }
+        }
+      });
+    }
+
+    // Friendly cheer tap
+    const cheerBtn = document.getElementById('celebrate-btn');
+    if (cheerBtn) {
+      cheerBtn.addEventListener('click', function() {
+        this.textContent = 'You are doing great! ✨';
+        setTimeout(() => {
+          this.textContent = 'Cheer me on';
+        }, 2200);
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#1E1A18]/95 backdrop-blur-xl border-t border-[#2B2623] shadow-[0_-4px_24px_rgba(0,0,0,0.5)]" data-active-classes="text-accent-coral font-semibold"><div class="relative flex items-center justify-around h-[68px] px-space-sm"><a aria-current="page" class="flex flex-col items-center justify-center flex-1 h-full gap-space-xs transition-colors text-accent-coral font-semibold" data-path="home" href="#"><span class="material-symbols-outlined text-[24px]">home</span><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center flex-1 h-full gap-space-xs text-text-muted hover:text-text-primary transition-colors pr-6" data-path="chat" href="#"><span class="material-symbols-outlined text-[24px]">chat_bubble</span><span class="font-label-sm text-label-sm">Chat</span></a><div class="absolute left-1/2 -top-5 -translate-x-1/2 flex items-center justify-center"><a aria-label="Voice Reflection" class="relative group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-[#c45a40] via-[#EB8A6E] to-[#ffa188] text-[#290d05] shadow-[0_8px_24px_rgba(235,138,110,0.45)] border border-[#ffbca8]/40 active:scale-95 transition-transform" data-path="voice-nudge" href="#"><span class="absolute -inset-1 rounded-full bg-accent-coral/25 animate-ping pointer-events-none"></span><span class="material-symbols-outlined text-[28px] font-bold">mic</span></a></div><a class="flex flex-col items-center justify-center flex-1 h-full gap-space-xs text-text-muted hover:text-text-primary transition-colors pl-6" data-path="schedule" href="#"><span class="material-symbols-outlined text-[24px]">calendar_today</span><span class="font-label-sm text-label-sm">Schedule</span></a><a class="flex flex-col items-center justify-center flex-1 h-full gap-space-xs text-text-muted hover:text-text-primary transition-colors" data-path="summary" href="#"><span class="material-symbols-outlined text-[24px]">equalizer</span><span class="font-label-sm text-label-sm">Summary</span></a></div></nav>
+</body></html>

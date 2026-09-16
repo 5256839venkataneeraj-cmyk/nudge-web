@@ -1,0 +1,502 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="assets/css2-81626ed9559595b1e316af96e8f2aa0b" rel="stylesheet"><link href="assets/css2-5921624bf5bbe4c8c091ef09226fa76f" rel="stylesheet">
+<link href="assets/css2-a39f5c6fcbb87b419667ec984d2e579a" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "secondary-container": "#1a5336",
+          "inverse-on-surface": "#33302d",
+          "on-primary-fixed": "#3c0800",
+          "primary": "#ffb4a1",
+          "tertiary-container": "#9992b6",
+          "surface": "#161311",
+          "on-secondary-container": "#8bc5a1",
+          "text-primary": "#F5EBE6",
+          "surface-dim": "#161311",
+          "surface-container-lowest": "#100e0c",
+          "surface-container": "#221f1d",
+          "surface-variant": "#383432",
+          "on-tertiary-container": "#302b49",
+          "secondary-fixed": "#b5f0c9",
+          "outline-variant": "#55423e",
+          "surface-tint": "#ffb4a1",
+          "on-error": "#690005",
+          "on-secondary-fixed": "#002111",
+          "bg-base": "#141211",
+          "moss-bright": "#88B998",
+          "primary-container": "#e07a5f",
+          "primary-fixed-dim": "#ffb4a1",
+          "on-primary-container": "#5b1604",
+          "secondary": "#99d3ae",
+          "surface-container-high": "#2d2927",
+          "secondary-fixed-dim": "#99d3ae",
+          "background": "#161311",
+          "tertiary": "#c9c2e8",
+          "outline": "#a38b86",
+          "tertiary-fixed-dim": "#c9c2e8",
+          "tertiary-fixed": "#e6deff",
+          "surface-container-low": "#1e1b19",
+          "on-secondary-fixed-variant": "#175034",
+          "on-secondary": "#003920",
+          "surface-elevated": "#24201E",
+          "moss-dim": "#4D7E60",
+          "text-secondary": "#E0D5CE",
+          "on-error-container": "#ffdad6",
+          "on-tertiary-fixed-variant": "#484362",
+          "error": "#ffb4ab",
+          "on-tertiary": "#312c4a",
+          "on-primary": "#5d1805",
+          "surface-card": "#1C1917",
+          "border-subtle": "#332C29",
+          "surface-overlay": "#2D2724",
+          "inverse-surface": "#e9e1dd",
+          "inverse-primary": "#9a442d",
+          "on-tertiary-fixed": "#1c1734",
+          "error-container": "#93000a",
+          "surface-bright": "#3c3836",
+          "border-focus": "#E07A5F",
+          "on-surface": "#e9e1dd",
+          "on-primary-fixed-variant": "#7c2e19",
+          "text-muted": "#A89B95",
+          "accent-coral": "#EB8A6E",
+          "primary-fixed": "#ffdbd2",
+          "on-surface-variant": "#dbc1ba",
+          "surface-container-highest": "#383432",
+          "on-background": "#e9e1dd"
+        },
+        "borderRadius": {
+          "DEFAULT": "1rem",
+          "lg": "2rem",
+          "xl": "3rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-md": "1rem",
+          "space-xs": "0.25rem",
+          "gutter": "1rem",
+          "space-sm": "0.5rem",
+          "space-lg": "1.5rem",
+          "margin": "1.25rem",
+          "space-xl": "2rem"
+        },
+        "fontFamily": {
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "title-md": [
+            "Plus Jakarta Sans"
+          ],
+          "display": [
+            "Plus Jakarta Sans"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-md": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "21px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "700"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "display": [
+            "38px",
+            {
+              "lineHeight": "46px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "-0.005em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "30px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "17px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.03em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }
+</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-[#161311]/90 backdrop-blur-xl border-b border-[#332C29]/50 shadow-[0_1px_12px_rgba(0,0,0,0.35)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-text-primary hover:bg-surface-container active:scale-95 transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><img alt="Nudge App Logo" class="h-8 w-8 object-contain rounded-full shadow-inner" src="assets/AEtjO1VeLQfKxfNU3l6AbdJQgEAAG5jrV2i28Fct_w3g-AUmyXbBRSbxfKbUIyDIfI7QKxk9HPlEnJu_WZWAJ5_P5mpe7twpQGiR-87f3734fc07e470d28825695739a46fd"><h1 class="font-title-md text-title-md text-text-primary tracking-tight">Task Detail</h1></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-border-subtle" src="assets/AEtjO1U4WJfUiUY7TV2jVGFP9Vv8oDaCJwaI9gW11GH8kOUG_yKkkXNBQKyot7rLn4lv9fVojN7v9YRrP4P7IWVbBHOK9CRq6B5R-2780e9c8d7c3d05b5de17a28102cf584"></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe px-margin bg-surface"><div class="flex flex-col w-full pb-8 pt-4">
+<div class="mb-space-lg">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-label-sm mb-2.5 border border-moss-dim/40">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+<span class="font-medium tracking-wide">Gentle Flow Setup</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary tracking-tight font-bold">Add New Assignment</h2>
+<p class="font-body-md text-body-md text-text-muted mt-1">Nudge will weave this into your schedule without burning you out.</p>
+</div>
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-low border border-border-subtle p-space-md shadow-sm mb-space-lg flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-surface-container flex items-center justify-center ring-1 ring-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A warm cozy desk setup with a ceramic mug of tea, soft sunlight falling across an open student notebook, warm earthy terracotta and sage tones, calming aesthetic, shallow depth of field" src="assets/AB6AXuDXxBwgS1IfCWp3LoUibra291OZWHOGc68H3C6z5qqEBXF4YnajEgAyNStBRqHpImtG4YxbSAwdPDr9MAJz85674Gvnffou-96795172776a4be6d2c31a5d93245e48">
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-primary font-semibold">Mindful Pacing Active</p>
+<p class="font-body-sm text-body-sm text-text-muted truncate">We automatically protect your downtime and sleep schedule.</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">temp_preferences_custom</span>
+</div>
+</div>
+<form class="flex flex-col gap-space-lg" id="assignment-form" onsubmit="event.preventDefault();">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg text-text-primary flex items-center justify-between" for="assignment-title">
+<span>Assignment Title</span>
+<span class="font-label-sm text-label-sm text-text-muted font-normal">Required</span>
+</label>
+<div class="relative">
+<input class="w-full bg-surface-elevated border border-surface-bright text-text-primary placeholder:text-outline font-body-md text-body-md rounded-2xl px-4 py-3.5 focus:border-border-focus focus:ring-1 focus:ring-border-focus focus:outline-none transition-all shadow-inner" id="assignment-title" placeholder="e.g. Bioethics Case Study Analysis" type="text" value="Bioethics Case Study Analysis">
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-text-primary">Subject / Course</label>
+<button class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-semibold hover:text-accent-coral active:opacity-75 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>Add Course</span>
+</button>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar -mx-margin px-margin">
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-label-md transition-all flex items-center gap-1.5 bg-primary-container text-white shadow-md shadow-primary-container/20 border border-accent-coral/40" data-selected="true" type="button">
+<span>🧬</span>
+<span>BIO 302: Ethics</span>
+</button>
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-label-md transition-all flex items-center gap-1.5 bg-surface-container border border-border-subtle text-text-secondary hover:bg-surface-container-high hover:border-surface-bright" data-selected="false" type="button">
+<span>📐</span>
+<span>MATH 210</span>
+</button>
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-label-md transition-all flex items-center gap-1.5 bg-surface-container border border-border-subtle text-text-secondary hover:bg-surface-container-high hover:border-surface-bright" data-selected="false" type="button">
+<span>📚</span>
+<span>ENGL 101</span>
+</button>
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-label-md transition-all flex items-center gap-1.5 bg-surface-container border border-border-subtle text-text-secondary hover:bg-surface-container-high hover:border-surface-bright" data-selected="false" type="button">
+<span>🧪</span>
+<span>CHEM 150</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-space-md bg-surface-container-low border border-border-subtle p-space-md rounded-2xl shadow-sm">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">event</span>
+<span>Due Date</span>
+</label>
+</div>
+<div class="flex items-center gap-2">
+<button class="preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container border border-border-subtle text-text-secondary hover:bg-surface-container-high transition-colors" data-val="Tomorrow" type="button">Tomorrow</button>
+<button class="preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-primary-container text-white font-semibold shadow-sm border border-accent-coral/50 transition-colors" data-val="This Weekend" type="button">This Weekend</button>
+<button class="preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container border border-border-subtle text-text-secondary hover:bg-surface-container-high transition-colors" data-val="Next Week" type="button">Next Week</button>
+</div>
+<div class="relative mt-1">
+<div class="w-full bg-surface-elevated border border-surface-bright text-text-primary font-body-md text-body-md rounded-xl px-3.5 py-3 flex items-center justify-between cursor-pointer hover:border-border-focus/60 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[20px]">calendar_today</span>
+<span class="font-medium" id="date-display">Thursday, Oct 26, 2023</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2 border-t border-border-subtle/60">
+<label class="font-label-lg text-label-lg text-text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span>Due Time</span>
+</label>
+<div class="flex items-center gap-2">
+<div class="flex-1 bg-surface-elevated border border-surface-bright text-text-primary font-body-md text-body-md rounded-xl px-3.5 py-2.5 flex items-center gap-2 focus-within:border-border-focus">
+<span class="material-symbols-outlined text-outline text-[20px]">access_time</span>
+<input class="bg-transparent font-medium w-16 focus:outline-none text-text-primary placeholder:text-outline" type="text" value="11:59">
+</div>
+<div class="flex bg-surface-container p-1 rounded-xl border border-border-subtle">
+<button class="px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-text-muted transition-colors" id="ampm-am" type="button">AM</button>
+<button class="px-3 py-1.5 rounded-lg font-label-sm text-label-sm bg-surface-elevated text-text-primary border border-surface-bright shadow-xs font-semibold transition-colors" id="ampm-pm" type="button">PM</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-text-primary">Estimated Effort</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-surface-container-low border border-border-subtle text-text-muted hover:bg-surface-container hover:text-text-secondary" data-selected="false" type="button">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span class="font-label-sm text-label-sm font-semibold">Quick</span>
+<span class="text-[11px] opacity-75">30 mins</span>
+</button>
+<button class="effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-primary-container/20 border-2 border-primary text-text-primary shadow-[0_0_15px_rgba(224,122,95,0.25)]" data-selected="true" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">Medium</span>
+<span class="text-[11px] text-text-secondary">2 hours</span>
+</button>
+<button class="effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-surface-container-low border border-border-subtle text-text-muted hover:bg-surface-container hover:text-text-secondary" data-selected="false" type="button">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<span class="font-label-sm text-label-sm font-semibold">Deep Dive</span>
+<span class="text-[11px] opacity-75">4h+ focus</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-low border border-border-subtle rounded-2xl p-space-md shadow-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-primary/15 text-primary flex items-center justify-center shrink-0 mt-0.5 border border-primary/20">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-lg text-label-lg text-text-primary font-semibold">Auto-schedule study blocks</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-container text-white text-[10px] font-bold tracking-wide uppercase">AI</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-0.5" id="schedule-desc">Nudge will break this into 3 bite-sized prep sessions.</p>
+</div>
+</div>
+<button aria-checked="true" class="w-12 h-7 bg-primary-container rounded-full p-1 transition-colors relative shrink-0 cursor-pointer shadow-inner" id="ai-toggle" role="switch" type="button">
+<div class="w-5 h-5 bg-white rounded-full shadow-md transform translate-x-5 transition-transform" id="ai-toggle-dot"></div>
+</button>
+</div>
+<div class="mt-3 pt-3 border-t border-border-subtle/50 flex flex-col gap-2" id="ai-breakdown-card">
+<div class="flex items-center gap-2 text-text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-coral shadow-[0_0_6px_rgba(235,138,110,0.6)]"></span>
+<span>Session 1: Outline &amp; Sources (35m)</span>
+</div>
+<div class="flex items-center gap-2 text-text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-coral shadow-[0_0_6px_rgba(235,138,110,0.6)]"></span>
+<span>Session 2: Case Arguments Draft (50m)</span>
+</div>
+<div class="flex items-center gap-2 text-text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-moss-bright shadow-[0_0_6px_rgba(136,185,152,0.6)]"></span>
+<span>Session 3: Final Polish &amp; Citations (35m)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full bg-primary-container text-white py-4 px-6 rounded-full font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(224,122,95,0.35)] hover:bg-accent-coral active:scale-[0.98] transition-all" id="save-button" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+<span class="tracking-wide">Save &amp; Plan with Nudge</span>
+</button>
+<button class="w-full py-3 px-6 rounded-full font-label-lg text-label-lg text-text-muted hover:text-text-primary hover:bg-surface-container transition-colors" onclick="history.back()" type="button">
+        Cancel
+      </button>
+</div>
+</form>
+</div>
+<script>
+  (function() {
+    const courseChips = document.querySelectorAll('.course-chip');
+    courseChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        courseChips.forEach(c => {
+          c.classList.remove('bg-primary-container', 'text-white', 'shadow-md', 'shadow-primary-container/20', 'border-accent-coral/40');
+          c.classList.add('bg-surface-container', 'border-border-subtle', 'text-text-secondary');
+          c.setAttribute('data-selected', 'false');
+        });
+        chip.classList.remove('bg-surface-container', 'border-border-subtle', 'text-text-secondary');
+        chip.classList.add('bg-primary-container', 'text-white', 'shadow-md', 'shadow-primary-container/20', 'border-accent-coral/40');
+        chip.setAttribute('data-selected', 'true');
+      });
+    });
+
+    const effortChips = document.querySelectorAll('.effort-chip');
+    effortChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        effortChips.forEach(c => {
+          c.classList.remove('bg-primary-container/20', 'border-2', 'border-primary', 'text-text-primary', 'shadow-[0_0_15px_rgba(224,122,95,0.25)]');
+          c.classList.add('bg-surface-container-low', 'border', 'border-border-subtle', 'text-text-muted');
+          const title = c.querySelector('.font-label-sm');
+          if (title) {
+            title.classList.remove('text-primary');
+          }
+          const icon = c.querySelector('.material-symbols-outlined');
+          if (icon) {
+            icon.classList.remove('text-primary');
+            icon.style.fontVariationSettings = "'FILL' 0";
+          }
+          c.setAttribute('data-selected', 'false');
+        });
+        chip.classList.remove('bg-surface-container-low', 'border', 'border-border-subtle', 'text-text-muted');
+        chip.classList.add('bg-primary-container/20', 'border-2', 'border-primary', 'text-text-primary', 'shadow-[0_0_15px_rgba(224,122,95,0.25)]');
+        const activeTitle = chip.querySelector('.font-label-sm');
+        if (activeTitle) {
+          activeTitle.classList.add('text-primary');
+        }
+        const activeIcon = chip.querySelector('.material-symbols-outlined');
+        if (activeIcon) {
+          activeIcon.classList.add('text-primary');
+          activeIcon.style.fontVariationSettings = "'FILL' 1";
+        }
+        chip.setAttribute('data-selected', 'true');
+      });
+    });
+
+    const datePresets = document.querySelectorAll('.preset-date-btn');
+    const dateDisplay = document.getElementById('date-display');
+    datePresets.forEach(btn => {
+      btn.addEventListener('click', () => {
+        datePresets.forEach(b => {
+          b.classList.remove('bg-primary-container', 'text-white', 'font-semibold', 'shadow-sm', 'border-accent-coral/50');
+          b.classList.add('bg-surface-container', 'border-border-subtle', 'text-text-secondary');
+        });
+        btn.classList.remove('bg-surface-container', 'border-border-subtle', 'text-text-secondary');
+        btn.classList.add('bg-primary-container', 'text-white', 'font-semibold', 'shadow-sm', 'border-accent-coral/50');
+        
+        const text = btn.getAttribute('data-val');
+        if (text === 'Tomorrow') dateDisplay.textContent = 'Friday, Oct 27, 2023';
+        if (text === 'This Weekend') dateDisplay.textContent = 'Sunday, Oct 29, 2023';
+        if (text === 'Next Week') dateDisplay.textContent = 'Wednesday, Nov 1, 2023';
+      });
+    });
+
+    const amBtn = document.getElementById('ampm-am');
+    const pmBtn = document.getElementById('ampm-pm');
+    amBtn.addEventListener('click', () => {
+      amBtn.classList.add('bg-surface-elevated', 'text-text-primary', 'border', 'border-surface-bright', 'shadow-xs', 'font-semibold');
+      amBtn.classList.remove('text-text-muted');
+      pmBtn.classList.remove('bg-surface-elevated', 'text-text-primary', 'border', 'border-surface-bright', 'shadow-xs', 'font-semibold');
+      pmBtn.classList.add('text-text-muted');
+    });
+    pmBtn.addEventListener('click', () => {
+      pmBtn.classList.add('bg-surface-elevated', 'text-text-primary', 'border', 'border-surface-bright', 'shadow-xs', 'font-semibold');
+      pmBtn.classList.remove('text-text-muted');
+      amBtn.classList.remove('bg-surface-elevated', 'text-text-primary', 'border', 'border-surface-bright', 'shadow-xs', 'font-semibold');
+      amBtn.classList.add('text-text-muted');
+    });
+
+    const toggleBtn = document.getElementById('ai-toggle');
+    const toggleDot = document.getElementById('ai-toggle-dot');
+    const breakdown = document.getElementById('ai-breakdown-card');
+    let aiChecked = true;
+
+    toggleBtn.addEventListener('click', () => {
+      aiChecked = !aiChecked;
+      toggleBtn.setAttribute('aria-checked', aiChecked.toString());
+      if (aiChecked) {
+        toggleBtn.classList.remove('bg-surface-container-highest');
+        toggleBtn.classList.add('bg-primary-container');
+        toggleDot.classList.add('translate-x-5');
+        toggleDot.classList.remove('translate-x-0');
+        breakdown.style.opacity = '1';
+        breakdown.style.pointerEvents = 'auto';
+      } else {
+        toggleBtn.classList.remove('bg-primary-container');
+        toggleBtn.classList.add('bg-surface-container-highest');
+        toggleDot.classList.remove('translate-x-5');
+        toggleDot.classList.add('translate-x-0');
+        breakdown.style.opacity = '0.35';
+        breakdown.style.pointerEvents = 'none';
+      }
+    });
+
+    const saveBtn = document.getElementById('save-button');
+    saveBtn.addEventListener('click', () => {
+      saveBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>Crafting Calm Schedule...</span>';
+      setTimeout(() => {
+        saveBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: \'FILL\' 1;">check_circle</span><span>Assignment Added!</span>';
+        saveBtn.classList.remove('bg-primary-container');
+        saveBtn.classList.add('bg-secondary-container', 'text-on-secondary-container', 'border', 'border-moss-bright/50');
+      }, 700);
+    });
+  })();
+</script></main></body></html>

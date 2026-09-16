@@ -1,0 +1,22 @@
+{
+  "name": "nudge-web",
+  "version": "1.0.0",
+  "description": "Nudge - AI Student Life & Habit Companion Web App",
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "dev": "npx serve . -p 3000",
+    "sync:stitch": "node scripts/sync-stitch.mjs"
+  },
+  "keywords": [
+    "ai",
+    "student",
+    "habits",
+    "productivity",
+    "gemini"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@_davideast/stitch-mcp": "^0.9.0"
+  }
+}

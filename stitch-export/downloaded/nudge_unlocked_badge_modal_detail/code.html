@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nudge - Unlocked Badge Modal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="assets/css2-31a15fd7aedbddede41c276e836f7170" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f7edea;
+      -webkit-font-smoothing: antialiased;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.92); opacity: 0.7; }
+      50% { transform: scale(1.06); opacity: 0.35; }
+      100% { transform: scale(0.92); opacity: 0.7; }
+    }
+    @keyframes gentle-float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(3deg); }
+    }
+    @keyframes leaf-drift {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.8; }
+      100% { transform: translate(18px, -32px) rotate(45deg); opacity: 0; }
+    }
+    .pulse-glow-1 {
+      animation: pulse-ring 3.5s ease-in-out infinite;
+    }
+    .pulse-glow-2 {
+      animation: pulse-ring 3.5s ease-in-out infinite 0.9s;
+    }
+    .float-badge {
+      animation: gentle-float 4s ease-in-out infinite;
+    }
+    .leaf-1 { animation: leaf-drift 4s ease-in-out infinite 0.2s; }
+    .leaf-2 { animation: leaf-drift 4.8s ease-in-out infinite 1.4s; }
+    .leaf-3 { animation: leaf-drift 3.6s ease-in-out infinite 2.2s; }
+  </style>
+</head>
+<body class="min-h-screen flex justify-center bg-stone-200">
+  <!-- Mobile Device Frame Container -->
+  <div class="relative w-full max-w-[390px] min-h-screen bg-[#FFF8F6] text-stone-900 shadow-2xl flex flex-col overflow-hidden pb-20">
+
+    <!-- Dimmed Underlay Background (Milestones Screen Preview) -->
+    <div class="absolute inset-0 bg-[#FFF8F6] filter blur-[2px] opacity-35 pointer-events-none p-5 select-none" aria-hidden="true">
+      <div class="flex items-center justify-between pt-3 pb-4">
+        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Growth Journal</span>
+        <span class="text-xs text-stone-500 font-medium">← Summary</span>
+      </div>
+      <div class="h-6 w-48 bg-stone-300 rounded mb-2"></div>
+      <div class="h-4 w-64 bg-stone-200 rounded mb-6"></div>
+      <div class="h-28 bg-emerald-50 rounded-2xl mb-4 border border-emerald-100"></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="h-32 bg-white rounded-2xl border border-stone-200"></div>
+        <div class="h-32 bg-white rounded-2xl border border-stone-200"></div>
+      </div>
+    </div>
+
+    <!-- Backdrop Dimmer Overlay -->
+    <div class="absolute inset-0 bg-stone-900/40 backdrop-blur-[3px] z-10 transition-opacity duration-300"></div>
+
+    <!-- Modal Card (Bottom-Aligned Sheet Container) -->
+    <div class="relative z-20 flex-1 flex flex-col justify-end mt-4">
+      <div class="w-full bg-[#FFF8F6] rounded-t-[32px] shadow-2xl border-t border-amber-100/60 p-6 flex flex-col max-h-[92vh] overflow-y-auto">
+        
+        <!-- Drag Handle Indicator -->
+        <div class="flex justify-center pb-2">
+          <div class="w-12 h-1.5 bg-stone-300/80 rounded-full"></div>
+        </div>
+
+        <!-- Category Tag & Dismiss Button -->
+        <div class="flex items-center justify-between pt-1 pb-3">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF3EC] border border-emerald-200 text-[#2D5A37] text-xs font-semibold">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2z" opacity="0.2"></path>
+              <path d="M7 16c2-4 7-6 10-6"></path>
+              <path d="M17 10c0 4-3 7-7 7"></path>
+            </svg>
+            <span>Sprout Milestone • Movement</span>
+          </div>
+
+          <button class="w-8 h-8 rounded-full bg-stone-100/90 hover:bg-stone-200 text-stone-500 flex items-center justify-center transition-colors text-sm font-bold active:scale-95" aria-label="Close modal">
+            ✕
+          </button>
+        </div>
+
+        <!-- Centered Hero Badge Visual with Ambient Aura & Particles -->
+        <div class="relative flex flex-col items-center justify-center py-3">
+          <!-- Ambient glowing background concentric rings -->
+          <div class="absolute w-48 h-48 rounded-full bg-[#D96B43]/10 pulse-glow-1 pointer-events-none"></div>
+          <div class="absolute w-36 h-36 rounded-full bg-[#D96B43]/15 pulse-glow-2 pointer-events-none"></div>
+
+          <!-- Floating Botanical Sprout Particle Effects -->
+          <span class="absolute top-2 right-14 text-emerald-600 text-sm leaf-1 select-none pointer-events-none">🌱</span>
+          <span class="absolute bottom-4 left-12 text-amber-600 text-xs leaf-2 select-none pointer-events-none">✨</span>
+          <span class="absolute top-8 left-14 text-emerald-500 text-sm leaf-3 select-none pointer-events-none">🍃</span>
+
+          <!-- Main Badge Circle Emblem -->
+          <div class="relative float-badge">
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-[#D96B43] to-[#B34C26] shadow-lg shadow-[#D96B43]/30 flex items-center justify-center text-white border-4 border-[#FFF8F6]">
+              <!-- Custom Bike SVG -->
+              <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h4"></path>
+              </svg>
+            </div>
+            <!-- Small Botanical Root Badge Accent -->
+            <div class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center text-xs shadow-sm">
+              🌿
+            </div>
+          </div>
+
+          <!-- Badge Title & Unlock Meta -->
+          <h2 class="text-xl font-extrabold text-stone-900 mt-4 tracking-tight text-center">
+            7-Day Campus Commute
+          </h2>
+          <p class="text-xs font-medium text-stone-500 mt-0.5 text-center flex items-center gap-1.5">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+            Rooted this morning at 8:45 AM • Week 8
+          </p>
+        </div>
+
+        <!-- Story / Context Snippet -->
+        <div class="bg-gradient-to-br from-[#FAF3F0] to-[#FFF8F6] border border-amber-200/50 rounded-2xl p-3.5 my-3 text-center">
+          <p class="text-[13px] text-stone-700 leading-relaxed italic">
+            “5 miles pedaled, morning brain fog cleared gently before 9 AM Bioethics lecture. You showed up for yourself 7 mornings in a row.”
+          </p>
+        </div>
+
+        <!-- 3 Growth Stats Chips -->
+        <div class="grid grid-cols-3 gap-2 my-1">
+          <div class="bg-white rounded-2xl p-2.5 text-center border border-stone-100 shadow-sm">
+            <span class="block text-base font-extrabold text-[#D96B43]">35.2</span>
+            <span class="block text-[10px] font-medium uppercase tracking-wider text-stone-400 mt-0.5">Miles Pedaled</span>
+          </div>
+          <div class="bg-white rounded-2xl p-2.5 text-center border border-stone-100 shadow-sm">
+            <span class="block text-base font-extrabold text-emerald-700">175m</span>
+            <span class="block text-[10px] font-medium uppercase tracking-wider text-stone-400 mt-0.5">Fresh Air Reset</span>
+          </div>
+          <div class="bg-white rounded-2xl p-2.5 text-center border border-stone-100 shadow-sm">
+            <span class="block text-base font-extrabold text-stone-800">7 / 7</span>
+            <span class="block text-[10px] font-medium uppercase tracking-wider text-stone-400 mt-0.5">Gentle Rhythm</span>
+          </div>
+        </div>
+
+        <!-- Growth Ring Progress Mini Banner -->
+        <div class="mt-2.5 px-3.5 py-2.5 bg-emerald-50/70 border border-emerald-100 rounded-xl flex items-center gap-2.5">
+          <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs shrink-0">
+            🌱
+          </div>
+          <div class="flex-1">
+            <p class="text-xs font-semibold text-emerald-950">Deep Taproot Tier Progress</p>
+            <p class="text-[11px] text-emerald-800/80">Adds +1 Year Ring to your Habit Canopy</p>
+          </div>
+        </div>
+
+        <!-- Personal Reflection Note Card (Interactive feel) -->
+        <div class="mt-3 p-3 bg-white rounded-2xl border border-stone-200/80 shadow-xs flex items-start justify-between gap-2">
+          <div class="text-xs text-stone-600">
+            <span class="font-semibold text-stone-800 block text-[11px] uppercase tracking-wide text-[#D96B43]">Maya’s Reflection Note</span>
+            <p class="mt-0.5 italic">“Felt so much more clear-headed for Chem Lab after pedaling past the duck pond.”</p>
+          </div>
+          <button class="text-stone-400 hover:text-stone-700 p-1 shrink-0" aria-label="Edit personal reflection note">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Permanent Canopy Toggle Row -->
+        <div class="flex items-center justify-between py-2 px-1 mt-1">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-medium text-stone-700">Display on Home Dashboard</span>
+          </div>
+          <!-- Tactile Green Switch -->
+          <div class="w-9 h-5 bg-emerald-600 rounded-full p-0.5 flex items-center justify-end cursor-pointer shadow-inner">
+            <div class="w-4 h-4 bg-white rounded-full shadow-sm"></div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-col gap-2 pt-2 pb-1">
+          <button class="w-full py-3.5 px-4 rounded-full bg-[#D96B43] hover:bg-[#c25a33] text-white font-semibold text-sm shadow-md shadow-[#D96B43]/25 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+            <span>Celebrate with Nudge in Chat</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </button>
+
+          <button class="w-full py-2.5 px-4 rounded-full bg-transparent hover:bg-stone-100 text-stone-500 font-medium text-xs text-center transition-colors">
+            Keep Rooting • Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Persistent Bottom Navigation Bar Preview for Context -->
+    <nav class="absolute bottom-0 left-0 right-0 bg-[#FFF8F6] border-t border-stone-200/80 px-4 py-2 flex items-center justify-around z-30 shadow-lg">
+      <div class="flex flex-col items-center text-stone-400">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+        <span class="text-[10px] mt-0.5">Home</span>
+      </div>
+      <div class="flex flex-col items-center text-stone-400">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span class="text-[10px] mt-0.5">Chat</span>
+      </div>
+      <!-- Raised Floating Mic Button -->
+      <div class="-mt-6">
+        <div class="w-12 h-12 rounded-full bg-[#D96B43] flex items-center justify-center text-white shadow-lg border-4 border-[#FFF8F6]">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+        </div>
+      </div>
+      <div class="flex flex-col items-center text-stone-400">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+        <span class="text-[10px] mt-0.5">Schedule</span>
+      </div>
+      <div class="flex flex-col items-center text-[#D96B43] font-semibold">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+        <span class="text-[10px] mt-0.5">Summary</span>
+      </div>
+    </nav>
+
+  </div>
+
+</body></html>

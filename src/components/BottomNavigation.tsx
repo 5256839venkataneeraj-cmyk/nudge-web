@@ -38,9 +38,9 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   onOpenVoiceModal,
 }) => {
   return (
-    <div className="fixed bottom-5 left-0 right-0 z-40 flex items-center justify-center px-4 pointer-events-none select-none">
+    <div className="fixed bottom-4 sm:bottom-5 left-0 right-0 z-40 flex items-center justify-center px-2 sm:px-4 pointer-events-none select-none max-w-full overflow-hidden">
       <nav
-        className="pointer-events-auto bg-white/90 dark:bg-[#152522]/90 backdrop-blur-2xl border border-[#E8E3D7] dark:border-[#243E38] shadow-[0_16px_40px_-8px_rgba(30,58,52,0.12)] rounded-full px-2.5 py-1.5 flex items-center gap-1 sm:gap-2 transition-all"
+        className="pointer-events-auto bg-white/90 dark:bg-[#152522]/90 backdrop-blur-2xl border border-[#E8E3D7] dark:border-[#243E38] shadow-[0_16px_40px_-8px_rgba(30,58,52,0.12)] rounded-full px-2 sm:px-2.5 py-1.5 flex items-center gap-0.5 sm:gap-2 transition-all max-w-[calc(100vw-16px)]"
         aria-label="Wellora Organic Dock"
       >
         {NAV_ITEMS.map((item) => {
@@ -54,7 +54,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
               whileHover={{ y: -2, scale: 1.04 }}
               whileTap={{ scale: 0.94 }}
               transition={{ type: "spring", stiffness: 450, damping: 25 }}
-              className={`relative px-3.5 py-2 rounded-full flex items-center gap-1.5 text-xs font-semibold transition-colors duration-200 outline-none ${
+              className={`relative px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full flex items-center gap-1 sm:gap-1.5 text-xs font-semibold transition-colors duration-200 outline-none shrink-0 ${
                 isActive
                   ? "text-[#1E3A34] dark:text-[#E9F3EF] font-bold"
                   : "text-[#7E928C] dark:text-[#85A39A] hover:text-[#1E3A34] dark:hover:text-[#E9F3EF]"
@@ -69,14 +69,14 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
                 />
               )}
 
-              <div className="relative">
+              <div className="relative shrink-0">
                 <Icon className={`w-4 h-4 ${isActive ? "text-[#1E3A34] dark:text-[#A3C1AD]" : "text-[#7E928C] dark:text-[#85A39A]"}`} />
                 {item.hasLiveBadge && (
                   <span className="absolute -top-0.5 -right-1 w-1.5 h-1.5 rounded-full bg-[#5B8A82] dark:bg-[#75A69D] animate-pulse ring-2 ring-white dark:ring-[#152522]" />
                 )}
               </div>
 
-              <span className={`text-[11px] tracking-tight ${isActive ? "inline" : "hidden sm:inline"}`}>
+              <span className={`text-[10px] sm:text-[11px] tracking-tight ${isActive ? "inline" : "hidden md:inline"}`}>
                 {item.label}
               </span>
             </motion.button>

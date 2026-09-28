@@ -116,7 +116,7 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
   };
 
   return (
-    <div className="h-full overflow-y-auto bg-[#FAF8F5] dark:bg-[#141211] px-4 sm:px-6 py-5 text-[#2D2522] dark:text-[#F5EBE6] font-sans max-w-xl mx-auto space-y-4 pb-28">
+    <div className="h-full overflow-y-auto bg-[#FAF8F5] dark:bg-[#141211] px-3 sm:px-6 py-4 text-[#2D2522] dark:text-[#F5EBE6] font-sans w-full max-w-xl mx-auto space-y-3.5 sm:space-y-4 pb-28 box-border overflow-x-hidden">
       {/* 1. Day View / Week View Pill Toggle */}
       <div className="bg-[#EFEAE5] dark:bg-[#24201E] p-1 rounded-full flex items-center max-w-xs mx-auto border border-[#E2D8D0] dark:border-[#332C29]">
         <button
@@ -142,36 +142,36 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
       </div>
 
       {/* 2. Date Selector Bar */}
-      <div className="flex items-center justify-between gap-2 pt-1">
+      <div className="flex items-center justify-between gap-1 sm:gap-2 pt-1 w-full max-w-full">
         {days.map((d) => (
           <button
             key={d.date}
             onClick={() => setSelectedDay(d.date)}
-            className={`flex-1 py-2.5 px-1 rounded-2xl flex flex-col items-center transition-all ${
+            className={`flex-1 min-w-0 py-2 sm:py-2.5 px-0.5 sm:px-1 rounded-2xl flex flex-col items-center transition-all ${
               d.isToday
-                ? "bg-[#A33C1B] dark:bg-[#E07A5F] text-white shadow-md scale-105"
+                ? "bg-[#A33C1B] dark:bg-[#E07A5F] text-white shadow-md ring-2 ring-[#A33C1B]/30"
                 : "bg-white dark:bg-[#1C1917] text-[#2D2522] dark:text-[#F5EBE6] border border-[#E9DFD7] dark:border-[#332C29]"
             }`}
           >
             <span
-              className={`text-[10px] font-bold ${
+              className={`text-[9.5px] sm:text-[10px] font-bold ${
                 d.isToday ? "text-[#FCEEEA] dark:text-[#2D1B14]" : "text-[#8A7D75] dark:text-[#A89B95]"
               }`}
             >
               {d.label}
             </span>
-            <span className="text-base font-bold mt-0.5">{d.date}</span>
-            {d.isToday && <span className="w-1 h-1 rounded-full bg-white mt-1" />}
+            <span className="text-sm sm:text-base font-bold mt-0.5">{d.date}</span>
+            {d.isToday && <span className="w-1 h-1 rounded-full bg-white mt-0.5 sm:mt-1" />}
           </button>
         ))}
       </div>
 
       {/* 3. Google Calendar Connected Sync Banner */}
-      <div className="p-3.5 sm:p-4 rounded-3xl bg-white dark:bg-[#1C1917] border border-[#EAE2DA] dark:border-[#332C29] shadow-sm flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-2xl bg-[#FAF8F5] dark:bg-[#24201E] border border-[#EAE2DA] dark:border-[#3D3430] flex items-center justify-center shrink-0 shadow-2xs">
+      <div className="p-3 sm:p-4 rounded-3xl bg-white dark:bg-[#1C1917] border border-[#EAE2DA] dark:border-[#332C29] shadow-sm flex items-center justify-between gap-2 sm:gap-3 w-full max-w-full overflow-hidden">
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAF8F5] dark:bg-[#24201E] border border-[#EAE2DA] dark:border-[#3D3430] flex items-center justify-center shrink-0 shadow-2xs">
             {/* Google Calendar Multi-color G */}
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24">
               <path
                 fill="#4285F4"
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -190,27 +190,27 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
               />
             </svg>
           </div>
-          <div className="min-w-0">
-            <div className="flex items-center gap-1.5">
-              <span className="text-xs font-bold text-[#2D2522] dark:text-[#F5EBE6]">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-xs font-bold text-[#2D2522] dark:text-[#F5EBE6] truncate">
                 Google Calendar
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+              <span className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 shrink-0">
                 Connected
               </span>
             </div>
-            <p className="text-[11px] text-[#70645D] dark:text-[#A89B95] truncate">
+            <p className="text-[10.5px] sm:text-[11px] text-[#70645D] dark:text-[#A89B95] truncate max-w-[130px] xs:max-w-[200px] sm:max-w-none">
               {gcalConfig.userEmail}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           {onOpenAddAssignment && (
             <button
               onClick={onOpenAddAssignment}
-              className="px-3 py-1.5 rounded-xl bg-[#9D3E1A] hover:bg-[#BD5630] text-xs font-bold text-white flex items-center gap-1 transition-colors shadow-2xs"
+              className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#9D3E1A] hover:bg-[#BD5630] text-[11px] sm:text-xs font-bold text-white flex items-center gap-1 transition-colors shadow-2xs cursor-pointer"
               title="Add New Assignment or Task"
             >
               <Plus className="w-3.5 h-3.5" />
@@ -220,7 +220,7 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
 
           <button
             onClick={() => setIsGCalModalOpen(true)}
-            className="px-3 py-1.5 rounded-xl bg-[#FCEEEA] dark:bg-[#2D1B14] hover:bg-[#F9DDD5] text-xs font-bold text-[#A33C1B] dark:text-[#E07A5F] flex items-center gap-1 transition-colors shadow-2xs"
+            className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#FCEEEA] dark:bg-[#2D1B14] hover:bg-[#F9DDD5] text-[11px] sm:text-xs font-bold text-[#A33C1B] dark:text-[#E07A5F] flex items-center gap-1 transition-colors shadow-2xs cursor-pointer"
             title="Google Calendar Sync Settings"
           >
             <CalendarIcon className="w-3.5 h-3.5" />
@@ -231,26 +231,26 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
 
       {/* 4. Nudge Insight Banner */}
       {showInsight && (
-        <div className="bg-[#FCEEEA] dark:bg-[#2D1B14] border border-[#F6D5CB] dark:border-[#4D2D20] rounded-3xl p-4 flex items-start justify-between shadow-xs">
-          <div className="flex items-start space-x-3">
+        <div className="bg-[#FCEEEA] dark:bg-[#2D1B14] border border-[#F6D5CB] dark:border-[#4D2D20] rounded-3xl p-3.5 sm:p-4 flex items-start justify-between gap-2 shadow-xs w-full max-w-full overflow-hidden">
+          <div className="flex items-start space-x-2.5 sm:space-x-3 min-w-0 flex-1">
             <div className="w-8 h-8 rounded-full bg-[#A33C1B] dark:bg-[#E07A5F] text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
               <Sparkles className="w-4 h-4" />
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="text-[10px] font-bold text-[#A33C1B] dark:text-[#E07A5F] uppercase tracking-wider">
                 NUDGE INSIGHT • Just now
               </div>
-              <div className="text-xs sm:text-sm font-bold text-[#2D2522] dark:text-[#F5EBE6] mt-0.5">
+              <div className="text-xs sm:text-sm font-bold text-[#2D2522] dark:text-[#F5EBE6] mt-0.5 break-words">
                 Nudge optimized your afternoon for maximum focus!
               </div>
-              <p className="text-xs text-[#70645D] dark:text-[#A89B95] mt-1 leading-relaxed">
+              <p className="text-xs text-[#70645D] dark:text-[#A89B95] mt-1 leading-relaxed break-words">
                 Buffered 30 mins after Chem Lab to prevent cognitive burnout.
               </p>
             </div>
           </div>
           <button
             onClick={() => setShowInsight(false)}
-            className="text-[#8A7D75] dark:text-[#A89B95] hover:text-[#2D2522] dark:hover:text-[#F5EBE6] p-1"
+            className="text-[#8A7D75] dark:text-[#A89B95] hover:text-[#2D2522] dark:hover:text-[#F5EBE6] p-1 shrink-0 cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>

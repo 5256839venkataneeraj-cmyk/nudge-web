@@ -10,21 +10,43 @@ export interface MilestoneBadge {
   unlockedAt?: string;
   level: number;
   celebrationNote: string;
+  reflectionNote?: string;
+  moodTags?: string[];
+  stats?: {
+    stat1Label?: string;
+    stat1Value?: string;
+    stat2Label?: string;
+    stat2Value?: string;
+    stat3Label?: string;
+    stat3Value?: string;
+  };
+  displayOnHome?: boolean;
 }
 
 export const INITIAL_MILESTONES: MilestoneBadge[] = [
   {
     id: "campus_commute",
-    title: "Campus Commute",
+    title: "7-Day Campus Commute",
     category: "habits",
     tier: "sprout",
     icon: "🚴",
-    description: "Pedaled to lectures 5 days in a row, clearing morning brain fog.",
-    progressText: "5 of 5 days completed",
+    description: "5 miles pedaled, morning brain fog cleared gently before class.",
+    progressText: "7 of 7 days completed",
     isUnlocked: true,
-    unlockedAt: "Yesterday at 9:15 AM",
+    unlockedAt: "This morning at 8:45 AM • Week 8",
     level: 1,
-    celebrationNote: "Consistent physical motion grounds mental focus before lectures.",
+    celebrationNote: "5 miles pedaled, morning brain fog cleared gently before 9 AM Bioethics lecture. You showed up for yourself 7 mornings in a row.",
+    reflectionNote: "Felt so much more clear-headed for Chem Lab after pedaling past the duck pond.",
+    moodTags: ["🍃 Clear-headed", "🦆 Duck pond"],
+    stats: {
+      stat1Label: "Miles Pedaled",
+      stat1Value: "35.2",
+      stat2Label: "Fresh Air Reset",
+      stat2Value: "175m",
+      stat3Label: "Gentle Rhythm",
+      stat3Value: "7 / 7",
+    },
+    displayOnHome: true,
   },
   {
     id: "hydrated_rhythm",
@@ -38,6 +60,15 @@ export const INITIAL_MILESTONES: MilestoneBadge[] = [
     unlockedAt: "Today at 8:30 AM",
     level: 1,
     celebrationNote: "Nourished body, calm mind. Small sips prevent mid-afternoon slumps.",
+    stats: {
+      stat1Label: "Liters Logged",
+      stat1Value: "20.4L",
+      stat2Label: "Energy Boost",
+      stat2Value: "+35%",
+      stat3Label: "Rhythm",
+      stat3Value: "10 / 10",
+    },
+    displayOnHome: true,
   },
   {
     id: "mindful_breath",
@@ -161,6 +192,26 @@ export function unlockMilestoneBadge(badgeId: string): MilestoneBadge | null {
     ...current[index],
     isUnlocked: true,
     unlockedAt: "Just now",
+  };
+  saveLocalMilestones(current);
+  return current[index];
+}
+
+export function updateMilestoneReflection(
+  badgeId: string,
+  reflectionNote: string,
+  moodTags?: string[],
+  displayOnHome?: boolean
+): MilestoneBadge | null {
+  const current = getLocalMilestones();
+  const index = current.findIndex((b) => b.id === badgeId);
+  if (index === -1) return null;
+
+  current[index] = {
+    ...current[index],
+    reflectionNote,
+    ...(moodTags !== undefined ? { moodTags } : {}),
+    ...(displayOnHome !== undefined ? { displayOnHome } : {}),
   };
   saveLocalMilestones(current);
   return current[index];

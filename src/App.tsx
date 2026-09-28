@@ -502,6 +502,7 @@ export default function App() {
                 onNavigateToSnapshot={() => setActiveTab("snapshot")}
                 onNavigateToSchedule={() => setActiveTab("schedule")}
                 onNavigateToMilestones={() => setActiveTab("milestones")}
+                onNavigateToSummary={() => setActiveTab("summary")}
                 onOpenAddAssignment={() => setIsAddAssignmentOpen(true)}
                 onOpenReflection={() => setIsReflectionOpen(true)}
               />

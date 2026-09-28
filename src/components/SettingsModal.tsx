@@ -173,7 +173,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       <div className="h-1.5 w-1/2 rounded-full bg-[#56423C]/60" />
                     </div>
                   </div>
-                  <span className="text-xs font-bold">Obsidian</span>
+                  <span className="text-xs font-bold">Warm Espresso</span>
                   <span className="text-[10px] text-[#A89E97]">Night Focus</span>
                 </button>
 
@@ -195,28 +195,121 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     </div>
                   </div>
                   <span className="text-xs font-bold">Auto</span>
-                  <span className="text-[10px] text-[#70645D] dark:text-[#A89E97]">Sync with OS</span>
+                  <span className="text-[10px] text-[#70645D] dark:text-[#A89E97]">Device sync</span>
                 </button>
+              </div>
+
+              {/* Immediate Dark Mode Tactile Switch Row (Stitch Screen d33f0701) */}
+              <div className="flex items-center justify-between p-3.5 bg-white dark:bg-[#251E1C] rounded-2xl border border-[#EAE0DE] dark:border-[#382F2C]">
+                <div className="flex items-start gap-3 pr-2">
+                  <div className="w-8 h-8 rounded-full bg-[#FFDBCF] dark:bg-[#9D3E1A]/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <Moon className="w-4 h-4 text-[#9D3E1A] dark:text-[#FFB59C]" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-[#1F1B1A] dark:text-[#F6ECEA] block">
+                      Warm Dark Mode
+                    </span>
+                    <p className="text-[11px] text-[#70645D] dark:text-[#A89E97] leading-snug mt-0.5">
+                      Uses deep warm espresso tones to soften glare during late-night library study blocks.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={currentTheme === "dark"}
+                  onClick={() => onSelectTheme(currentTheme === "dark" ? "light" : "dark")}
+                  className={`w-12 h-7 rounded-full p-0.5 flex items-center transition-colors duration-200 shrink-0 ${
+                    currentTheme === "dark" ? "bg-[#9D3E1A]" : "bg-[#DDBCB1] dark:bg-[#483E3B]"
+                  }`}
+                >
+                  <motion.div
+                    layout
+                    className={`w-6 h-6 rounded-full bg-white shadow-md flex items-center justify-center transition-transform ${
+                      currentTheme === "dark" ? "translate-x-5" : "translate-x-0"
+                    }`}
+                  >
+                    <Moon className="w-3 h-3 text-[#9D3E1A]" />
+                  </motion.div>
+                </button>
+              </div>
+
+              {/* Dark Mode Study Schedule Row */}
+              <div className="flex items-center justify-between pt-1 px-1">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-[#70645D] dark:text-[#A89E97]" />
+                  <div>
+                    <span className="text-xs font-semibold text-[#1F1B1A] dark:text-[#F6ECEA]">
+                      Automatic Schedule
+                    </span>
+                    <p className="text-[10px] text-[#70645D] dark:text-[#A89E97]">
+                      Sunset to Sunrise (Adaptive)
+                    </p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full bg-[#F6ECEA] dark:bg-[#2D2522] text-[#1F1B1A] dark:text-[#F6ECEA] text-[11px] font-semibold">
+                  7:30 PM – 7:00 AM
+                </span>
               </div>
             </div>
 
-            {/* SECTION 2: Academic Workload Boundaries */}
+            {/* SECTION 2: Mindful Nudges & Pacing */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#486551]" />
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F1B1A] dark:text-[#F6ECEA]">
-                  Academic Workload Boundaries
-                </h4>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#486551] dark:text-[#AECEB6]" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F1B1A] dark:text-[#F6ECEA]">
+                    Mindful Nudges & Pacing
+                  </h4>
+                </div>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#CAEBD1] dark:bg-[#486551]/30 text-[#042011] dark:text-[#CAEBD1]">
+                  Gentle
+                </span>
               </div>
 
               <div className="bg-white dark:bg-[#251E1C] rounded-2xl p-4 border border-[#EAE0DE] dark:border-[#382F2C] space-y-3.5">
                 <label className="flex items-center justify-between cursor-pointer">
                   <div className="space-y-0.5">
                     <span className="text-xs font-bold text-[#1F1B1A] dark:text-[#F6ECEA] block">
+                      Gentle Voice & Chimes
+                    </span>
+                    <span className="text-[11px] text-[#70645D] dark:text-[#A89E97] block">
+                      Soft wooden bells instead of abrupt sirens
+                    </span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={soundEnabled}
+                    onChange={(e) => setSoundEnabled(e.target.checked)}
+                    className="w-4 h-4 rounded text-[#486551] focus:ring-[#486551]"
+                  />
+                </label>
+
+                <div className="h-[1px] bg-[#F0E6E4] dark:bg-[#342D2A]" />
+
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="text-xs font-bold text-[#1F1B1A] dark:text-[#F6ECEA] block">
+                      Daily Morning Alignment
+                    </span>
+                    <span className="text-[11px] text-[#70645D] dark:text-[#A89E97] block">
+                      Energy check-in before classes start
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 rounded-full bg-[#F6ECEA] dark:bg-[#2D2522] text-[#9D3E1A] dark:text-[#FFB59C] text-[11px] font-bold">
+                    8:30 AM
+                  </span>
+                </div>
+
+                <div className="h-[1px] bg-[#F0E6E4] dark:bg-[#342D2A]" />
+
+                <label className="flex items-center justify-between cursor-pointer">
+                  <div className="space-y-0.5">
+                    <span className="text-xs font-bold text-[#1F1B1A] dark:text-[#F6ECEA] block">
                       Quiet Wind-Down Hours
                     </span>
                     <span className="text-[11px] text-[#70645D] dark:text-[#A89E97] block">
-                      Mute academic nudges from 10:00 PM – 8:00 AM
+                      Mute non-urgent notifications from 10:00 PM – 8:00 AM
                     </span>
                   </div>
                   <input
@@ -232,10 +325,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 <label className="flex items-center justify-between cursor-pointer">
                   <div className="space-y-0.5">
                     <span className="text-xs font-bold text-[#1F1B1A] dark:text-[#F6ECEA] block">
-                      Midterm Pace Protection
+                      Sanctuary Study Mode
                     </span>
                     <span className="text-[11px] text-[#70645D] dark:text-[#A89E97] block">
-                      Prevent scheduling more than 2 high-load sprints per day
+                      Pauses non-critical cohort reminders when reading
                     </span>
                   </div>
                   <input

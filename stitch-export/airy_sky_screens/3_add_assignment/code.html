@@ -1,0 +1,481 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-fixed-dim": "#bec6e0",
+          "on-error": "#ffffff",
+          "secondary-container": "#e0f2fe",
+          "on-primary": "#ffffff",
+          "surface-container-highest": "#d3e4fe",
+          "surface-bright": "#f8f9ff",
+          "outline-variant": "#cbd5e1",
+          "background": "#f8f9ff",
+          "primary": "#0f172a",
+          "outline": "#94a3b8",
+          "on-surface-variant": "#64748b",
+          "on-error-container": "#93000a",
+          "tertiary-container": "#ffedd5",
+          "on-tertiary-container": "#c2410c",
+          "on-primary-fixed": "#131b2e",
+          "surface-tint": "#0284c7",
+          "on-secondary-fixed-variant": "#0369a1",
+          "secondary-fixed-dim": "#7bd0ff",
+          "on-secondary-container": "#0369a1",
+          "surface-container-low": "#eff4ff",
+          "error": "#ba1a1a",
+          "on-secondary": "#ffffff",
+          "error-container": "#ffdad6",
+          "primary-fixed": "#dae2fd",
+          "on-surface": "#0f172a",
+          "primary-container": "#1e293b",
+          "surface-variant": "#e2e8f0",
+          "surface-dim": "#cbdbf5",
+          "on-tertiary-fixed": "#341100",
+          "on-tertiary-fixed-variant": "#783200",
+          "on-background": "#0f172a",
+          "surface-container-high": "#dce9ff",
+          "inverse-primary": "#bec6e0",
+          "on-primary-container": "#94a3b8",
+          "surface": "#f8f9ff",
+          "tertiary": "#ea580c",
+          "tertiary-fixed-dim": "#ffb690",
+          "on-tertiary": "#ffffff",
+          "tertiary-fixed": "#ffdbca",
+          "surface-container-lowest": "#ffffff",
+          "secondary": "#0284c7",
+          "surface-container": "#e5eeff",
+          "on-primary-fixed-variant": "#3f465c",
+          "inverse-surface": "#1e293b",
+          "secondary-fixed": "#c4e7ff",
+          "on-secondary-fixed": "#001e2c",
+          "inverse-on-surface": "#eaf1ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "1.25rem",
+          "lg": "1.75rem",
+          "xl": "2.25rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-md": "1rem",
+          "space-xs": "0.25rem",
+          "gutter": "1rem",
+          "space-sm": "0.5rem",
+          "space-lg": "1.5rem",
+          "margin": "1.25rem",
+          "space-xl": "2rem"
+        },
+        "fontFamily": {
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "title-md": [
+            "Plus Jakarta Sans"
+          ],
+          "display": [
+            "Plus Jakarta Sans"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-md": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "21px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "700"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "display": [
+            "38px",
+            {
+              "lineHeight": "46px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "-0.005em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "30px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "17px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.03em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }
+</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+      background: linear-gradient(180deg, #eff6ff 0%, #f0f7ff 25%, #f8faff 60%, #ffffff 100%);
+    }
+  </style>
+</head><body class="text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-sky-200 selection:text-sky-950 relative overflow-x-hidden">
+<!-- Luminous Ethereal Sky Ambient Glows -->
+<div class="fixed top-0 left-0 right-0 h-96 bg-gradient-to-b from-sky-200/50 via-sky-100/30 to-transparent pointer-events-none -z-10"></div>
+<div class="fixed -top-20 right-[-10%] w-[340px] h-[340px] rounded-full bg-white/70 blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed top-44 left-[-15%] w-[320px] h-[320px] rounded-full bg-sky-200/40 blur-3xl pointer-events-none -z-10"></div>
+<header class="fixed top-0 w-full z-50 pt-safe bg-white/75 backdrop-blur-xl border-b border-sky-100/70 shadow-[0_2px_16px_rgba(15,23,42,0.03)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-slate-700 hover:bg-sky-50 active:scale-95 transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><img alt="Nudge App Logo" class="h-8 w-auto object-contain drop-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB-zZN-zS60FumrfuE-77Cdu0VGCFlkEVkKuCC13tcFbkAXY9Q-bTPCTLkIeBNysw-qc8p4o2OEeTdfrZ4ExEaeeyT2UYxqjtI-sGEabTYPDmSKYYa8IFUCbye-7IWm7LMf0s5_UkZHeYNdWTEgyu4IVXQxvg2bkza8rIfHNPQ4qslxdcNeVS_gALhWX_Pr7LwI6E3hKoFNrB4rm0IEA_H5KlcSuoIi1OWASzUzV1ydjBmnXarl86xSP7b5AIzYyo9hJM"><div class="flex flex-col ml-1"><div class="flex items-center gap-1.5"><span class="font-headline-sm text-[17px] text-[#0f172a] font-bold tracking-tight leading-none">Task Detail</span><span class="inline-block w-1.5 h-1.5 rounded-full bg-sky-500"></span></div></div></div><div class="flex items-center gap-space-sm"><a class="flex items-center justify-center p-0.5 rounded-full ring-2 ring-white/90 shadow-sm transition-transform active:scale-95" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WT3jZG2c-NCWrrELk_QrIQIIy6MSDKhkQ-fjyEkzOLY5soIPOhwfLssNnXpv3CfCsyk6rb0q6TKDgsSO04iWg7LMu79CG2f10xV2auJTwJTcwj-n5bbKEAl5qZONfb6ZKm0HYeL_UHwdd5QzosLNb-e7vOijQueqLpclt0iGn-HCRRxbZf7n5YpTGWW1N75HuOoC31ihY9MWjsqI0OGNf9eUlIriSgL0tdmp05QhOfCmbYTQNobCUBgA8"></a></div></div></header><main class="flex-1 flex flex-col relative w-full pt-20 pb-safe px-margin"><div class="flex flex-col w-full pb-10 pt-2">
+<div class="mb- space-lg mb-5">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-label-sm text-[11px] font-semibold mb-2.5 border border-emerald-200/80 shadow-xs">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+<span class="font-medium tracking-wide">Gentle Flow Setup</span>
+</div>
+<h2 class="font-headline-md text-[26px] text-[#0f172a] tracking-tight font-bold">Add New Assignment</h2>
+<p class="font-body-md text-[14px] text-slate-500 mt-1">Nudge will weave this into your schedule without burning you out.</p>
+</div>
+<div class="relative overflow-hidden rounded-2xl bg-white/85 backdrop-blur-md border border-sky-100/90 p-4 shadow-[0_4px_20px_rgba(2,132,199,0.05)] mb-5 flex items-center gap-3.5">
+<div class="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-sky-50 flex items-center justify-center ring-1 ring-sky-100 shadow-xs">
+<img class="w-full h-full object-cover" data-alt="A warm cozy desk setup with a ceramic mug of tea, soft sunlight falling across an open student notebook, warm earthy terracotta and sage tones, calming aesthetic, shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXxBwgS1IfCWp3LoUibra291OZWHOGc68H3C6z5qqEBXF4YnajEgAyNStBRqHpImtG4YxbSAwdPDr9MAJz85674Gvnffou9DpyrNNvEyNED2AQ0BXg6r4g0m1JckG3_jfWNqkP2vkc_dqheAe6gz10kWqvHRSZuYj9k7CnzleWyD89Zm7PDgEaoBvxni4ihZCOb-o8wV4Ef-9v6igCwt4Fv5RN0O5DuiDf1SKxp60KR-xRCrvutKm1bA">
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-[13px] text-sky-800 font-bold">Mindful Pacing Active</p>
+<p class="font-body-sm text-[12px] text-slate-500 truncate mt-0.5">We automatically protect your downtime and sleep schedule.</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center shrink-0 text-sky-600 border border-sky-100">
+<span class="material-symbols-outlined text-[18px]">temp_preferences_custom</span>
+</div>
+</div>
+<form class="flex flex-col gap-5" id="assignment-form" onsubmit="event.preventDefault();">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-[14px] text-[#0f172a] font-semibold flex items-center justify-between" for="assignment-title">
+<span class="">Assignment Title</span>
+<span class="font-label-sm text-[11px] text-slate-400 font-normal">Required</span>
+</label>
+<div class="relative">
+<input class="w-full bg-white/90 backdrop-blur-sm border border-slate-200 text-[#0f172a] placeholder:text-slate-400 font-body-md text-[14px] rounded-2xl px-4 py-3.5 focus:border-sky-400 focus:ring-2 focus:ring-sky-100 focus:outline-none transition-all shadow-xs" id="assignment-title" placeholder="e.g. Bioethics Case Study Analysis" type="text" value="Bioethics Case Study Analysis">
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-[14px] text-[#0f172a] font-semibold">Subject / Course</label>
+<button class="font-label-sm text-[12px] text-sky-700 flex items-center gap-1 font-semibold hover:text-sky-900 active:opacity-75 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span class="">Add Course</span>
+</button>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar -mx-margin px-margin">
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-[13px] transition-all flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-sm shadow-orange-500/25 border border-orange-400" data-selected="true" type="button">
+<span class="">🧬</span>
+<span class="font-semibold">BIO 302: Ethics</span>
+</button>
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-[13px] transition-all flex items-center gap-1.5 bg-white/85 backdrop-blur-sm border border-slate-200 text-slate-700 hover:bg-sky-50/70 hover:border-sky-200 shadow-xs" data-selected="false" type="button">
+<span class="">📐</span>
+<span class="">MATH 210</span>
+</button>
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-[13px] transition-all flex items-center gap-1.5 bg-white/85 backdrop-blur-sm border border-slate-200 text-slate-700 hover:bg-sky-50/70 hover:border-sky-200 shadow-xs" data-selected="false" type="button">
+<span class="">📚</span>
+<span class="">ENGL 101</span>
+</button>
+<button class="course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-[13px] transition-all flex items-center gap-1.5 bg-white/85 backdrop-blur-sm border border-slate-200 text-slate-700 hover:bg-sky-50/70 hover:border-sky-200 shadow-xs" data-selected="false" type="button">
+<span class="">🧪</span>
+<span class="">CHEM 150</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-4 bg-white/85 backdrop-blur-md border border-sky-100/90 p-4 rounded-2xl shadow-[0_4px_20px_rgba(2,132,199,0.04)]">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-[14px] text-[#0f172a] font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sky-600 text-[18px]">event</span>
+<span class="">Due Date</span>
+</label>
+</div>
+<div class="flex items-center gap-2">
+<button class="preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-[12px] bg-sky-50/70 border border-sky-100 text-slate-600 hover:bg-sky-100/70 transition-colors" data-val="Tomorrow" type="button">Tomorrow</button>
+<button class="preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-[12px] bg-sky-600 text-white font-semibold shadow-xs border border-sky-500 transition-colors" data-val="This Weekend" type="button">This Weekend</button>
+<button class="preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-[12px] bg-sky-50/70 border border-sky-100 text-slate-600 hover:bg-sky-100/70 transition-colors" data-val="Next Week" type="button">Next Week</button>
+</div>
+<div class="relative mt-1">
+<div class="w-full bg-white border border-slate-200 text-[#0f172a] font-body-md text-[14px] rounded-xl px-3.5 py-3 flex items-center justify-between cursor-pointer hover:border-sky-300 transition-colors shadow-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">calendar_today</span>
+<span class="font-semibold text-slate-800" id="date-display">Thursday, Oct 26, 2023</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2 border-t border-sky-100/70">
+<label class="font-label-lg text-[14px] text-[#0f172a] font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sky-600 text-[18px]">schedule</span>
+<span class="">Due Time</span>
+</label>
+<div class="flex items-center gap-2">
+<div class="flex-1 bg-white border border-slate-200 text-[#0f172a] font-body-md text-[14px] rounded-xl px-3.5 py-2.5 flex items-center gap-2 focus-within:border-sky-400 shadow-xs">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">access_time</span>
+<input class="bg-transparent font-semibold w-16 focus:outline-none text-[#0f172a] placeholder:text-slate-400" type="text" value="11:59">
+</div>
+<div class="flex bg-sky-50/80 p-1 rounded-xl border border-sky-100">
+<button class="px-3 py-1.5 rounded-lg font-label-sm text-[12px] text-slate-500 hover:text-slate-800 transition-colors" id="ampm-am" type="button">AM</button>
+<button class="px-3 py-1.5 rounded-lg font-label-sm text-[12px] bg-white text-slate-900 border border-slate-200/80 shadow-xs font-semibold transition-colors" id="ampm-pm" type="button">PM</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-[14px] text-[#0f172a] font-semibold">Estimated Effort</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-white/80 border border-slate-200 text-slate-500 hover:bg-sky-50/60 hover:text-slate-800 shadow-xs" data-selected="false" type="button">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span class="font-label-sm text-[13px] font-semibold">Quick</span>
+<span class="text-[11px] opacity-75">30 mins</span>
+</button>
+<button class="effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-sky-50/90 border-2 border-sky-500 text-sky-950 shadow-[0_4px_16px_rgba(2,132,199,0.12)]" data-selected="true" type="button">
+<span class="material-symbols-outlined text-[20px] text-sky-600" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-label-sm text-[13px] font-bold text-sky-900">Medium</span>
+<span class="text-[11px] text-sky-700 font-medium">2 hours</span>
+</button>
+<button class="effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-white/80 border border-slate-200 text-slate-500 hover:bg-sky-50/60 hover:text-slate-800 shadow-xs" data-selected="false" type="button">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<span class="font-label-sm text-[13px] font-semibold">Deep Dive</span>
+<span class="text-[11px] opacity-75">4h+ focus</span>
+</button>
+</div>
+</div>
+<div class="bg-white/85 backdrop-blur-md border border-sky-100/90 rounded-2xl p-4 shadow-[0_4px_20px_rgba(2,132,199,0.04)] relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-28 h-28 rounded-full bg-sky-100/50 blur-xl pointer-events-none"></div>
+<div class="flex items-start justify-between gap-space-sm relative z-10">
+<div class="flex gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5 border border-sky-100 shadow-xs">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-lg text-[14px] text-[#0f172a] font-bold">Auto-schedule study blocks</span>
+<span class="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-bold tracking-wide uppercase border border-sky-200/80">AI</span>
+</div>
+<p class="font-body-sm text-[12px] text-slate-500 mt-0.5" id="schedule-desc">Nudge will break this into 3 bite-sized prep sessions.</p>
+</div>
+</div>
+<button aria-checked="true" class="w-12 h-7 bg-sky-500 rounded-full p-1 transition-colors relative shrink-0 cursor-pointer shadow-inner" id="ai-toggle" role="switch" type="button">
+<div class="w-5 h-5 bg-white rounded-full shadow-md transform translate-x-5 transition-transform" id="ai-toggle-dot"></div>
+</button>
+</div>
+<div class="mt-3 pt-3 border-t border-sky-100/80 flex flex-col gap-2 relative z-10" id="ai-breakdown-card">
+<div class="flex items-center gap-2 text-slate-700 font-label-sm text-[12px] font-medium">
+<span class="w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_6px_rgba(14,165,233,0.5)]"></span>
+<span class="">Session 1: Outline &amp; Sources (35m)</span>
+</div>
+<div class="flex items-center gap-2 text-slate-700 font-label-sm text-[12px] font-medium">
+<span class="w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_6px_rgba(14,165,233,0.5)]"></span>
+<span class="">Session 2: Case Arguments Draft (50m)</span>
+</div>
+<div class="flex items-center gap-2 text-slate-700 font-label-sm text-[12px] font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]"></span>
+<span class="">Session 3: Final Polish &amp; Citations (35m)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2.5 pt-2">
+<button class="w-full bg-[#0f172a] text-white py-4 px-6 rounded-full font-label-lg text-[15px] font-bold flex items-center justify-center gap-2 shadow-[0_6px_20px_rgba(15,23,42,0.18)] hover:bg-slate-800 active:scale-[0.98] transition-all" id="save-button" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+<span class="tracking-wide">Save &amp; Plan with Nudge</span>
+</button>
+<button class="w-full py-3 px-6 rounded-full font-label-lg text-[14px] text-slate-500 hover:text-slate-800 hover:bg-white/60 transition-colors font-medium" onclick="history.back()" type="button">
+        Cancel
+      </button>
+</div>
+</form>
+</div>
+<script>
+  (function() {
+    const courseChips = document.querySelectorAll('.course-chip');
+    courseChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        courseChips.forEach(c => {
+          c.className = 'course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-[13px] transition-all flex items-center gap-1.5 bg-white/85 backdrop-blur-sm border border-slate-200 text-slate-700 hover:bg-sky-50/70 hover:border-sky-200 shadow-xs';
+          c.setAttribute('data-selected', 'false');
+        });
+        chip.className = 'course-chip shrink-0 px-3.5 py-2 rounded-full font-label-md text-[13px] transition-all flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-sm shadow-orange-500/25 border border-orange-400 font-semibold';
+        chip.setAttribute('data-selected', 'true');
+      });
+    });
+
+    const effortChips = document.querySelectorAll('.effort-chip');
+    effortChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        effortChips.forEach(c => {
+          c.className = 'effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-white/80 border border-slate-200 text-slate-500 hover:bg-sky-50/60 hover:text-slate-800 shadow-xs';
+          const icon = c.querySelector('.material-symbols-outlined');
+          if (icon) {
+            icon.className = 'material-symbols-outlined text-[20px]';
+            icon.style.fontVariationSettings = "'FILL' 0";
+          }
+          c.setAttribute('data-selected', 'false');
+        });
+        chip.className = 'effort-chip p-3 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all bg-sky-50/90 border-2 border-sky-500 text-sky-950 shadow-[0_4px_16px_rgba(2,132,199,0.12)]';
+        const activeIcon = chip.querySelector('.material-symbols-outlined');
+        if (activeIcon) {
+          activeIcon.className = 'material-symbols-outlined text-[20px] text-sky-600';
+          activeIcon.style.fontVariationSettings = "'FILL' 1";
+        }
+        chip.setAttribute('data-selected', 'true');
+      });
+    });
+
+    const datePresets = document.querySelectorAll('.preset-date-btn');
+    const dateDisplay = document.getElementById('date-display');
+    datePresets.forEach(btn => {
+      btn.addEventListener('click', () => {
+        datePresets.forEach(b => {
+          b.className = 'preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-[12px] bg-sky-50/70 border border-sky-100 text-slate-600 hover:bg-sky-100/70 transition-colors';
+        });
+        btn.className = 'preset-date-btn px-3 py-1.5 rounded-full font-label-sm text-[12px] bg-sky-600 text-white font-semibold shadow-xs border border-sky-500 transition-colors';
+        
+        const text = btn.getAttribute('data-val');
+        if (text === 'Tomorrow') dateDisplay.textContent = 'Friday, Oct 27, 2023';
+        if (text === 'This Weekend') dateDisplay.textContent = 'Sunday, Oct 29, 2023';
+        if (text === 'Next Week') dateDisplay.textContent = 'Wednesday, Nov 1, 2023';
+      });
+    });
+
+    const amBtn = document.getElementById('ampm-am');
+    const pmBtn = document.getElementById('ampm-pm');
+    amBtn.addEventListener('click', () => {
+      amBtn.className = 'px-3 py-1.5 rounded-lg font-label-sm text-[12px] bg-white text-slate-900 border border-slate-200/80 shadow-xs font-semibold transition-colors';
+      pmBtn.className = 'px-3 py-1.5 rounded-lg font-label-sm text-[12px] text-slate-500 hover:text-slate-800 transition-colors';
+    });
+    pmBtn.addEventListener('click', () => {
+      pmBtn.className = 'px-3 py-1.5 rounded-lg font-label-sm text-[12px] bg-white text-slate-900 border border-slate-200/80 shadow-xs font-semibold transition-colors';
+      amBtn.className = 'px-3 py-1.5 rounded-lg font-label-sm text-[12px] text-slate-500 hover:text-slate-800 transition-colors';
+    });
+
+    const toggleBtn = document.getElementById('ai-toggle');
+    const toggleDot = document.getElementById('ai-toggle-dot');
+    const breakdown = document.getElementById('ai-breakdown-card');
+    let aiChecked = true;
+
+    toggleBtn.addEventListener('click', () => {
+      aiChecked = !aiChecked;
+      toggleBtn.setAttribute('aria-checked', aiChecked.toString());
+      if (aiChecked) {
+        toggleBtn.classList.remove('bg-slate-300');
+        toggleBtn.classList.add('bg-sky-500');
+        toggleDot.classList.add('translate-x-5');
+        toggleDot.classList.remove('translate-x-0');
+        breakdown.style.opacity = '1';
+        breakdown.style.pointerEvents = 'auto';
+      } else {
+        toggleBtn.classList.remove('bg-sky-500');
+        toggleBtn.classList.add('bg-slate-300');
+        toggleDot.classList.remove('translate-x-5');
+        toggleDot.classList.add('translate-x-0');
+        breakdown.style.opacity = '0.35';
+        breakdown.style.pointerEvents = 'none';
+      }
+    });
+
+    const saveBtn = document.getElementById('save-button');
+    saveBtn.addEventListener('click', () => {
+      saveBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>Crafting Calm Schedule...</span>';
+      setTimeout(() => {
+        saveBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: \'FILL\' 1;">check_circle</span><span>Assignment Added!</span>';
+        saveBtn.classList.remove('bg-[#0f172a]');
+        saveBtn.classList.add('bg-emerald-600', 'text-white', 'shadow-emerald-600/25');
+      }, 700);
+    });
+  })();
+</script></main>
+
+</body></html>

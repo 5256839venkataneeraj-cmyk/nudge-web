@@ -1,0 +1,51 @@
+{
+  "projectId": "10616445851305395060",
+  "downloadedAt": "2026-09-28T16:06:46.650Z",
+  "screens": [
+    {
+      "id": "b46cebb3bc8648ea96c1f5ba34a975ec",
+      "title": "Nudge - Chat & Check-in (Airy Sky)",
+      "folder": "1_chat_and_check_in",
+      "htmlPath": "stitch-export\\airy_sky_screens\\1_chat_and_check_in\\code.html",
+      "htmlSuccess": true,
+      "imagePath": "stitch-export\\airy_sky_screens\\1_chat_and_check_in\\screen.png",
+      "imageSuccess": true
+    },
+    {
+      "id": "88de67eb4a9940229b5145ec6490d554",
+      "title": "Nudge - Timetable & Schedule (Airy Sky)",
+      "folder": "2_timetable_and_schedule",
+      "htmlPath": "stitch-export\\airy_sky_screens\\2_timetable_and_schedule\\code.html",
+      "htmlSuccess": true,
+      "imagePath": "stitch-export\\airy_sky_screens\\2_timetable_and_schedule\\screen.png",
+      "imageSuccess": true
+    },
+    {
+      "id": "241ecf5ce1e144b7a9cc70bee89a556c",
+      "title": "Nudge - Add Assignment (Airy Sky)",
+      "folder": "3_add_assignment",
+      "htmlPath": "stitch-export\\airy_sky_screens\\3_add_assignment\\code.html",
+      "htmlSuccess": true,
+      "imagePath": "stitch-export\\airy_sky_screens\\3_add_assignment\\screen.png",
+      "imageSuccess": true
+    },
+    {
+      "id": "c0cbcd733c734a3abbb7a7dc54977f5a",
+      "title": "Nudge - Milestones & Badges (Airy Sky)",
+      "folder": "4_milestones_and_badges",
+      "htmlPath": "stitch-export\\airy_sky_screens\\4_milestones_and_badges\\code.html",
+      "htmlSuccess": true,
+      "imagePath": "stitch-export\\airy_sky_screens\\4_milestones_and_badges\\screen.png",
+      "imageSuccess": true
+    },
+    {
+      "id": "6f0702acc1f14692abd8751a8ff9390e",
+      "title": "Nudge - Settings (Airy Sky)",
+      "folder": "5_settings",
+      "htmlPath": "stitch-export\\airy_sky_screens\\5_settings\\code.html",
+      "htmlSuccess": true,
+      "imagePath": "stitch-export\\airy_sky_screens\\5_settings\\screen.png",
+      "imageSuccess": true
+    }
+  ]
+}

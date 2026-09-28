@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "background": "#f8f9ff",
+          "primary-fixed": "#dae2fd",
+          "primary-container": "#131b2e",
+          "surface-container-high": "#dce9ff",
+          "secondary-container": "#40c2fd",
+          "surface-variant": "#d3e4fe",
+          "secondary-fixed": "#c4e7ff",
+          "tertiary": "#000000",
+          "on-primary-fixed-variant": "#3f465c",
+          "error": "#ba1a1a",
+          "tertiary-fixed": "#ffdbca",
+          "on-secondary-container": "#004d6a",
+          "surface-dim": "#cbdbf5",
+          "on-tertiary-container": "#d95f00",
+          "tertiary-fixed-dim": "#ffb690",
+          "on-error": "#ffffff",
+          "primary-fixed-dim": "#bec6e0",
+          "on-surface": "#0b1c30",
+          "error-container": "#ffdad6",
+          "on-error-container": "#93000a",
+          "surface-tint": "#565e74",
+          "surface-bright": "#f8f9ff",
+          "on-secondary": "#ffffff",
+          "on-surface-variant": "#45464d",
+          "outline-variant": "#c6c6cd",
+          "primary": "#000000",
+          "on-secondary-fixed-variant": "#004c69",
+          "on-primary-fixed": "#131b2e",
+          "on-tertiary-fixed-variant": "#783200",
+          "surface-container-highest": "#d3e4fe",
+          "surface-container-lowest": "#ffffff",
+          "secondary-fixed-dim": "#7bd0ff",
+          "surface-container": "#e5eeff",
+          "on-tertiary": "#ffffff",
+          "inverse-surface": "#213145",
+          "tertiary-container": "#341100",
+          "surface": "#f8f9ff",
+          "inverse-primary": "#bec6e0",
+          "on-primary-container": "#7c839b",
+          "outline": "#76777d",
+          "on-primary": "#ffffff",
+          "on-background": "#0b1c30",
+          "on-tertiary-fixed": "#341100",
+          "on-secondary-fixed": "#001e2c",
+          "secondary": "#00668a",
+          "inverse-on-surface": "#eaf1ff",
+          "surface-container-low": "#eff4ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "1.25rem",
+          "lg": "2rem",
+          "xl": "3rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-lg": "1.5rem",
+          "margin-desktop": "3.5rem",
+          "gutter-mobile": "1rem",
+          "space-xs": "0.25rem",
+          "gutter": "1.5rem",
+          "margin-mobile": "1.25rem",
+          "space-sm": "0.5rem",
+          "margin": "1.25rem",
+          "space-xl": "2.5rem",
+          "space-md": "1rem"
+        },
+        "fontFamily": {
+          sans: ["Plus Jakarta Sans", "sans-serif"],
+          display: ["Plus Jakarta Sans", "sans-serif"]
+        }
+      },
+    },
+  }
+</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+      background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 22%, #f8faff 55%, #ffffff 100%);
+    }
+  </style>
+</head><body class="text-[#0f172a] font-sans min-h-screen flex flex-col antialiased relative selection:bg-sky-100 selection:text-sky-900 overflow-x-hidden">
+<!-- Airy Atmospheric Cloud Ambiance -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-24 -left-20 w-[420px] h-[360px] bg-gradient-to-br from-[#cce5ff]/80 via-[#e0efff]/60 to-transparent rounded-full blur-3xl"></div>
+<div class="absolute top-48 -right-24 w-[380px] h-[340px] bg-gradient-to-bl from-[#dbeafe]/70 via-[#f0f9ff]/50 to-transparent rounded-full blur-3xl"></div>
+<div class="absolute top-[620px] left-1/2 -translate-x-1/2 w-[520px] h-[450px] bg-gradient-to-t from-white/90 via-[#f0f7ff]/40 to-transparent rounded-full blur-2xl"></div>
+</div>
+<header class="fixed top-0 w-full z-50 pt-safe bg-white/70 backdrop-blur-xl border-b border-sky-100/60 shadow-[0_2px_16px_rgba(15,23,42,0.02)]">
+<div class="h-16 px-margin flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<img alt="Nudge App Logo" class="h-8 w-auto object-contain drop-shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1UORFQG9DrH87fFQvwxoIma3iNuJhaiY7RVl6gUEt1CmBGXai47Oem9H3E_JRQCro2Wyz53LgKANld-R3xCWhvzjznHhs_Gb2TdU7urNCJVj_cTCptt1JsRyo_fBfvP4ggKM9nQdDgPtTGPaEdzfU048r9yd25wOwjj324U0f-A-50vDcERRTAqvoXjGNf8ZXwsUUSHv94JEIuNgy2TTPKtvRtVE7-8cp-Bve_z45fsWpCBApMkbPnSc-40"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-bold text-[17px] text-[#0f172a] tracking-tight leading-none">Nudge</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+</div>
+<span class="text-[11px] font-semibold text-[#64748b] tracking-wider uppercase">Schedule</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="flex items-center justify-center p-0.5 rounded-full ring-2 ring-white/90 shadow-sm transition-transform active:scale-95" data-path="account-settings" href="#">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WT3jZG2c-NCWrrELk_QrIQIIy6MSDKhkQ-fjyEkzOLY5soIPOhwfLssNnXpv3CfCsyk6rb0q6TKDgsSO04iWg7LMu79CG2f10xV2auJTwJTcwj-n5bbKEAl5qZONfb6ZKm0HYeL_UHwdd5QzosLNb-e7vOijQueqLpclt0iGn-HCRRxbZf7n5YTGWW1N75HuOoC31ihY9MWjsqI0OGNf9eUlIriSgL0tdmp05QhOfCmbYTQNobCUBgA8"/>
+</a>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col relative z-10 w-full pt-16 pb-28 px-margin">
+<div class="flex flex-col w-full">
+<!-- View Switcher & Date Header -->
+<section class="flex flex-col gap-space-md pt-3 pb-space-sm">
+<!-- Segmented Control -->
+<div class="flex items-center p-1 bg-white/75 backdrop-blur-md border border-sky-100/80 rounded-full shadow-inner">
+<button class="flex-1 py-2 px-space-md rounded-full bg-[#0f172a] text-white font-semibold text-[13px] text-center shadow-md transition-all duration-200" id="btn-day">
+          Day View
+        </button>
+<button class="flex-1 py-2 px-space-md rounded-full text-[#64748b] font-medium text-[13px] text-center hover:text-[#0f172a] transition-all duration-200" id="btn-week">
+          Week View
+        </button>
+</div>
+<!-- Horizontal Date Strip -->
+<div class="flex items-center justify-between gap-space-xs overflow-x-auto py-1 no-scrollbar">
+<!-- Mon 23 -->
+<button class="flex flex-col items-center justify-center min-w-[54px] py-2 px-1 rounded-2xl bg-white/80 backdrop-blur-sm border border-sky-100/70 text-[#64748b] hover:bg-white hover:text-[#0f172a] transition-all shadow-xs">
+<span class="text-[11px] font-semibold opacity-80 uppercase tracking-wider">Mon</span>
+<span class="text-[16px] font-bold mt-0.5 text-[#334155]">23</span>
+</button>
+<!-- Tue 24 -->
+<button class="flex flex-col items-center justify-center min-w-[54px] py-2 px-1 rounded-2xl bg-white/80 backdrop-blur-sm border border-sky-100/70 text-[#64748b] hover:bg-white hover:text-[#0f172a] transition-all shadow-xs">
+<span class="text-[11px] font-semibold opacity-80 uppercase tracking-wider">Tue</span>
+<span class="text-[16px] font-bold mt-0.5 text-[#334155]">24</span>
+</button>
+<!-- Wed 25 [Active] -->
+<button class="flex flex-col items-center justify-center min-w-[58px] py-2 px-1 rounded-2xl bg-gradient-to-b from-sky-500 to-sky-600 text-white shadow-[0_6px_20px_rgba(2,132,199,0.35)] border border-sky-400 relative">
+<span class="text-[10px] font-bold tracking-wider uppercase text-sky-100">Today</span>
+<span class="text-[18px] leading-none mt-0.5 font-extrabold">25</span>
+<span class="w-1.5 h-1.5 rounded-full bg-white mt-1 shadow-sm"></span>
+</button>
+<!-- Thu 26 -->
+<button class="flex flex-col items-center justify-center min-w-[54px] py-2 px-1 rounded-2xl bg-white/80 backdrop-blur-sm border border-sky-100/70 text-[#64748b] hover:bg-white hover:text-[#0f172a] transition-all shadow-xs">
+<span class="text-[11px] font-semibold opacity-80 uppercase tracking-wider">Thu</span>
+<span class="text-[16px] font-bold mt-0.5 text-[#334155]">26</span>
+</button>
+<!-- Fri 27 -->
+<button class="flex flex-col items-center justify-center min-w-[54px] py-2 px-1 rounded-2xl bg-white/80 backdrop-blur-sm border border-sky-100/70 text-[#64748b] hover:bg-white hover:text-[#0f172a] transition-all shadow-xs">
+<span class="text-[11px] font-semibold opacity-80 uppercase tracking-wider">Fri</span>
+<span class="text-[16px] font-bold mt-0.5 text-[#334155]">27</span>
+</button>
+</div>
+</section>
+<!-- AI Optimization Banner -->
+<section class="mt-space-sm mb-space-md">
+<div class="relative overflow-hidden bg-white/85 backdrop-blur-md border border-sky-100/80 rounded-2xl p-space-md shadow-[0_4px_20px_rgba(2,132,199,0.05)] flex items-start gap-space-sm">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-sky-100 text-sky-700 shrink-0 shadow-sm border border-sky-200/60">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<span class="text-[11px] font-bold text-sky-800 uppercase tracking-wider">Nudge Insight</span>
+<span class="text-[11px] text-[#64748b]">Just now</span>
+</div>
+<p class="text-[13px] text-[#0f172a] font-semibold mt-0.5">
+            Nudge optimized your afternoon for maximum focus!
+          </p>
+<p class="text-[12px] text-[#64748b] mt-0.5 leading-snug">
+            Buffered 30 mins after Chem Lab to prevent cognitive burnout.
+          </p>
+</div>
+<button class="text-[#64748b] hover:text-[#0f172a] transition-colors p-1" onclick="this.closest('section').style.display='none'">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</section>
+<!-- Today's Top Urgent Deadline Alert -->
+<section class="mb-space-md">
+<div class="bg-rose-50/80 backdrop-blur-md border border-rose-200/70 rounded-2xl p-space-sm px-space-md flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="flex items-center justify-center w-7 h-7 rounded-full bg-rose-500 text-white shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+</span>
+<div class="flex flex-col min-w-0">
+<span class="text-[13px] font-bold text-rose-950 truncate">Psych 101 Quiz Due Tonight</span>
+<span class="text-[11px] text-rose-700 font-medium">11:59 PM • Canvas Portal</span>
+</div>
+</div>
+<span class="text-[11px] px-2.5 py-1 rounded-full bg-rose-100 border border-rose-300 text-rose-700 font-bold shadow-xs shrink-0">
+          Urgent
+        </span>
+</div>
+</section>
+<!-- Visual Timeline Schedule -->
+<section class="flex flex-col relative w-full">
+<!-- Vertical Time Track Container -->
+<div class="relative flex flex-col gap-0">
+<!-- 09:00 AM Row -->
+<div class="flex items-start min-h-[58px] relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b] pt-1">09:00 AM</div>
+<div class="flex-1 ml-space-xs relative border-t-0 pt-0 pb-3">
+<!-- 09:30 - 10:45 AM Lecture Card -->
+<div class="w-full bg-white/85 backdrop-blur-md border border-sky-100/80 rounded-2xl p-space-md shadow-[0_4px_16px_rgba(15,23,42,0.03)] transition-transform active:scale-[0.99] flex flex-col gap-1.5 relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-semibold tracking-wide">
+                  Class
+                </span>
+<span class="text-[12px] text-[#64748b] font-medium">09:30 – 10:45 AM</span>
+</div>
+<h3 class="text-[16px] text-[#0f172a] font-bold">Bioethics 302: Hall B</h3>
+<div class="flex items-center gap-space-xs text-[#64748b] text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-sky-600">location_on</span>
+<span class="truncate">North Quad, Hall B • Prof. Vance</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 10:00 AM Marker -->
+<div class="flex items-start h-10 relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b]">10:00 AM</div>
+<div class="flex-1 ml-space-xs h-px bg-sky-100 my-auto"></div>
+</div>
+<!-- 11:00 AM Row (AI Focus Session) -->
+<div class="flex items-start min-h-[58px] relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b] pt-1">11:00 AM</div>
+<div class="flex-1 ml-space-xs relative pt-0 pb-3">
+<!-- 11:15 - 12:00 PM Study Block -->
+<div class="w-full bg-white/90 backdrop-blur-md border border-sky-200/90 rounded-2xl p-space-md shadow-[0_6px_24px_rgba(2,132,199,0.08)] transition-transform active:scale-[0.99] flex flex-col gap-1.5 relative overflow-hidden ring-1 ring-sky-200/50">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-sky-200/30 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="flex items-center gap-1 text-[11px] px-2.5 py-0.5 rounded-full bg-sky-600 text-white font-bold shadow-xs">
+<span class="material-symbols-outlined text-[13px]">auto_awesome</span>
+                    Focus
+                  </span>
+<span class="text-[11px] text-sky-700 font-semibold">Planned by Nudge</span>
+</div>
+<span class="text-[12px] text-sky-800 font-bold">11:15 – 12:00 PM</span>
+</div>
+<h3 class="text-[16px] text-[#0f172a] font-bold">Paper Sourcing: 2 PubMed citations</h3>
+<p class="text-[13px] text-[#64748b] line-clamp-1">Target: find supporting evidence for genetic modification intro.</p>
+<div class="flex items-center justify-between pt-1.5 mt-0.5 border-t border-sky-100/70">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.5)]"></span>
+<span class="text-[12px] text-[#334155] font-semibold">Smart Timer 45m</span>
+</div>
+<button class="px-3.5 py-1 bg-[#0f172a] text-white rounded-full text-[12px] font-bold shadow-sm hover:bg-slate-800 active:scale-95 transition-all">
+                  Start Now
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- 12:00 PM Row (Recharge / Lunch) -->
+<div class="flex items-start min-h-[58px] relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b] pt-1">12:00 PM</div>
+<div class="flex-1 ml-space-xs relative pt-0 pb-3">
+<!-- 12:30 - 01:15 PM Habit / Recharge Block -->
+<div class="w-full bg-emerald-50/70 backdrop-blur-md border border-emerald-200/80 rounded-2xl p-space-md shadow-[0_3px_14px_rgba(16,185,129,0.04)] transition-transform active:scale-[0.99] flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold tracking-wide">
+                  Recharge
+                </span>
+<span class="text-[12px] text-emerald-900 font-semibold">12:30 – 01:15 PM</span>
+</div>
+<h3 class="text-[16px] text-[#0f172a] font-bold">Lunch &amp; Campus Cycling</h3>
+<div class="flex items-center gap-space-sm text-[#475569] text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-emerald-600">directions_bike</span>
+<span>Gentle mental reset before Chem Lab</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 01:00 PM Marker -->
+<div class="flex items-start h-10 relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b]">01:00 PM</div>
+<div class="flex-1 ml-space-xs h-px bg-sky-100 my-auto"></div>
+</div>
+<!-- 02:00 PM Row (Lab Class) -->
+<div class="flex items-start min-h-[58px] relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b] pt-1">02:00 PM</div>
+<div class="flex-1 ml-space-xs relative pt-0 pb-3">
+<!-- 02:00 - 03:30 PM Organic Chem Lab -->
+<div class="w-full bg-white/85 backdrop-blur-md border border-sky-100/80 rounded-2xl p-space-md shadow-[0_4px_16px_rgba(15,23,42,0.03)] transition-transform active:scale-[0.99] flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-sky-100 border border-sky-200 text-sky-800 font-bold tracking-wide">
+                  Lab
+                </span>
+<span class="text-[12px] text-[#64748b] font-medium">02:00 – 03:30 PM</span>
+</div>
+<h3 class="text-[16px] text-[#0f172a] font-bold">Organic Chemistry Lab</h3>
+<div class="flex items-center gap-space-xs text-[#64748b] text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-sky-600">science</span>
+<span class="truncate">Science Complex 402 • Safety Goggles Req.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 03:00 PM Marker -->
+<div class="flex items-start h-10 relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b]">03:00 PM</div>
+<div class="flex-1 ml-space-xs h-px bg-sky-100 my-auto"></div>
+</div>
+<!-- 04:00 PM Row (Study Block) -->
+<div class="flex items-start min-h-[58px] relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b] pt-1">04:00 PM</div>
+<div class="flex-1 ml-space-xs relative pt-0 pb-3">
+<!-- 04:00 - 05:00 PM Problem Set Review -->
+<div class="w-full bg-white/85 backdrop-blur-md border border-sky-100/80 rounded-2xl p-space-md shadow-[0_4px_16px_rgba(15,23,42,0.03)] transition-transform active:scale-[0.99] flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 font-bold tracking-wide">
+                  Study
+                </span>
+<span class="text-[12px] text-amber-800 font-semibold">04:00 – 05:00 PM</span>
+</div>
+<h3 class="text-[16px] text-[#0f172a] font-bold">Problem Set Review</h3>
+<div class="flex items-center gap-space-xs text-[#64748b] text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-sky-600">menu_book</span>
+<span class="truncate">Library 2nd Floor Silent Room</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 05:00 PM End Marker -->
+<div class="flex items-start h-10 relative">
+<div class="w-14 shrink-0 text-[11px] font-semibold text-[#64748b]">05:00 PM</div>
+<div class="flex-1 ml-space-xs h-px bg-sky-100 my-auto"></div>
+</div>
+</div>
+</section>
+<!-- Bottom Visual Inspiration Card -->
+<section class="mt-space-md mb-2">
+<div class="bg-white/85 backdrop-blur-md border border-sky-100/80 rounded-2xl p-space-md shadow-[0_4px_20px_rgba(15,23,42,0.03)] flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-2xl overflow-hidden shrink-0 border border-sky-100 shadow-xs">
+<img class="w-full h-full object-cover" data-alt="A warm and cozy study nook on a university campus with soft natural afternoon sunlight pouring in through a window, a minimal wooden table with notebooks, and a potted plant, captured in warm terracotta and earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3LLyKsZGHBlYnWvzYzsiEPvVASIibrA1k9tqvdt07Dkrk3BBqfB7n0zXIXU-iRq9wuBM5px4L2AL4Jx4EPzRAJVZexn9YDQDTpbWhovpqT6X5BUNXc7xdF5pgbIgSFJpK9KU8Nrlk4zUNxq8Xwr37oOBfGeGZIPNf8smcQVbozT3O12bWrmNH4axnSo_poiuPWNs7NxFCx24IYJJs94c62Qh8Q4wGERsFC8JxPsTcjo5t5yEd0kHOpg"/>
+</div>
+<div class="flex-1 min-w-0">
+<span class="text-[11px] font-bold text-sky-700 uppercase tracking-wider">Pacing Tip</span>
+<p class="text-[13px] text-[#334155] font-medium line-clamp-2 mt-0.5 leading-snug">
+            "Small steady steps defeat semester overwhelm. You have 3 hours of focused learning mapped today."
+          </p>
+</div>
+</div>
+</section>
+</div>
+<script>
+    (function() {
+      const btnDay = document.getElementById('btn-day');
+      const btnWeek = document.getElementById('btn-week');
+
+      if (btnDay && btnWeek) {
+        const activeClasses = 'flex-1 py-2 px-space-md rounded-full bg-[#0f172a] text-white font-semibold text-[13px] text-center shadow-md transition-all duration-200';
+        const inactiveClasses = 'flex-1 py-2 px-space-md rounded-full text-[#64748b] font-medium text-[13px] text-center hover:text-[#0f172a] transition-all duration-200';
+
+        btnWeek.addEventListener('click', function() {
+          btnWeek.className = activeClasses;
+          btnDay.className = inactiveClasses;
+        });
+
+        btnDay.addEventListener('click', function() {
+          btnDay.className = activeClasses;
+          btnWeek.className = inactiveClasses;
+        });
+      }
+    })();
+  </script>
+</main>
+<!-- Bottom Navigation Bar with Floating Mic and Active Schedule Tab -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/85 backdrop-blur-xl border-t border-sky-100/80 shadow-[0_-4px_24px_0_rgba(15,23,42,0.04)]" data-active-classes="text-sky-600 font-bold">
+<div class="relative flex items-center justify-around h-[68px] px-space-sm">
+<a class="flex flex-col items-center justify-center flex-1 h-full gap-1 text-[#64748b] hover:text-[#0f172a] transition-colors font-medium" data-path="home" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-[11px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 h-full gap-1 text-[#64748b] hover:text-[#0f172a] transition-colors pr-6 font-medium" data-path="chat" href="#">
+<span class="material-symbols-outlined text-[24px]">chat_bubble</span>
+<span class="text-[11px]">Chat</span>
+</a>
+<div class="absolute left-1/2 -top-5 -translate-x-1/2 flex items-center justify-center">
+<a aria-label="Voice Reflection" class="relative group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 text-white shadow-[0_8px_24px_-4px_rgba(249,115,22,0.45)] ring-4 ring-white active:scale-95 transition-transform" data-path="voice-nudge" href="#">
+<span class="absolute -inset-1 rounded-full bg-orange-400/25 animate-ping pointer-events-none"></span>
+<span class="material-symbols-outlined text-[28px]">mic</span>
+</a>
+</div>
+<a aria-current="page" class="flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors pl-6 text-sky-600 font-bold" data-path="schedule" href="#">
+<span class="material-symbols-outlined text-[24px] text-sky-600">calendar_today</span>
+<span class="text-[11px] text-sky-600">Schedule</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 h-full gap-1 text-[#64748b] hover:text-[#0f172a] transition-colors font-medium" data-path="summary" href="#">
+<span class="material-symbols-outlined text-[24px]">equalizer</span>
+<span class="text-[11px]">Summary</span>
+</a>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "primary-fixed-dim": "#bec6e0",
+        "on-error": "#ffffff",
+        "secondary-container": "#e0f2fe",
+        "on-primary": "#ffffff",
+        "surface-container-highest": "#d3e4fe",
+        "surface-bright": "#f8f9ff",
+        "outline-variant": "#cbd5e1",
+        "background": "#f8f9ff",
+        "primary": "#0f172a",
+        "outline": "#94a3b8",
+        "on-surface-variant": "#64748b",
+        "on-error-container": "#93000a",
+        "tertiary-container": "#ffedd5",
+        "on-tertiary-container": "#c2410c",
+        "on-primary-fixed": "#131b2e",
+        "surface-tint": "#0284c7",
+        "on-secondary-fixed-variant": "#0369a1",
+        "secondary-fixed-dim": "#7bd0ff",
+        "on-secondary-container": "#0369a1",
+        "surface-container-low": "#eff4ff",
+        "error": "#ba1a1a",
+        "on-secondary": "#ffffff",
+        "error-container": "#ffdad6",
+        "primary-fixed": "#dae2fd",
+        "on-surface": "#0f172a",
+        "primary-container": "#1e293b",
+        "surface-variant": "#e2e8f0",
+        "surface-dim": "#cbdbf5",
+        "on-tertiary-fixed": "#341100",
+        "on-tertiary-fixed-variant": "#783200",
+        "on-background": "#0f172a",
+        "surface-container-high": "#dce9ff",
+        "inverse-primary": "#bec6e0",
+        "on-primary-container": "#94a3b8",
+        "surface": "#f8f9ff",
+        "tertiary": "#ea580c",
+        "tertiary-fixed-dim": "#ffb690",
+        "on-tertiary": "#ffffff",
+        "tertiary-fixed": "#ffdbca",
+        "surface-container-lowest": "#ffffff",
+        "secondary": "#0284c7",
+        "surface-container": "#e5eeff",
+        "on-primary-fixed-variant": "#3f465c",
+        "inverse-surface": "#1e293b",
+        "secondary-fixed": "#c4e7ff",
+        "on-secondary-fixed": "#001e2c",
+        "inverse-on-surface": "#eaf1ff"
+      },
+      "borderRadius": {
+        "DEFAULT": "1.25rem",
+        "lg": "1.75rem",
+        "xl": "2.25rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "margin": "1.25rem",
+        "space-xl": "2rem",
+        "space-md": "1rem",
+        "space-sm": "0.5rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1.5rem",
+        "gutter": "1rem"
+      },
+      "fontFamily": {
+        "sans": ["Plus Jakarta Sans", "sans-serif"],
+        "headline-lg": ["Plus Jakarta Sans"],
+        "display": ["Plus Jakarta Sans"],
+        "body-sm": ["Plus Jakarta Sans"],
+        "label-lg": ["Plus Jakarta Sans"],
+        "headline-sm": ["Plus Jakarta Sans"],
+        "label-sm": ["Plus Jakarta Sans"],
+        "label-md": ["Plus Jakarta Sans"],
+        "body-lg": ["Plus Jakarta Sans"],
+        "body-md": ["Plus Jakarta Sans"],
+        "title-md": ["Plus Jakarta Sans"],
+        "headline-md": ["Plus Jakarta Sans"]
+      }
+    }
+  }
+};</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+      background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 18%, #f8faff 50%, #ffffff 100%);
+    }
+  </style></head><body class="text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-sky-200 selection:text-sky-950 relative overflow-x-hidden">
+<!-- Decorative Atmospheric Soft Sky Ethereal Glows -->
+<div class="fixed top-0 left-0 right-0 h-96 bg-gradient-to-b from-sky-200/50 via-sky-100/30 to-transparent pointer-events-none -z-10"></div>
+<div class="fixed -top-24 right-[-10%] w-[340px] h-[340px] rounded-full bg-white/70 blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed top-36 left-[-15%] w-[320px] h-[320px] rounded-full bg-sky-200/40 blur-3xl pointer-events-none -z-10"></div>
+<!-- Top Fixed Header -->
+<header class="fixed top-0 w-full z-50 pt-safe bg-white/70 backdrop-blur-xl border-b border-sky-100/60 shadow-[0_2px_16px_-4px_rgba(15,23,42,0.03)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Nudge App Logo" class="h-8 w-auto object-contain drop-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu3WeJyxE5jxiZJei3BYdkI9C61FWAmNIYwaCTTTsddOMoGDOT_om7ARUuf_nSfa99ws_EBipa34-xpL5gwgwdVlDvmAzW1VGgSiTD4aZr_YnrrTfepETPrYMe1RH2CImMIJ0q1ZbsbVvM3l2xfW0nAWpfKsUN4wxwfiJUCfA8Au-8VLNEcpnlrAjMSSD8LOGkYmbP1DUeLR49e3RMBMSt8C6cUCrQvU8_FsmnDh6jjBwPkO09F7PSrXOAZyk1ZjEcMbw"><div class="flex flex-col ml-2"><div class="flex items-center gap-1.5"><span class="font-headline-sm text-[18px] text-slate-900 tracking-tight leading-none font-semibold">Nudge</span><span class="inline-block w-1.5 h-1.5 rounded-full bg-sky-500"></span><span class="text-[13px] text-slate-600 font-medium leading-none">Summary</span></div></div></div><div class="flex items-center gap-space-sm"><a class="flex items-center justify-center p-0.5 rounded-full ring-2 ring-white/80 shadow-sm transition-transform active:scale-95" data-path="account-settings" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WT3jZG2c-NCWrrELk_QrIQIIy6MSDKhkQ-fjyEkzOLY5soIPOhwfLssNnXpv3CfCsyk6rb0q6TKDgsSO04iWg7LMu79CG2f10xV2auJTwJTcwj-n5bbKEAl5qZONfb6ZKm0HYeL_UHwdd5QzosLNb-e7vOijQueqLpclt0iGn-HCRRxbZf7n5YpTGWW1N75HuOoC31ihY9MWjsqI0OGNf9eUlIriSgL0tdmp05QhOfCmbYTQNobCUBgA8"></a></div></div></header>
+<main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin"><div class="flex flex-col w-full pb-8">
+<!-- Top Navigation & Page Context -->
+<div class="flex items-center justify-between py-space-sm mb-space-md mt-2">
+<a class="flex items-center justify-center w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border border-sky-100 hover:bg-white transition-all active:scale-95 text-slate-700 shadow-xs" data-path="home" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</a>
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm text-slate-900 tracking-tight font-semibold">Settings</span>
+<span class="font-label-sm text-label-sm text-slate-500 font-medium">Preferences &amp; Calm Space</span>
+</div>
+<div class="w-10 h-10 rounded-full p-0.5 bg-white/80 border border-sky-100 flex items-center justify-center shadow-xs">
+<img alt="Maya Lin Avatar" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WT3jZG2c-NCWrrELk_QrIQIIy6MSDKhkQ-fjyEkzOLY5soIPOhwfLssNnXpv3CfCsyk6rb0q6TKDgsSO04iWg7LMu79CG2f10xV2auJTwJTcwj-n5bbKEAl5qZONfb6ZKm0HYeL_UHwdd5QzosLNb-e7vOijQueqLpclt0iGn-HCRRxbZf7n5YpTGWW1N75HuOoC31ihY9MWjsqI0OGNf9eUlIriSgL0tdmp05QhOfCmbYTQNobCUBgA8">
+</div>
+</div>
+<!-- Student Profile Card (Mini Overview) - Airy Frosted Glass -->
+<div class="w-full bg-white/85 backdrop-blur-md rounded-2xl p-space-md shadow-[0_4px_20px_rgba(2,132,199,0.05)] border border-white/80 mb-space-lg relative overflow-hidden">
+<div class="flex items-center gap-space-md">
+<div class="relative">
+<img alt="Maya Lin Profile" class="w-14 h-14 rounded-full object-cover ring-2 ring-sky-100 shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1WT3jZG2c-NCWrrELk_QrIQIIy6MSDKhkQ-fjyEkzOLY5soIPOhwfLssNnXpv3CfCsyk6rb0q6TKDgsSO04iWg7LMu79CG2f10xV2auJTwJTcwj-n5bbKEAl5qZONfb6ZKm0HYeL_UHwdd5QzosLNb-e7vOijQueqLpclt0iGn-HCRRxbZf7n5YpTGWW1N75HuOoC31ihY9MWjsqI0OGNf9eUlIriSgL0tdmp05QhOfCmbYTQNobCUBgA8">
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs ring-2 ring-white">
+<span class="material-symbols-outlined text-[13px]">eco</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-[17px] text-slate-900 font-semibold tracking-tight truncate">Maya Lin</span>
+<a class="font-label-sm text-label-sm text-sky-600 font-semibold hover:underline" href="#">Edit</a>
+</div>
+<p class="font-body-sm text-[13px] text-slate-600 truncate mt-0.5">Bioethics &amp; Pre-Med • Year 2</p>
+<div class="flex items-center gap-space-xs mt-2 flex-wrap">
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-label-sm text-[11px] font-semibold inline-flex items-center gap-1.5 shadow-2xs">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 14-Day Streak
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-sky-50 border border-sky-100 text-sky-800 font-label-sm text-[11px] font-medium shadow-2xs">
+            Focus: Midterms
+          </span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 1: Appearance & Display (Prominent & Tactile) -->
+<div class="w-full bg-white/85 backdrop-blur-md rounded-2xl p-space-lg shadow-[0_4px_20px_rgba(14,116,144,0.05)] border border-white/80 mb-space-lg flex flex-col gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="material-symbols-outlined text-sky-600 text-[20px]">palette</span>
+<span class="font-title-md text-[17px] font-semibold text-slate-900">Appearance &amp; Display</span>
+</div>
+<p class="font-body-sm text-[13px] text-slate-600">Choose how Nudge looks during day and night study hours.</p>
+</div>
+<!-- 3-Way Theme Visual Segmented Control -->
+<div class="grid grid-cols-3 gap-space-sm p-1.5 bg-sky-50/70 border border-sky-100/70 rounded-2xl" id="theme-selector-group">
+<!-- Light Mode Option (Active Selected Preview with Glowing Ring) -->
+<button class="theme-option-btn flex flex-col items-center p-space-sm rounded-xl transition-all duration-200 bg-white shadow-md ring-2 ring-sky-500 text-sky-700" id="theme-btn-light" onclick="selectTheme('light')" type="button">
+<div class="w-full aspect-[4/3] rounded-lg bg-gradient-to-b from-[#e0f2fe] to-[#f0f9ff] flex flex-col justify-between p-2 shadow-2xs mb-space-xs relative overflow-hidden border border-sky-200/60">
+<div class="flex justify-between items-center">
+<div class="w-3.5 h-3.5 rounded-full bg-sky-500 text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[10px]">wb_sunny</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-sky-300"></div>
+</div>
+<div class="space-y-1">
+<div class="h-1.5 w-3/4 rounded-full bg-sky-300/80"></div>
+<div class="h-1.5 w-1/2 rounded-full bg-sky-200"></div>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-sky-800">Light</span>
+<span class="font-label-sm text-[11px] text-sky-600/80 font-medium">Soft Cream</span>
+</button>
+<!-- Dark Mode Option -->
+<button class="theme-option-btn flex flex-col items-center p-space-sm rounded-xl transition-all duration-200 bg-transparent text-slate-600 hover:bg-white/60" id="theme-btn-dark" onclick="selectTheme('dark')" type="button">
+<div class="w-full aspect-[4/3] rounded-lg bg-[#2A2321] flex flex-col justify-between p-2 shadow-2xs mb-space-xs relative overflow-hidden border border-slate-700/50">
+<div class="flex justify-between items-center">
+<div class="w-3.5 h-3.5 rounded-full bg-[#3D322F] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#FFB59C] text-[10px]">dark_mode</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-[#bd5630]"></div>
+</div>
+<div class="space-y-1">
+<div class="h-1.5 w-3/4 rounded-full bg-[#524440]"></div>
+<div class="h-1.5 w-1/2 rounded-full bg-[#3D322F]"></div>
+</div>
+</div>
+<span class="font-label-md text-label-md font-semibold text-slate-700">Dark</span>
+<span class="font-label-sm text-[11px] text-slate-500">Warm Espresso</span>
+</button>
+<!-- System Match Option -->
+<button class="theme-option-btn flex flex-col items-center p-space-sm rounded-xl transition-all duration-200 bg-transparent text-slate-600 hover:bg-white/60" id="theme-btn-system" onclick="selectTheme('system')" type="button">
+<div class="w-full aspect-[4/3] rounded-lg bg-gradient-to-r from-[#dbeafe] 50% to-[#1e293b] 50% flex flex-col justify-between p-2 shadow-2xs mb-space-xs relative overflow-hidden border border-sky-100">
+<div class="flex justify-between items-center">
+<div class="w-3.5 h-3.5 rounded-full bg-white/80 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-700 text-[10px]">routine</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+</div>
+<div class="space-y-1">
+<div class="h-1.5 w-3/4 rounded-full bg-slate-300/80"></div>
+<div class="h-1.5 w-1/2 rounded-full bg-slate-400/60"></div>
+</div>
+</div>
+<span class="font-label-md text-label-md font-semibold text-slate-700">Auto</span>
+<span class="font-label-sm text-[11px] text-slate-500">Device sync</span>
+</button>
+</div>
+<!-- Immediate Dark Mode Tactile Switch Row -->
+<div class="flex items-center justify-between p-space-md bg-white/70 backdrop-blur-sm rounded-2xl border border-sky-100/70 mt-space-xs">
+<div class="flex items-start gap-space-sm pr-space-sm">
+<div class="w-9 h-9 rounded-full bg-sky-100 flex items-center justify-center shrink-0 mt-0.5 text-sky-700">
+<span class="material-symbols-outlined text-[20px]">bedtime</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-slate-900 font-semibold block">Warm Dark Mode</span>
+<p class="font-body-sm text-[13px] text-slate-600 leading-snug mt-0.5">
+            Uses deep warm espresso tones to soften glare during late-night library study blocks.
+          </p>
+</div>
+</div>
+<!-- Tactile Toggle Switch (Active - Mint/Emerald styled) -->
+<button aria-checked="true" class="w-12 h-7 rounded-full bg-emerald-500 p-0.5 flex items-center transition-colors duration-200 focus:outline-hidden shrink-0 shadow-[0_4px_12px_rgba(16,185,129,0.25)]" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-5 transition-transform duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">nightlight</span>
+</span>
+</button>
+</div>
+<!-- Dark Mode Study Schedule Row -->
+<div class="flex items-center justify-between pt-space-xs px-1">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">schedule</span>
+<div>
+<span class="font-label-md text-label-md text-slate-900 font-semibold">Automatic Schedule</span>
+<p class="font-label-sm text-[11px] text-slate-500">Sunset to Sunrise (Adaptive)</p>
+</div>
+</div>
+<button class="px-3 py-1 rounded-full bg-white/90 border border-sky-100 hover:bg-sky-50 transition-colors text-slate-800 font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-2xs" type="button">
+<span class="">7:30 PM – 7:00 AM</span>
+<span class="material-symbols-outlined text-[14px] text-slate-500">tune</span>
+</button>
+</div>
+</div>
+<!-- SECTION 2: Mindful Nudges & Notifications -->
+<div class="w-full bg-white/85 backdrop-blur-md rounded-2xl p-space-lg shadow-[0_4px_20px_rgba(14,116,144,0.05)] border border-white/80 mb-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-emerald-600 text-[20px]">spa</span>
+<span class="font-title-md text-[17px] font-semibold text-slate-900">Mindful Nudges &amp; Pacing</span>
+</div>
+<span class="font-label-sm text-[11px] text-emerald-800 font-semibold bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-full shadow-2xs">
+        Gentle
+      </span>
+</div>
+<!-- Setting Item 1: Audio Pacing -->
+<div class="flex items-center justify-between py-1">
+<div class="flex items-start gap-space-sm pr-2">
+<div class="w-8 h-8 rounded-full bg-sky-100/80 border border-sky-200/60 flex items-center justify-center shrink-0 mt-0.5 text-sky-700">
+<span class="material-symbols-outlined text-[18px]">volume_down</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-slate-900 font-semibold block">Gentle Voice &amp; Chimes</span>
+<p class="font-body-sm text-[13px] text-slate-600">Soft wooden bells instead of abrupt sirens</p>
+</div>
+</div>
+<button aria-checked="true" class="w-12 h-7 rounded-full bg-emerald-500 p-0.5 flex items-center transition-colors duration-200 focus:outline-hidden shrink-0 shadow-xs" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-5 transition-transform duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-600 text-[13px]">check</span>
+</span>
+</button>
+</div>
+<!-- Setting Item 2: Daily Check-in with editable time pill -->
+<div class="flex items-center justify-between py-1">
+<div class="flex items-start gap-space-sm pr-2">
+<div class="w-8 h-8 rounded-full bg-amber-50 border border-amber-200/70 flex items-center justify-center shrink-0 mt-0.5 text-amber-700">
+<span class="material-symbols-outlined text-[18px]">wb_twilight</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-slate-900 font-semibold block">Daily Morning Alignment</span>
+<p class="font-body-sm text-[13px] text-slate-600">Energy check-in before classes start</p>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-full bg-white/90 border border-sky-200/80 hover:bg-sky-50 transition-colors text-sky-800 font-label-md text-label-md font-semibold flex items-center gap-1 shadow-2xs" type="button">
+<span class="material-symbols-outlined text-[14px] text-sky-600">edit_calendar</span>
+<span class="">8:30 AM</span>
+</button>
+</div>
+<!-- Setting Item 3: Quiet Study Sanctuary Mode -->
+<div class="flex items-center justify-between py-1">
+<div class="flex items-start gap-space-sm pr-2">
+<div class="w-8 h-8 rounded-full bg-sky-100/80 border border-sky-200/60 flex items-center justify-center shrink-0 mt-0.5 text-sky-700">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-slate-900 font-semibold block">Sanctuary Study Mode</span>
+<p class="font-body-sm text-[13px] text-slate-600">Pauses non-critical cohort reminders when reading</p>
+</div>
+</div>
+<button aria-checked="true" class="w-12 h-7 rounded-full bg-emerald-500 p-0.5 flex items-center transition-colors duration-200 focus:outline-hidden shrink-0 shadow-xs" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-5 transition-transform duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-600 text-[13px]">check</span>
+</span>
+</button>
+</div>
+</div>
+<!-- SECTION 3: Academic & Habit Integrations -->
+<div class="w-full bg-white/85 backdrop-blur-md rounded-2xl p-space-lg shadow-[0_4px_20px_rgba(14,116,144,0.05)] border border-white/80 mb-space-lg flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-slate-600 text-[20px]">sync_alt</span>
+<span class="font-title-md text-[17px] font-semibold text-slate-900">Integrations &amp; Milestones</span>
+</div>
+<!-- Canvas & Google Calendar Status Card -->
+<div class="p-space-md bg-white/70 backdrop-blur-sm rounded-2xl border border-sky-100/80 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-xl bg-white border border-sky-100 flex items-center justify-center shadow-xs text-sky-700">
+<span class="material-symbols-outlined text-[20px]">school</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-slate-900">Canvas LMS &amp; G-Cal</span>
+<p class="font-body-sm text-[13px] text-slate-600">Syllabus deadlines &amp; lab slots</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-label-sm text-[11px] font-semibold inline-flex items-center gap-1 shadow-2xs">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Synced 12m ago
+        </span>
+</div>
+<div class="flex items-center justify-between pt-1 text-slate-500">
+<span class="font-label-sm text-[12px]">4 assignments imported this week</span>
+<button class="text-sky-700 font-label-sm text-[12px] font-semibold hover:underline" type="button">Re-sync now</button>
+</div>
+</div>
+<!-- Milestone & Badge Visibility Toggle -->
+<div class="flex items-center justify-between py-1">
+<div class="flex items-start gap-space-sm pr-2">
+<div class="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 mt-0.5 text-emerald-700">
+<span class="material-symbols-outlined text-[18px]">potted_plant</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg text-slate-900 font-semibold block">Sprout Badges on Dashboard</span>
+<p class="font-body-sm text-[13px] text-slate-600">Display visual micro-wins next to daily targets</p>
+</div>
+</div>
+<button aria-checked="true" class="w-12 h-7 rounded-full bg-emerald-500 p-0.5 flex items-center transition-colors duration-200 focus:outline-hidden shrink-0 shadow-xs" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-5 transition-transform duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-600 text-[13px]">check</span>
+</span>
+</button>
+</div>
+</div>
+<!-- SECTION 4: Growth Journal & Account Data -->
+<div class="w-full bg-white/85 backdrop-blur-md rounded-2xl p-space-lg shadow-[0_4px_20px_rgba(14,116,144,0.05)] border border-white/80 mb-space-md flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-slate-600 text-[20px]">folder_shared</span>
+<span class="font-title-md text-[17px] font-semibold text-slate-900">Data &amp; Reflection Privacy</span>
+</div>
+<!-- Export Growth Journal -->
+<div class="flex items-center justify-between p-space-md bg-white/70 backdrop-blur-sm rounded-2xl border border-sky-100/70">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-sky-100 border border-sky-200/60 flex items-center justify-center text-sky-700 shrink-0">
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-slate-900 font-semibold block">Export Reflection Journal</span>
+<span class="font-body-sm text-[13px] text-slate-600">Includes weekly check-ins (PDF / CSV)</span>
+</div>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-white border border-sky-200/80 hover:bg-sky-50 transition-colors text-slate-800 font-label-sm text-label-sm font-semibold shadow-2xs" type="button">
+        Export
+      </button>
+</div>
+<!-- Calm Affirmation / Privacy Note -->
+<div class="flex items-start gap-space-sm p-space-sm bg-sky-50/70 border border-sky-100/60 rounded-xl">
+<span class="material-symbols-outlined text-slate-500 text-[18px] shrink-0 mt-0.5">lock</span>
+<p class="font-body-sm text-[13px] text-slate-600 leading-tight">
+        Voice reflections and emotional logs remain encrypted on your device. Never graded, never shared.
+      </p>
+</div>
+</div>
+<!-- Footer Info & Version -->
+<div class="flex flex-col items-center justify-center text-center pt-space-xs pb-space-sm gap-1">
+<div class="flex items-center gap-1.5 text-slate-600">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-label-md text-label-md font-semibold text-slate-900">Nudge v2.4</span>
+<span class="font-body-sm text-[13px] text-slate-600">• Gentle Accountability</span>
+</div>
+<p class="font-label-sm text-[11px] text-slate-500">Designed with care for peaceful university learning</p>
+</div>
+</div>
+<script>
+  function selectTheme(type) {
+    const buttons = document.querySelectorAll('.theme-option-btn');
+    buttons.forEach(btn => {
+      btn.classList.remove('bg-white', 'shadow-md', 'ring-2', 'ring-sky-500', 'text-sky-700');
+      btn.classList.add('bg-transparent', 'text-slate-600');
+      const spanTitle = btn.querySelector('.font-label-md');
+      if (spanTitle) {
+        spanTitle.classList.remove('text-sky-800', 'font-bold');
+        spanTitle.classList.add('text-slate-700', 'font-semibold');
+      }
+    });
+
+    const activeBtn = document.getElementById('theme-btn-' + type);
+    if (activeBtn) {
+      activeBtn.classList.remove('bg-transparent', 'text-slate-600');
+      activeBtn.classList.add('bg-white', 'shadow-md', 'ring-2', 'ring-sky-500', 'text-sky-700');
+      const spanTitle = activeBtn.querySelector('.font-label-md');
+      if (spanTitle) {
+        spanTitle.classList.remove('text-slate-700', 'font-semibold');
+        spanTitle.classList.add('text-sky-800', 'font-bold');
+      }
+    }
+  }
+
+  function toggleSwitch(button) {
+    const isChecked = button.getAttribute('aria-checked') === 'true';
+    const newState = !isChecked;
+    button.setAttribute('aria-checked', newState.toString());
+    
+    const knob = button.querySelector('span');
+    if (newState) {
+      button.classList.remove('bg-slate-200');
+      button.classList.add('bg-emerald-500');
+      knob.classList.remove('translate-x-0');
+      knob.classList.add('translate-x-5');
+    } else {
+      button.classList.remove('bg-emerald-500');
+      button.classList.add('bg-slate-200');
+      knob.classList.remove('translate-x-5');
+      knob.classList.add('translate-x-0');
+    }
+  }
+</script></main>
+<!-- Bottom Navigation Bar with Airy Sky Floating Mic Button -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/80 backdrop-blur-xl border-t border-sky-100/70 shadow-[0_-4px_24px_rgba(15,23,42,0.04)]" data-active-classes="text-slate-900 font-semibold"><div class="relative flex items-center justify-around h-[68px] px-space-sm"><a class="flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-slate-900 transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[23px]">home</span><span class="font-label-sm text-[11px]">Home</span></a><a class="flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-slate-900 transition-colors pr-6" data-path="chat" href="#"><span class="material-symbols-outlined text-[23px]">chat_bubble</span><span class="font-label-sm text-[11px]">Chat</span></a><div class="absolute left-1/2 -top-5 -translate-x-1/2 flex items-center justify-center"><a aria-label="Voice Reflection" class="relative group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 text-white shadow-[0_8px_24px_-4px_rgba(249,115,22,0.45)] ring-4 ring-white active:scale-95 transition-transform" data-path="voice-nudge" href="#"><span class="absolute -inset-1 rounded-full bg-orange-400/25 animate-ping pointer-events-none"></span><span class="material-symbols-outlined text-[28px]">mic</span></a></div><a class="flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-slate-900 transition-colors pl-6" data-path="schedule" href="#"><span class="material-symbols-outlined text-[23px]">calendar_today</span><span class="font-label-sm text-[11px]">Schedule</span></a><a aria-current="page" class="flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors text-slate-900 font-semibold" data-path="summary" href="#"><span class="material-symbols-outlined text-[23px] text-sky-600">equalizer</span><span class="font-label-sm text-[11px]">Summary</span></a></div></nav>
+
+
+</body></html>

@@ -125,8 +125,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <section className="space-y-4 pt-2">
         <div className="flex items-center gap-2">
           <span className="hero-elem inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EAF2EE] dark:bg-[#1D3631] text-[#1E3A34] dark:text-[#A3C1AD] text-xs font-semibold tracking-wide border border-[#C8DCD5]/60 dark:border-[#32574F]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#5B8A82] dark:bg-[#75A69D] animate-pulse" />
-            <span>Wellora Student Study Nudge</span>
+            <img src="/logo-mark.png" alt="Nudge" className="w-3.5 h-3.5 object-contain" />
+            <span>Mindful AI Study Companion</span>
           </span>
           <span className="hero-elem text-xs text-[#7E928C] dark:text-[#85A39A]">
             • {subjects.length} Core Subjects Active

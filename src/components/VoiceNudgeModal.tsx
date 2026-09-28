@@ -136,8 +136,12 @@ export const VoiceNudgeModal: React.FC<VoiceNudgeModalProps> = ({
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div className="flex items-center space-x-2">
-            <div className="w-7 h-7 rounded-full bg-[#A33C1B] text-white flex items-center justify-center text-xs font-bold shadow-sm">
-              <span className="font-serif italic text-sm">n</span>
+            <div className="w-7 h-7 rounded-full bg-white dark:bg-[#2C2422] p-0.5 flex items-center justify-center shadow-xs border border-[#F0E6E4] dark:border-[#382F2C]">
+              <img
+                src="/logo-mark.png"
+                alt="Nudge"
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="font-bold text-base text-[#2D2522]">Voice Nudge Companion</span>
           </div>

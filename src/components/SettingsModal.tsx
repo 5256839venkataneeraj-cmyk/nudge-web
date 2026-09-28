@@ -298,11 +298,28 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          {/* Footer Action */}
-          <div className="pt-3 border-t border-[#F0E6E4] dark:border-[#352D2A] flex justify-end">
+          {/* Footer Action & Brand */}
+          <div className="pt-3 border-t border-[#F0E6E4] dark:border-[#352D2A] flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-full bg-white dark:bg-[#2C2422] p-0.5 flex items-center justify-center shadow-xs border border-[#F0E6E4] dark:border-[#382F2C]">
+                <img
+                  src="/logo-mark.png"
+                  alt="Nudge"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-extrabold text-xs tracking-wider text-[#1F1B1A] dark:text-[#F6ECEA]">
+                  NUDGE
+                </span>
+                <span className="text-[9.5px] text-[#70645D] dark:text-[#A89E97]">
+                  Mindful AI Academic & Habit Companion
+                </span>
+              </div>
+            </div>
             <button
               onClick={onClose}
-              className="py-2.5 px-6 rounded-full bg-[#9D3E1A] text-white text-xs font-bold shadow-xs hover:bg-[#BD5630] transition-colors"
+              className="py-2 px-5 rounded-full bg-[#9D3E1A] text-white text-xs font-bold shadow-xs hover:bg-[#BD5630] transition-colors cursor-pointer"
             >
               Done
             </button>

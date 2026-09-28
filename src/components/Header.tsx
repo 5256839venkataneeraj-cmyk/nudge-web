@@ -99,12 +99,20 @@ export const Header: React.FC<HeaderProps> = ({
             <ArrowLeft className="w-4 h-4" />
           </motion.button>
 
-          <div className="flex items-center space-x-2.5">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#1E3A34] to-[#5B8A82] text-[#F9F6F0] flex items-center justify-center text-xs font-bold shadow-xs">
-              <span className="font-serif italic text-sm">n</span>
+          <button
+            onClick={() => setActiveTab("home")}
+            className="flex items-center space-x-2.5 text-left focus:outline-hidden group cursor-pointer"
+            title="Go to Home"
+          >
+            <div className="w-8 h-8 rounded-full bg-white dark:bg-[#1E3A34] p-0.5 flex items-center justify-center shadow-xs border border-[#C8DCD5]/60 dark:border-[#32574F]/60 group-hover:scale-105 transition-transform duration-200">
+              <img
+                src="/logo-mark.png"
+                alt="Nudge"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="flex items-baseline space-x-2">
-              <span className="font-serif font-medium text-lg tracking-tight text-[#1E3A34] dark:text-[#E9F3EF]">
+              <span className="font-serif font-medium text-lg tracking-tight text-[#1E3A34] dark:text-[#E9F3EF] group-hover:text-[#5B8A82] dark:group-hover:text-[#A3C1AD] transition-colors">
                 Nudge
               </span>
               <span className="text-xs text-[#7E928C] dark:text-[#85A39A]">•</span>
@@ -112,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
                 {getTabTitle()}
               </span>
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Right: Break Pill, Security & Profile */}

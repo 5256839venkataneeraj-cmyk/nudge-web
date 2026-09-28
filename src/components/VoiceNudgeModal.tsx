@@ -135,12 +135,15 @@ export const VoiceNudgeModal: React.FC<VoiceNudgeModalProps> = ({
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <div className="flex items-center space-x-2">
-            <div className="w-7 h-7 rounded-full bg-white dark:bg-[#2C2422] p-0.5 flex items-center justify-center shadow-xs border border-[#F0E6E4] dark:border-[#382F2C]">
+          <div className="flex items-center space-x-2.5">
+            <div className="h-7 w-auto flex items-center justify-center shrink-0 drop-shadow-xs">
               <img
-                src="/logo-mark.png"
+                src="/logo-stitch.png"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/logo.svg";
+                }}
                 alt="Nudge"
-                className="w-full h-full object-contain"
+                className="h-7 w-auto object-contain"
               />
             </div>
             <span className="font-bold text-base text-[#2D2522]">Voice Nudge Companion</span>

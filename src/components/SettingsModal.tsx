@@ -433,11 +433,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           {/* Footer Action & Brand */}
           <div className="pt-3 border-t border-[#F0E6E4] dark:border-[#352D2A] flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-white dark:bg-[#2C2422] p-0.5 flex items-center justify-center shadow-xs border border-[#F0E6E4] dark:border-[#382F2C]">
+              <div className="h-7 w-auto flex items-center justify-center shrink-0 drop-shadow-xs">
                 <img
-                  src="/logo-mark.png"
+                  src="/logo-stitch.png"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/logo.svg";
+                  }}
                   alt="Nudge"
-                  className="w-full h-full object-contain"
+                  className="h-7 w-auto object-contain"
                 />
               </div>
               <div className="flex flex-col">

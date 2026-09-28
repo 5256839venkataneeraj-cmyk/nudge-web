@@ -101,22 +101,27 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => setActiveTab("home")}
-            className="flex items-center space-x-2 min-w-0 text-left focus:outline-hidden group cursor-pointer"
+            className="flex items-center space-x-2.5 min-w-0 text-left focus:outline-hidden group cursor-pointer"
             title="Go to Home"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 shrink-0 rounded-full bg-white dark:bg-[#1E3A34] p-0.5 flex items-center justify-center shadow-xs border border-[#C8DCD5]/60 dark:border-[#32574F]/60 group-hover:scale-105 transition-transform duration-200">
+            <div className="h-8 w-auto flex items-center justify-center shrink-0 drop-shadow-xs group-hover:scale-105 transition-transform duration-200">
               <img
-                src="/logo-mark.png"
-                alt="Nudge"
-                className="w-full h-full object-contain"
+                src="/logo-stitch.png"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/logo.svg";
+                }}
+                alt="Nudge App Logo"
+                className="h-8 w-auto object-contain"
               />
             </div>
-            <div className="flex items-baseline space-x-1.5 min-w-0">
-              <span className="font-serif font-medium text-base sm:text-lg tracking-tight text-[#1E3A34] dark:text-[#E9F3EF] group-hover:text-[#5B8A82] dark:group-hover:text-[#A3C1AD] transition-colors shrink-0">
-                Nudge
-              </span>
-              <span className="text-xs text-[#7E928C] dark:text-[#85A39A] shrink-0">•</span>
-              <span className="text-xs font-semibold text-[#5B8A82] dark:text-[#A3C1AD] tracking-wide truncate max-w-[85px] sm:max-w-none">
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <span className="font-bold text-[16px] sm:text-[17px] text-[#0f172a] dark:text-[#F8FAFC] tracking-tight leading-none">
+                  Nudge
+                </span>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-sky-500" />
+              </div>
+              <span className="text-[10px] sm:text-[11px] font-semibold text-[#64748b] dark:text-[#94a3b8] tracking-wider uppercase">
                 {getTabTitle()}
               </span>
             </div>

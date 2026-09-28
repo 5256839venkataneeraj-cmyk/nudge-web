@@ -13,6 +13,8 @@ import {
   Sparkles,
   Volume2,
   VolumeX,
+  Smartphone,
+  Download,
 } from "lucide-react";
 import { AppTheme } from "../lib/theme";
 import { StudentSnapshot } from "../types";
@@ -269,7 +271,44 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               />
             </div>
 
-            {/* SECTION 4: Privacy & Local Storage */}
+            {/* SECTION 4: Install App on Phone / Download APK */}
+            <div className="bg-gradient-to-br from-[#EAF2EE] to-[#F4F9F6] dark:from-[#1D3631] dark:to-[#172C27] rounded-2xl p-4 border border-[#C8DCD5] dark:border-[#32574F] space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-[#1E3A34] dark:bg-[#5B8A82] text-white flex items-center justify-center shadow-xs">
+                    <Smartphone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-[#1E3A34] dark:text-[#E9F3EF] block">
+                      Download Mobile App
+                    </span>
+                    <span className="text-[11px] text-[#475D57] dark:text-[#BDD4CD]">
+                      Native Android APK (7.1 MB) & PWA
+                    </span>
+                  </div>
+                </div>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#1E3A34]/10 dark:bg-white/10 text-[#1E3A34] dark:text-[#A3C1AD]">
+                  v1.0.0
+                </span>
+              </div>
+
+              <p className="text-[11px] text-[#475D57] dark:text-[#BDD4CD] leading-relaxed">
+                Install Nudge directly on your phone with background audio, offline cache, and mindful check-in notifications.
+              </p>
+
+              <div className="pt-1 flex items-center gap-2">
+                <a
+                  href="/nudge.apk"
+                  download="nudge.apk"
+                  className="flex-1 py-2 px-3 rounded-xl bg-[#1E3A34] hover:bg-[#284C44] dark:bg-[#5B8A82] dark:hover:bg-[#4E7972] text-[#F9F6F0] text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download Android APK</span>
+                </a>
+              </div>
+            </div>
+
+            {/* SECTION 5: Privacy & Local Storage */}
             <div className="rounded-2xl bg-[#CAEBD1]/25 dark:bg-[#486551]/15 p-4 border border-[#CAEBD1] dark:border-[#486551]/30 space-y-2">
               <div className="flex items-center gap-2 text-xs font-bold text-[#042011] dark:text-[#CAEBD1]">
                 <Shield className="w-4 h-4 text-[#314D3A] dark:text-[#AECEB6]" />

@@ -1043,6 +1043,18 @@ app.post("/api/functions/transcribe-audio", rateLimitMiddleware, async (req, res
   }
 });
 
+// Direct APK download route for Android devices
+app.get(["/nudge.apk", "/app-debug.apk", "/download/apk"], (req, res) => {
+  const apkPath = fs.existsSync(path.join(process.cwd(), "public", "nudge.apk"))
+    ? path.join(process.cwd(), "public", "nudge.apk")
+    : path.join(process.cwd(), "android", "app", "build", "outputs", "apk", "debug", "app-debug.apk");
+
+  if (fs.existsSync(apkPath)) {
+    return res.download(apkPath, "nudge.apk");
+  }
+  return res.status(404).json({ error: "APK build not found" });
+});
+
 // Vite middleware & Static serving
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {

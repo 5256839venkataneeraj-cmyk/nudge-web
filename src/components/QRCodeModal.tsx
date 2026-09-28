@@ -11,6 +11,7 @@ import {
   X,
   Sparkles,
   Key,
+  Download,
 } from "lucide-react";
 
 interface QRCodeModalProps {
@@ -22,19 +23,29 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [selectedNetwork, setSelectedNetwork] = useState<"wifi" | "tunnel">(
-    "wifi"
+  const [selectedNetwork, setSelectedNetwork] = useState<"apk" | "wifi" | "tunnel">(
+    "apk"
   );
   const [qrDataUrl, setQrDataUrl] = useState<string>("");
   const [hasCopiedUrl, setHasCopiedUrl] = useState(false);
   const [hasCopiedPass, setHasCopiedPass] = useState(false);
 
   // Network URLs
-  const wifiUrl = "http://172.18.213.104:3000";
+  const host = typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1" 
+    ? window.location.origin 
+    : "http://172.16.80.55:3000";
+
+  const apkUrl = `${host}/nudge.apk`;
+  const wifiUrl = host;
   const tunnelUrl = "https://spicy-nights-dig.loca.lt";
   const tunnelPassword = "136.233.9.105";
 
-  const activeUrl = selectedNetwork === "wifi" ? wifiUrl : tunnelUrl;
+  const activeUrl = 
+    selectedNetwork === "apk" 
+      ? apkUrl 
+      : selectedNetwork === "wifi" 
+      ? wifiUrl 
+      : tunnelUrl;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -115,29 +126,41 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({
 
           {/* Connection Switcher Tab */}
           <div className="px-4 pt-4">
-            <div className="grid grid-cols-2 p-1 bg-[#EAE2DA]/70 dark:bg-[#24201E] rounded-2xl border border-[#E0D7CE] dark:border-[#332C29]">
+            <div className="grid grid-cols-3 p-1 bg-[#EAE2DA]/70 dark:bg-[#24201E] rounded-2xl border border-[#E0D7CE] dark:border-[#332C29]">
+              <button
+                onClick={() => setSelectedNetwork("apk")}
+                className={`py-2 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1 transition-all ${
+                  selectedNetwork === "apk"
+                    ? "bg-white dark:bg-[#1C1917] text-[#A33C1B] dark:text-[#E07A5F] shadow-xs"
+                    : "text-[#70645D] dark:text-[#A89B95] hover:text-[#2D2522]"
+                }`}
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>APK File</span>
+              </button>
+
               <button
                 onClick={() => setSelectedNetwork("wifi")}
-                className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                className={`py-2 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1 transition-all ${
                   selectedNetwork === "wifi"
                     ? "bg-white dark:bg-[#1C1917] text-[#A33C1B] dark:text-[#E07A5F] shadow-xs"
                     : "text-[#70645D] dark:text-[#A89B95] hover:text-[#2D2522]"
                 }`}
               >
                 <Wifi className="w-3.5 h-3.5" />
-                <span>Local Wi-Fi</span>
+                <span>Wi-Fi (PWA)</span>
               </button>
 
               <button
                 onClick={() => setSelectedNetwork("tunnel")}
-                className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                className={`py-2 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1 transition-all ${
                   selectedNetwork === "tunnel"
                     ? "bg-white dark:bg-[#1C1917] text-[#A33C1B] dark:text-[#E07A5F] shadow-xs"
                     : "text-[#70645D] dark:text-[#A89B95] hover:text-[#2D2522]"
                 }`}
               >
                 <Globe className="w-3.5 h-3.5" />
-                <span>Cloud Tunnel</span>
+                <span>Tunnel</span>
               </button>
             </div>
           </div>
@@ -149,20 +172,36 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({
                 <img
                   src={qrDataUrl}
                   alt="Scan to open Nudge on mobile"
-                  className="w-56 h-56 rounded-xl object-contain"
+                  className="w-52 h-52 rounded-xl object-contain"
                 />
               ) : (
-                <div className="w-56 h-56 flex items-center justify-center text-xs text-[#8F827A] animate-pulse">
+                <div className="w-52 h-52 flex items-center justify-center text-xs text-[#8F827A] animate-pulse">
                   Generating QR Code...
                 </div>
               )}
             </div>
 
+            {/* Direct APK Download Button */}
+            {selectedNetwork === "apk" && (
+              <a
+                href="/nudge.apk"
+                download="nudge.apk"
+                className="w-full py-2.5 px-4 rounded-2xl bg-[#1E3A34] hover:bg-[#284C44] dark:bg-[#5B8A82] dark:hover:bg-[#4E7972] text-[#F9F6F0] text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>Direct Download APK (7.1 MB)</span>
+              </a>
+            )}
+
             {/* Instruction Callout */}
-            <p className="text-xs text-[#5C5049] dark:text-[#C4B8B0] max-w-[260px] leading-relaxed">
-              {selectedNetwork === "wifi" ? (
+            <p className="text-xs text-[#5C5049] dark:text-[#C4B8B0] max-w-[280px] leading-relaxed">
+              {selectedNetwork === "apk" ? (
                 <>
-                  Connect your phone to the <strong>same Wi-Fi</strong>, then point your camera at the QR code.
+                  Scan with your phone's camera to <strong>directly download & install the Android APK</strong> (no Play Store needed).
+                </>
+              ) : selectedNetwork === "wifi" ? (
+                <>
+                  Connect phone to <strong>same Wi-Fi</strong>, scan to open in Chrome or Safari, then tap <strong>"Add to Home Screen"</strong>.
                 </>
               ) : (
                 <>

@@ -29,6 +29,7 @@ import {
   appendLocalChatMessage,
   clearLocalChatHistory,
   sanitizeMessageContent,
+  getLocalStudentSnapshot,
 } from "./lib/storage";
 import { useBreakTimer } from "./hooks/useBreakTimer";
 import { detectBreakRequest } from "./lib/breakTimer";
@@ -51,8 +52,8 @@ import { useSmoothScroll } from "./hooks/useSmoothScroll";
 export default function App() {
   // Initialize Lenis Momentum Smooth Scrolling & GSAP ScrollTrigger Integration
   useSmoothScroll();
-  const [snapshot, setSnapshot] = useState<StudentSnapshot | null>(null);
-  const [isSnapshotLoading, setIsSnapshotLoading] = useState(true);
+  const [snapshot, setSnapshot] = useState<StudentSnapshot>(() => getLocalStudentSnapshot());
+  const [isSnapshotLoading, setIsSnapshotLoading] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [hasMoreHistory, setHasMoreHistory] = useState(false);
   const [historyOffset, setHistoryOffset] = useState(0);
@@ -165,15 +166,13 @@ export default function App() {
   // 2. Fetch live Supabase student snapshot
   const loadSnapshot = useCallback(async () => {
     try {
-      setIsSnapshotLoading(true);
       const data = await fetchLiveSnapshot();
-      setSnapshot(data);
+      if (data) {
+        setSnapshot(data);
+      }
       setErrorMessage(null);
     } catch (err) {
-      console.error("Snapshot error:", err);
-      setErrorMessage(
-        err instanceof Error ? err.message : "Failed to load Supabase snapshot"
-      );
+      console.warn("[Snapshot] Remote sync error, using on-device cache:", err);
     } finally {
       setIsSnapshotLoading(false);
     }

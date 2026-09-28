@@ -1,7 +1,173 @@
-import { ChatMessage } from "../types";
+import { ChatMessage, StudentSnapshot } from "../types";
 
 const LOCAL_STORAGE_KEY = "nudge_on_device_chat_vault_v2";
+const SNAPSHOT_STORAGE_KEY = "nudge_student_snapshot_vault_v1";
 const DEFAULT_PAGE_SIZE = 15;
+
+export const DEFAULT_STUDENT_SNAPSHOT: StudentSnapshot = {
+  studentName: "Maya",
+  academicYear: "Engineering & Applied Sciences (Sophomore)",
+  todayClasses: [
+    {
+      id: "cls_1",
+      name: "Calculus (MATH 201): Multivariable Review",
+      code: "MATH 201",
+      time: "09:30 AM - 10:45 AM",
+      location: "Math Building, Hall 102",
+      instructor: "Prof. Vance",
+    },
+    {
+      id: "cls_2",
+      name: "Basic Engineering: Statics & Circuits",
+      code: "ENGG 101",
+      time: "11:15 AM - 12:30 PM",
+      location: "Engineering Complex 201",
+      instructor: "Dr. Chen",
+    },
+    {
+      id: "cls_3",
+      name: "Applied Chemistry (CHEM 102): Lab",
+      code: "CHEM 102",
+      time: "02:00 PM - 03:30 PM",
+      location: "Science Complex 402",
+      instructor: "Prof. Gomez",
+    },
+    {
+      id: "cls_4",
+      name: "Python (CS 105): Data Automation Lab",
+      code: "CS 105",
+      time: "04:00 PM - 05:00 PM",
+      location: "Computing Center Lab 2",
+      instructor: "TA Alex",
+    },
+  ],
+  openAssignments: [
+    {
+      id: "asg_1",
+      title: "Calculus Problem Set 4: Line Integrals & Flux",
+      course: "Calculus",
+      dueDate: "Tomorrow at 11:59 PM",
+      dueLabel: "Due tomorrow",
+      priority: "high",
+      estMinutes: 60,
+      completed: false,
+      progress: 40,
+    },
+    {
+      id: "asg_2",
+      title: "Basic Engineering: Truss Equilibrium Analysis",
+      course: "Basic Engineering",
+      dueDate: "Tonight at 11:59 PM",
+      dueLabel: "Urgent tonight",
+      priority: "high",
+      estMinutes: 45,
+      completed: false,
+      progress: 60,
+    },
+    {
+      id: "asg_3",
+      title: "Applied Chemistry: Reaction Thermodynamics Report",
+      course: "Applied Chemistry",
+      dueDate: "In 2 days",
+      dueLabel: "Due Thursday",
+      priority: "medium",
+      estMinutes: 50,
+      completed: false,
+      progress: 25,
+    },
+    {
+      id: "asg_4",
+      title: "Python: Pandas Matrix Transformation Lab",
+      course: "Python",
+      dueDate: "Friday at 5:00 PM",
+      dueLabel: "Due Friday",
+      priority: "medium",
+      estMinutes: 45,
+      completed: false,
+      progress: 20,
+    },
+  ],
+  habitLogs: [
+    {
+      id: "hab_1",
+      name: "20 min campus ride / commute",
+      target: "Completed 8:30 AM",
+      completed: true,
+      category: "health",
+    },
+    {
+      id: "hab_2",
+      name: "Laundry & tidy study desk",
+      target: "Evening",
+      completed: false,
+      category: "mindset",
+    },
+    {
+      id: "hab_3",
+      name: "2.0L Daily Hydration Target",
+      target: "1.4L of 2.0L logged",
+      completed: false,
+      category: "health",
+    },
+    {
+      id: "hab_4",
+      name: "Log coffee & midday lunch spend",
+      target: "< $15 daily cap",
+      completed: true,
+      category: "focus",
+    },
+  ],
+  streaks: {
+    studyDays: 12,
+    habitDays: 5,
+    bestStreak: 18,
+  },
+  mood: {
+    score: 3,
+    label: "A bit overwhelmed tbh",
+    energy: "Medium",
+    note: "Need to find two peer-reviewed sources for section 2 of Bioethics paper",
+  },
+  upcomingHolidays: [
+    {
+      name: "Mid-Semester Fall Break",
+      date: "Oct 12 - Oct 14",
+      daysAway: 18,
+    },
+    {
+      name: "Thanksgiving Recess",
+      date: "Nov 25 - Nov 29",
+      daysAway: 58,
+    },
+  ],
+  lastUpdated: new Date().toISOString(),
+};
+
+export function getLocalStudentSnapshot(): StudentSnapshot {
+  try {
+    if (typeof localStorage === "undefined") return DEFAULT_STUDENT_SNAPSHOT;
+    const raw = localStorage.getItem(SNAPSHOT_STORAGE_KEY);
+    if (!raw) {
+      localStorage.setItem(SNAPSHOT_STORAGE_KEY, JSON.stringify(DEFAULT_STUDENT_SNAPSHOT));
+      return DEFAULT_STUDENT_SNAPSHOT;
+    }
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error("Failed to read cached student snapshot:", err);
+    return DEFAULT_STUDENT_SNAPSHOT;
+  }
+}
+
+export function saveLocalStudentSnapshot(snapshot: StudentSnapshot): void {
+  try {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(SNAPSHOT_STORAGE_KEY, JSON.stringify(snapshot));
+    }
+  } catch (err) {
+    console.error("Failed to persist student snapshot locally:", err);
+  }
+}
+
 
 /**
  * On-device Local Storage Engine for Nudge

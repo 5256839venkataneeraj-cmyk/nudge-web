@@ -1,26 +1,47 @@
 import { StudentSnapshot, EdgeFunctionChatResponse, NudgeTone } from "../types";
+import { getLocalStudentSnapshot, saveLocalStudentSnapshot } from "./storage";
 
 // Base URL support: Empty string for Web/PWA; configurable for Native Android (e.g. http://10.0.2.2:3000)
 export const API_BASE = ((import.meta as any).env?.VITE_API_BASE_URL || "").replace(/\/$/, "");
 
 export async function fetchLiveSnapshot(): Promise<StudentSnapshot> {
-  const res = await fetch(`${API_BASE}/api/supabase/snapshot`);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch Supabase live snapshot: ${res.statusText}`);
+  try {
+    const res = await fetch(`${API_BASE}/api/supabase/snapshot`);
+    if (res.ok) {
+      const data = await res.json();
+      saveLocalStudentSnapshot(data);
+      return data;
+    }
+  } catch (err) {
+    console.warn("[Snapshot] Remote fetch failed, falling back to on-device snapshot cache:", err);
   }
-  return res.json();
+  return getLocalStudentSnapshot();
 }
 
 export async function updateLiveSnapshot(patch: Partial<StudentSnapshot>): Promise<StudentSnapshot> {
-  const res = await fetch(`${API_BASE}/api/supabase/snapshot`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(patch),
-  });
-  if (!res.ok) {
-    throw new Error(`Failed to update Supabase snapshot: ${res.statusText}`);
+  const current = getLocalStudentSnapshot();
+  const updated: StudentSnapshot = {
+    ...current,
+    ...patch,
+    lastUpdated: new Date().toISOString(),
+  };
+  saveLocalStudentSnapshot(updated);
+
+  try {
+    const res = await fetch(`${API_BASE}/api/supabase/snapshot`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    });
+    if (res.ok) {
+      const serverData = await res.json();
+      saveLocalStudentSnapshot(serverData);
+      return serverData;
+    }
+  } catch (err) {
+    console.warn("[Snapshot] Remote update failed, persisted to on-device cache:", err);
   }
-  return res.json();
+  return updated;
 }
 
 export async function sendChatMessageToEdgeFunction(params: {

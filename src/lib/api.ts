@@ -1,7 +1,10 @@
 import { StudentSnapshot, EdgeFunctionChatResponse, NudgeTone } from "../types";
 
+// Base URL support: Empty string for Web/PWA; configurable for Native Android (e.g. http://10.0.2.2:3000)
+export const API_BASE = ((import.meta as any).env?.VITE_API_BASE_URL || "").replace(/\/$/, "");
+
 export async function fetchLiveSnapshot(): Promise<StudentSnapshot> {
-  const res = await fetch("/api/supabase/snapshot");
+  const res = await fetch(`${API_BASE}/api/supabase/snapshot`);
   if (!res.ok) {
     throw new Error(`Failed to fetch Supabase live snapshot: ${res.statusText}`);
   }
@@ -9,7 +12,7 @@ export async function fetchLiveSnapshot(): Promise<StudentSnapshot> {
 }
 
 export async function updateLiveSnapshot(patch: Partial<StudentSnapshot>): Promise<StudentSnapshot> {
-  const res = await fetch("/api/supabase/snapshot", {
+  const res = await fetch(`${API_BASE}/api/supabase/snapshot`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(patch),
@@ -26,9 +29,15 @@ export async function sendChatMessageToEdgeFunction(params: {
   history: Array<{ role: 'user' | 'assistant'; content: string }>;
   tone?: NudgeTone;
 }): Promise<EdgeFunctionChatResponse> {
-  const res = await fetch("/api/functions/nudge-chat", {
+  const savedKey = (typeof localStorage !== "undefined" && localStorage.getItem("nudge_gemini_api_key")) || "";
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (savedKey) {
+    headers["x-gemini-api-key"] = savedKey;
+  }
+
+  const res = await fetch(`${API_BASE}/api/functions/nudge-chat`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: JSON.stringify(params),
   });
 
@@ -48,7 +57,7 @@ export async function sendChatMessageToEdgeFunction(params: {
 }
 
 export async function fetchEdgeFunctionCode(): Promise<string> {
-  const res = await fetch("/api/supabase/edge-function-code");
+  const res = await fetch(`${API_BASE}/api/supabase/edge-function-code`);
   if (!res.ok) {
     throw new Error("Failed to load edge function code");
   }
@@ -66,7 +75,7 @@ export async function transcribeAudio(audioBlob: Blob): Promise<string> {
   }
   const base64 = btoa(binary);
 
-  const res = await fetch("/api/functions/transcribe-audio", {
+  const res = await fetch(`${API_BASE}/api/functions/transcribe-audio`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -82,5 +91,47 @@ export async function transcribeAudio(audioBlob: Blob): Promise<string> {
 
   const data = await res.json();
   return data.transcript || "";
+}
+
+/**
+ * Direct caller for the Next.js / Express Gemini 3.7 Flash Route wrapper at /api/gemini
+ */
+export async function sendPromptToGeminiRoute(
+  prompt: string,
+  systemInstruction?: string,
+  apiKeyOverride?: string
+): Promise<{
+  success: boolean;
+  model: string;
+  output: string;
+  durationMs?: number;
+  loggedToSupabase?: boolean;
+  error?: string;
+  details?: string;
+}> {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+
+  const key = apiKeyOverride || localStorage.getItem("nudge_gemini_api_key");
+  if (key) {
+    headers["x-gemini-api-key"] = key;
+  }
+
+  const res = await fetch("/api/gemini", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      prompt,
+      systemInstruction,
+      allowSimulation: !key,
+    }),
+  });
+
+  const data = await res.json();
+  if (!res.ok && !data.output) {
+    throw new Error(data.error || `Gemini API returned status ${res.status}`);
+  }
+  return data;
 }
 

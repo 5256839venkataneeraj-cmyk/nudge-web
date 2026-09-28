@@ -1,1 +1,197 @@
 @import "tailwindcss";
+
+/* Wellora Health Coaching & Organic Nudge Design Tokens */
+:root {
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  
+  /* Wellora Organic Palette */
+  --bg-app: #F9F6F0; /* Soft warm cream */
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F3EFE6;
+  --bg-surface-subtle: #F5F1E8;
+  
+  --text-primary: #1E3A34; /* Deep forest / slate green */
+  --text-secondary: #475D57;
+  --text-muted: #7E928C;
+  
+  --border-subtle: #E8E3D7;
+  --border-card: #E4DEC0;
+  
+  --accent-sage: #5B8A82; /* Soothing sage accent */
+  --accent-sage-light: #EAF2EE;
+  --accent-sage-subtle: #F0F6F3;
+  --accent-sage-border: #C8DCD5;
+  --accent-sage-soft: #A3C1AD;
+  
+  --terracotta: #5B8A82;
+  --terracotta-light: #EAF2EE;
+  --terracotta-border: #C8DCD5;
+  
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+.dark, [data-theme="dark"] {
+  --bg-app: #0F1A18; /* Deep forest slate */
+  --bg-surface: #152522;
+  --bg-surface-elevated: #1C302C;
+  --bg-surface-subtle: #192C28;
+  
+  --text-primary: #E9F3EF;
+  --text-secondary: #BDD4CD;
+  --text-muted: #85A39A;
+  
+  --border-subtle: #243E38;
+  --border-card: #2B4943;
+  
+  --accent-sage: #75A69D;
+  --accent-sage-light: #1D3631;
+  --accent-sage-subtle: #192F2A;
+  --accent-sage-border: #32574F;
+  --accent-sage-soft: #8EB7AF;
+  
+  --terracotta: #75A69D;
+  --terracotta-light: #1D3631;
+  --terracotta-border: #32574F;
+  color-scheme: dark;
+}
+
+body {
+  padding-top: var(--safe-area-top);
+  padding-bottom: var(--safe-area-bottom);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+  user-select: none;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Font helpers */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Lenis Recommended Smooth Scroll CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Allow text selection inside chat bubbles and notes */
+p, span, pre, code, input, textarea {
+  user-select: text;
+}
+
+/* Global Dark Mode Overrides for Tailwind Utility Classes */
+.dark body {
+  background-color: #141211;
+  color: #F5EBE6;
+}
+
+.dark .bg-\[\#FAF8F5\],
+.dark .bg-\[\#FAF7F5\],
+.dark .bg-\[\#FAF7F2\] {
+  background-color: #141211 !important;
+}
+
+.dark .bg-\[\#FAF7F5\]\/90,
+.dark .bg-\[\#FAF8F5\]\/90 {
+  background-color: rgba(20, 18, 17, 0.92) !important;
+}
+
+.dark .bg-white {
+  background-color: #1C1917 !important;
+}
+
+.dark .bg-white\/70,
+.dark .bg-white\/80,
+.dark .bg-white\/90 {
+  background-color: rgba(28, 25, 23, 0.88) !important;
+}
+
+.dark .bg-\[\#F1EBE6\],
+.dark .bg-\[\#EFEAE5\],
+.dark .bg-\[\#EFE9E4\],
+.dark .bg-\[\#F4EFEA\],
+.dark .bg-\[\#F4EFEA\]\/80 {
+  background-color: #24201E !important;
+}
+
+.dark .bg-\[\#FCEEEA\],
+.dark .bg-\[\#FFF8F5\] {
+  background-color: #2E1B13 !important;
+}
+
+.dark .text-\[\#2D2522\],
+.dark .text-\[\#1F1B1A\] {
+  color: #F5EBE6 !important;
+}
+
+.dark .text-\[\#5C5049\],
+.dark .text-\[\#70645D\],
+.dark .text-\[\#4A3F39\] {
+  color: #E0D5CE !important;
+}
+
+.dark .text-\[\#8F827A\],
+.dark .text-\[\#A09289\] {
+  color: #A89B95 !important;
+}
+
+.dark .border-\[\#EAE2DA\],
+.dark .border-\[\#E7DFD7\],
+.dark .border-\[\#E8DFD7\],
+.dark .border-\[\#E2D8D0\],
+.dark .border-\[\#D9CEC6\],
+.dark .border-\[\#F0EAE4\] {
+  border-color: #332C29 !important;
+}
+
+.dark .border-\[\#F6D5CB\],
+.dark .border-\[\#F4CCC1\],
+.dark .border-\[\#F0D5C7\] {
+  border-color: #4D2D20 !important;
+}
+
+.dark .text-\[\#A33C1B\] {
+  color: #E07A5F !important;
+}
+
+.dark input, .dark textarea {
+  background-color: #1C1917 !important;
+  color: #F5EBE6 !important;
+  border-color: #383129 !important;
+}
+
+.dark input::placeholder, .dark textarea::placeholder {
+  color: #8C8478 !important;
+}
+
+/* Glassmorphism Navigation in Dark Mode */
+.dark .floating-nav-bar,
+.dark .dock-nav {
+  background: rgba(28, 25, 23, 0.88) !important;
+  border-color: #332C29 !important;
+}

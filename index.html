@@ -2,9 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <title>Nudge - Secure AI Student Companion</title>
     <meta name="description" content="Secure AI student companion with Edge Function proxy architecture, live Supabase context snapshot, on-device local chat history, and calendar event extraction." />
+    
+    <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans) for Wellora Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+
+    <!-- Android & PWA Manifest and Theme -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#1E3A34" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+
     <meta property="og:title" content="Nudge - Secure AI Student Companion" />
     <meta property="og:description" content="Secure AI student companion with Edge Function proxy architecture, live Supabase context snapshot, on-device local chat history, and calendar event extraction." />
     <meta property="og:type" content="website" />
@@ -13,6 +28,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Register Service Worker for Android PWA offline support and installability
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.debug('ServiceWorker registration skipped:', err);
+          });
+        });
+      }
+    </script>
   </body>
 </html>
 

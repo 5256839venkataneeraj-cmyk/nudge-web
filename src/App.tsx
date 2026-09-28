@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Header } from "./components/Header";
 import { ChatBox } from "./components/ChatBox";
 import { LiveSnapshotPanel } from "./components/LiveSnapshotPanel";
 import { SecurityExplainerModal } from "./components/SecurityExplainerModal";
 import { VoiceNudgeModal } from "./components/VoiceNudgeModal";
-import { BottomNavigation } from "./components/BottomNavigation";
+import { GeminiTesterModal } from "./components/GeminiTesterModal";
+import { ThemeModal } from "./components/ThemeModal";
+import { QRCodeModal } from "./components/QRCodeModal";
+import { getSavedTheme, applyTheme, AppTheme } from "./lib/theme";
+import { BottomNavigation, AppTab } from "./components/BottomNavigation";
 import { HomeView } from "./components/HomeView";
 import { ScheduleView } from "./components/ScheduleView";
 import { SummaryView } from "./components/SummaryView";
@@ -23,6 +28,7 @@ import {
   getPaginatedLocalHistory,
   appendLocalChatMessage,
   clearLocalChatHistory,
+  sanitizeMessageContent,
 } from "./lib/storage";
 import { useBreakTimer } from "./hooks/useBreakTimer";
 import { detectBreakRequest } from "./lib/breakTimer";
@@ -32,12 +38,19 @@ import { NotificationRemindersModal } from "./components/NotificationRemindersMo
 import { NotificationAlertBanner } from "./components/NotificationAlertBanner";
 import { detectReminderRequest } from "./lib/reminderDetector";
 import { getSavedTone, saveTonePreference } from "./lib/tones";
-import {
-  ShieldAlert,
-  X
-} from "lucide-react";
+import { parseTimerIntent } from "./lib/timerIntentParser";
+import { startPlatformTimer } from "./lib/nativeTimer";
+import { ShieldAlert, X } from "lucide-react";
+import { MilestonesBadgesView } from "./components/MilestonesBadgesView";
+import { AddAssignmentModal } from "./components/AddAssignmentModal";
+import { SettingsModal } from "./components/SettingsModal";
+import { ReflectionNoteModal } from "./components/ReflectionNoteModal";
+import { AssignmentItem, MoodState } from "./types";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 
 export default function App() {
+  // Initialize Lenis Momentum Smooth Scrolling & GSAP ScrollTrigger Integration
+  useSmoothScroll();
   const [snapshot, setSnapshot] = useState<StudentSnapshot | null>(null);
   const [isSnapshotLoading, setIsSnapshotLoading] = useState(true);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -48,15 +61,38 @@ export default function App() {
   const [isSecurityModalOpen, setIsSecurityModalOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
   const [isRemindersModalOpen, setIsRemindersModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<
-    "home" | "chat" | "schedule" | "summary" | "snapshot"
-  >("chat");
+  const [isGeminiTesterOpen, setIsGeminiTesterOpen] = useState(false);
+  const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
+  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+  const [isAddAssignmentOpen, setIsAddAssignmentOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isReflectionOpen, setIsReflectionOpen] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<AppTheme>(() => {
+    applyTheme("light");
+    return "light";
+  });
+  const [activeTab, setActiveTab] = useState<AppTab>("home");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Reminders & Notification System with Web Audio chime + desktop notification
+  useEffect(() => {
+    applyTheme("light");
+  }, []);
+
+  const handleToggleTheme = () => {
+    const next: AppTheme = currentTheme === "dark" ? "light" : "dark";
+    setCurrentTheme(next);
+    applyTheme(next);
+  };
+
+  const handleSelectTheme = (newTheme: AppTheme) => {
+    setCurrentTheme(newTheme);
+    applyTheme(newTheme);
+  };
+
+  // Reminders & Notification System
   const remindersSystem = useReminders();
 
-  // Nudge Tone & Persona setting (persisted across sessions in localStorage)
+  // Nudge Tone & Persona setting
   const [currentTone, setCurrentTone] = useState<NudgeTone>(() => getSavedTone());
 
   const handleToneChange = (newTone: NudgeTone) => {
@@ -64,7 +100,7 @@ export default function App() {
     saveTonePreference(newTone);
   };
 
-  // Focus Mode: Mutes non-urgent UI alerts & highlights active tasks in LiveSnapshotPanel
+  // Focus Mode
   const [isFocusMode, setIsFocusMode] = useState<boolean>(() => {
     try {
       return localStorage.getItem("nudge_focus_mode") === "true";
@@ -83,7 +119,7 @@ export default function App() {
     });
   };
 
-  // Proactive notification & follow-up message when student's break completes
+  // Proactive notification when break completes
   const handleBreakOver = useCallback(() => {
     const assistantTime = new Date().toLocaleTimeString([], {
       hour: "numeric",
@@ -114,12 +150,12 @@ export default function App() {
     appendLocalChatMessage(breakDoneMsg);
   }, [snapshot]);
 
-  // Dedicated Break Timer with Web Audio synthesizer chimes & native browser alerts
+  // Dedicated Break Timer
   const breakTimer = useBreakTimer({
     onBreakOver: handleBreakOver,
   });
 
-  // 1. Load on-device local history on startup (persisting across restarts)
+  // 1. Load on-device local history
   useEffect(() => {
     const { messages: initialMsgs, hasMore } = getPaginatedLocalHistory(15, 0);
     setMessages(initialMsgs);
@@ -147,7 +183,7 @@ export default function App() {
     loadSnapshot();
   }, [loadSnapshot]);
 
-  // Handle pagination for on-device local storage
+  // Handle pagination
   const handleLoadMoreHistory = () => {
     const nextOffset = historyOffset + 15;
     const { messages: olderMsgs, hasMore } = getPaginatedLocalHistory(15, nextOffset);
@@ -183,11 +219,30 @@ export default function App() {
     }
   };
 
+  const handleAddAssignment = async (newAsg: AssignmentItem) => {
+    if (!snapshot) return;
+    const updatedAssignments = [newAsg, ...snapshot.openAssignments];
+    await handleUpdateSnapshot({ openAssignments: updatedAssignments });
+
+    // Automatically schedule a gentle reminder 30 mins before
+    remindersSystem.scheduleReminder({
+      title: `Focus Sprint: ${newAsg.title}`,
+      note: `Due: ${newAsg.dueDate} (${newAsg.course})`,
+      delayMinutes: 30,
+      category: "assignment",
+      relatedId: newAsg.id,
+    });
+  };
+
+  const handleSaveReflection = async (newMood: MoodState) => {
+    if (!snapshot) return;
+    await handleUpdateSnapshot({ mood: newMood });
+  };
+
   // Send message via Edge Function Proxy with live snapshot
   const handleSendMessage = async (text: string) => {
     if (!text.trim() || isChatLoading) return;
 
-    // A. Create and append user message to local on-device vault
     const now = new Date();
     const formattedTime = now.toLocaleTimeString([], {
       hour: "numeric",
@@ -207,13 +262,72 @@ export default function App() {
     setIsChatLoading(true);
     setErrorMessage(null);
 
-    // Immediately start break timer if break request is detected in message!
+    // Phase 1 & 3: Command parsing & Chatbox wiring
+    // Detect timer commands (e.g. "start timer for 10 minutes", "set a 5 min timer", "timer 30 sec")
+    // Intercepts immediately, calls platform redirect, avoids calendar writes, and shows confirmation bubble
+    const timerIntent = parseTimerIntent(text);
+    if (timerIntent && timerIntent.action === "SET_TIMER") {
+      try {
+        const timerResult = await startPlatformTimer({
+          durationSeconds: timerIntent.durationSeconds,
+          label: timerIntent.label,
+        });
+
+        const assistantTime = new Date().toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit",
+        });
+
+        const confirmationMsg: ChatMessage = {
+          id: "msg_" + Math.random().toString(36).substring(2, 9),
+          role: "assistant",
+          content: timerResult.confirmationMessage,
+          timestamp: assistantTime,
+          quickReplies: ["Cancel timer ⏱️", "Check schedule 📅", "Ready to focus 🎯"],
+        };
+
+        setMessages((prev) => [...prev, confirmationMsg]);
+        appendLocalChatMessage(confirmationMsg);
+      } catch (err: any) {
+        console.error("[Timer] Platform timer error:", err);
+        const errorMsg: ChatMessage = {
+          id: "msg_" + Math.random().toString(36).substring(2, 9),
+          role: "assistant",
+          content: `Unable to set timer: ${err?.message || "Platform error"} ⚠️`,
+          timestamp: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+        };
+        setMessages((prev) => [...prev, errorMsg]);
+        appendLocalChatMessage(errorMsg);
+      } finally {
+        setIsChatLoading(false);
+      }
+      return;
+    }
+
+    // Cancel timer intent handler
+    if (text.toLowerCase().trim() === "cancel timer" || text.toLowerCase().trim() === "cancel timer ⏱️") {
+      const assistantTime = new Date().toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit",
+      });
+      const cancelMsg: ChatMessage = {
+        id: "msg_" + Math.random().toString(36).substring(2, 9),
+        role: "assistant",
+        content: "Timer cancelled 🛑",
+        timestamp: assistantTime,
+        quickReplies: ["Start timer for 15m ⏱️", "Check schedule 📅", "Ready to focus 🎯"],
+      };
+      setMessages((prev) => [...prev, cancelMsg]);
+      appendLocalChatMessage(cancelMsg);
+      setIsChatLoading(false);
+      return;
+    }
+
     const breakDetection = detectBreakRequest(text);
     if (breakDetection.isBreak) {
       breakTimer.startBreak(breakDetection.durationMinutes);
     }
 
-    // Immediately schedule notification reminder if requested in message!
     const reminderDetection = detectReminderRequest(text);
     if (reminderDetection.isReminder) {
       if (reminderDetection.openModalRequested) {
@@ -229,7 +343,6 @@ export default function App() {
     }
 
     try {
-      // B. Ensure fresh snapshot before sending (or use active)
       let currentSnapshot = snapshot;
       try {
         currentSnapshot = await fetchLiveSnapshot();
@@ -238,7 +351,6 @@ export default function App() {
         console.warn("Using active snapshot fallback", e);
       }
 
-      // C. Extract recent conversational turns (last 6 turns)
       const recentTurns = updatedMessages.slice(-6).map((m) => ({
         role: m.role,
         content: m.content,
@@ -251,12 +363,10 @@ export default function App() {
         tone: currentTone,
       };
 
-      // D. App calls the Edge Function Proxy (NO GEMINI KEY IN APP)
       const response: EdgeFunctionChatResponse = await sendChatMessageToEdgeFunction(
         requestPayload
       );
 
-      // Update rate limit remaining from server response
       if (response.rateLimit) {
         setRateLimitRemaining(response.rateLimit.remaining);
       }
@@ -266,11 +376,10 @@ export default function App() {
         minute: "2-digit",
       });
 
-      // E. Save Nudge's assistant message to on-device vault
       const assistantMsg: ChatMessage = {
         id: "msg_" + Math.random().toString(36).substring(2, 9),
         role: "assistant",
-        content: response.reply,
+        content: sanitizeMessageContent(response.reply),
         timestamp: assistantTime,
         events: response.events,
         quickReplies: response.quickReplies,
@@ -304,16 +413,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F5] text-[#2D2522] flex flex-col font-sans selection:bg-[#FCEEEA] selection:text-[#A33C1B]">
-      {/* Top Header */}
+    <div className="min-h-screen bg-[#F9F6F0] dark:bg-[#0F1A18] text-[#1E3A34] dark:text-[#E9F3EF] flex flex-col font-sans selection:bg-[#EAF2EE] selection:text-[#1E3A34] relative overflow-x-hidden">
+      {/* Top Header - Luminous Glassmorphic Design */}
       <Header
         snapshot={snapshot}
         rateLimitRemaining={rateLimitRemaining}
         onOpenSecurityModal={() => setIsSecurityModalOpen(true)}
-        onOpenSnapshotDrawer={() =>
-          setActiveTab(activeTab === "snapshot" ? "chat" : "snapshot")
-        }
-        isSnapshotOpen={activeTab === "snapshot"}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         breakTimerState={{
@@ -323,6 +428,13 @@ export default function App() {
         }}
         onOpenRemindersModal={() => setIsRemindersModalOpen(true)}
         activeRemindersCount={remindersSystem.activeReminders.length}
+        onOpenGeminiTester={() => setIsGeminiTesterOpen(true)}
+        currentTheme={currentTheme}
+        onToggleTheme={handleToggleTheme}
+        onOpenThemeModal={() => setIsThemeModalOpen(true)}
+        onOpenQrModal={() => setIsQrModalOpen(true)}
+        onOpenSettings={() => setIsSettingsOpen(true)}
+        onOpenMilestones={() => setActiveTab("milestones")}
       />
 
       {/* Floating Interactive Alert Banner for Triggered Reminders */}
@@ -335,133 +447,165 @@ export default function App() {
 
       {/* Error / Rate Limit Alert Banner */}
       {errorMessage && (
-        <div className="bg-[#FBEAE9] border-b border-[#F5CAC7] px-4 py-2 text-xs text-rose-950 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <ShieldAlert className="w-4 h-4 text-rose-700 shrink-0" />
-            <span>{errorMessage}</span>
+        <div className="max-w-4xl mx-auto w-full px-4 pt-2">
+          <div className="bg-[#FBEAE9] border border-[#F5CAC7] px-4 py-2 rounded-2xl text-xs text-rose-950 flex items-center justify-between shadow-xs">
+            <div className="flex items-center space-x-2">
+              <ShieldAlert className="w-4 h-4 text-rose-700 shrink-0" />
+              <span>{errorMessage}</span>
+            </div>
+            <button
+              onClick={() => setErrorMessage(null)}
+              className="text-rose-700 hover:text-rose-950 p-1"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
           </div>
-          <button
-            onClick={() => setErrorMessage(null)}
-            className="text-rose-700 hover:text-rose-950 p-1"
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
         </div>
       )}
 
-      {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-[calc(100vh-112px)]">
-        {/* Desktop Left Column: Live Supabase Student Context (Classes, Mood, Habits) */}
-        <div
-          className={`lg:col-span-4 xl:col-span-4 border-r border-[#EAE2DA] lg:block ${
-            activeTab === "snapshot" ? "block" : "hidden"
-          } h-full overflow-hidden`}
-        >
-          <LiveSnapshotPanel
-            snapshot={snapshot}
-            isLoading={isSnapshotLoading}
-            onRefresh={loadSnapshot}
-            onUpdateSnapshot={handleUpdateSnapshot}
-            isFocusMode={isFocusMode}
-            onToggleFocusMode={handleToggleFocusMode}
-            onQuickRemind={(asg) => {
-              remindersSystem.scheduleReminder({
-                title: `Work on ${asg.title}`,
-                note: `Due: ${asg.dueDate} (${asg.course})`,
-                delayMinutes: 20,
-                category: "assignment",
-                relatedId: asg.id,
-              });
-              setIsRemindersModalOpen(true);
-            }}
-          />
-        </div>
+      {/* Main Content Canvas with Thoughtful Motion Transitions */}
+      <main className="flex-1 w-full max-w-4xl mx-auto flex flex-col px-3 sm:px-6 pt-2 pb-24 relative overflow-hidden">
+        {/* Break Timer Banner */}
+        {activeTab !== "chat" && (breakTimer.isActive || breakTimer.hasFinished) && (
+          <div className="shrink-0 mb-4">
+            <BreakTimerBanner
+              initialMinutes={breakTimer.initialMinutes}
+              totalSeconds={breakTimer.totalSeconds}
+              remainingSeconds={breakTimer.remainingSeconds}
+              isActive={breakTimer.isActive}
+              isPaused={breakTimer.isPaused}
+              onPauseToggle={breakTimer.pauseToggle}
+              onAddMinutes={breakTimer.addMinutes}
+              onFinishEarly={breakTimer.finishEarly}
+              onDismissFinished={breakTimer.dismissFinished}
+              hasFinished={breakTimer.hasFinished}
+              notificationPermission={breakTimer.notificationPermission}
+              onRequestNotification={breakTimer.requestNotification}
+            />
+          </div>
+        )}
 
-        {/* Center / Primary Mobile View: Renders ChatBox or other selected screen */}
-        <div
-          className={`lg:col-span-8 xl:col-span-8 flex flex-col h-full overflow-hidden ${
-            activeTab === "snapshot" ? "hidden lg:flex" : "flex"
-          }`}
-        >
-          {/* Break Timer Banner on non-chat screens so students never lose their break status */}
-          {activeTab !== "chat" && (breakTimer.isActive || breakTimer.hasFinished) && (
-            <div className="shrink-0 bg-[#FAF7F5] border-b border-[#EAE2DA] pt-2">
-              <BreakTimerBanner
-                initialMinutes={breakTimer.initialMinutes}
-                totalSeconds={breakTimer.totalSeconds}
-                remainingSeconds={breakTimer.remainingSeconds}
-                isActive={breakTimer.isActive}
-                isPaused={breakTimer.isPaused}
-                onPauseToggle={breakTimer.pauseToggle}
-                onAddMinutes={breakTimer.addMinutes}
-                onFinishEarly={breakTimer.finishEarly}
-                onDismissFinished={breakTimer.dismissFinished}
-                hasFinished={breakTimer.hasFinished}
-                notificationPermission={breakTimer.notificationPermission}
-                onRequestNotification={breakTimer.requestNotification}
+        {/* Animated Screen Switcher via AnimatePresence */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            className="flex-1 w-full flex flex-col overflow-hidden"
+          >
+            {/* Screen 1: Home Dashboard */}
+            {activeTab === "home" && (
+              <HomeView
+                snapshot={snapshot}
+                onNavigateToChat={() => setActiveTab("chat")}
+                onNavigateToSnapshot={() => setActiveTab("snapshot")}
+                onNavigateToSchedule={() => setActiveTab("schedule")}
+                onNavigateToMilestones={() => setActiveTab("milestones")}
+                onOpenAddAssignment={() => setIsAddAssignmentOpen(true)}
+                onOpenReflection={() => setIsReflectionOpen(true)}
               />
-            </div>
-          )}
+            )}
 
-          {activeTab === "home" && (
-            <HomeView
-              snapshot={snapshot}
-              onNavigateToChat={() => setActiveTab("chat")}
-            />
-          )}
+            {/* Screen 2: AI Student Chat Companion */}
+            {activeTab === "chat" && (
+              <div className="flex-1 w-full max-w-3xl mx-auto h-[calc(100dvh-130px)] flex flex-col min-h-0">
+                <ChatBox
+                  messages={messages}
+                  isLoading={isChatLoading}
+                  onSendMessage={handleSendMessage}
+                  onLoadMoreHistory={handleLoadMoreHistory}
+                  hasMoreHistory={hasMoreHistory}
+                  onClearLocalHistory={handleClearHistory}
+                  snapshot={snapshot}
+                  onOpenSecurityModal={() => setIsSecurityModalOpen(true)}
+                  onOpenVoiceModal={() => setIsVoiceModalOpen(true)}
+                  currentTone={currentTone}
+                  onSelectTone={handleToneChange}
+                  isFocusMode={isFocusMode}
+                  onToggleFocusMode={handleToggleFocusMode}
+                  onOpenRemindersModal={() => setIsRemindersModalOpen(true)}
+                  activeRemindersCount={remindersSystem.activeReminders.length}
+                  breakTimer={{
+                    isActive: breakTimer.isActive,
+                    isPaused: breakTimer.isPaused,
+                    initialMinutes: breakTimer.initialMinutes,
+                    totalSeconds: breakTimer.totalSeconds,
+                    remainingSeconds: breakTimer.remainingSeconds,
+                    hasFinished: breakTimer.hasFinished,
+                    notificationPermission: breakTimer.notificationPermission,
+                    onPauseToggle: breakTimer.pauseToggle,
+                    onAddMinutes: breakTimer.addMinutes,
+                    onFinishEarly: breakTimer.finishEarly,
+                    onDismissFinished: breakTimer.dismissFinished,
+                    onRequestNotification: breakTimer.requestNotification,
+                  }}
+                />
+              </div>
+            )}
 
-          {activeTab === "chat" && (
-            <ChatBox
-              messages={messages}
-              isLoading={isChatLoading}
-              onSendMessage={handleSendMessage}
-              onLoadMoreHistory={handleLoadMoreHistory}
-              hasMoreHistory={hasMoreHistory}
-              onClearLocalHistory={handleClearHistory}
-              snapshot={snapshot}
-              onOpenSecurityModal={() => setIsSecurityModalOpen(true)}
-              onOpenVoiceModal={() => setIsVoiceModalOpen(true)}
-              currentTone={currentTone}
-              onSelectTone={handleToneChange}
-              isFocusMode={isFocusMode}
-              onToggleFocusMode={handleToggleFocusMode}
-              onOpenRemindersModal={() => setIsRemindersModalOpen(true)}
-              activeRemindersCount={remindersSystem.activeReminders.length}
-              breakTimer={{
-                isActive: breakTimer.isActive,
-                isPaused: breakTimer.isPaused,
-                initialMinutes: breakTimer.initialMinutes,
-                totalSeconds: breakTimer.totalSeconds,
-                remainingSeconds: breakTimer.remainingSeconds,
-                hasFinished: breakTimer.hasFinished,
-                notificationPermission: breakTimer.notificationPermission,
-                onPauseToggle: breakTimer.pauseToggle,
-                onAddMinutes: breakTimer.addMinutes,
-                onFinishEarly: breakTimer.finishEarly,
-                onDismissFinished: breakTimer.dismissFinished,
-                onRequestNotification: breakTimer.requestNotification,
-              }}
-            />
-          )}
+            {/* Screen 3: Supabase Live Snapshot (User's Image Screen) */}
+            {activeTab === "snapshot" && (
+              <LiveSnapshotPanel
+                snapshot={snapshot}
+                isLoading={isSnapshotLoading}
+                onRefresh={loadSnapshot}
+                onUpdateSnapshot={handleUpdateSnapshot}
+                isFocusMode={isFocusMode}
+                onToggleFocusMode={handleToggleFocusMode}
+                onQuickRemind={(asg) => {
+                  remindersSystem.scheduleReminder({
+                    title: `Work on ${asg.title}`,
+                    note: `Due: ${asg.dueDate} (${asg.course})`,
+                    delayMinutes: 20,
+                    category: "assignment",
+                    relatedId: asg.id,
+                  });
+                  setIsRemindersModalOpen(true);
+                }}
+                currentTheme={currentTheme}
+                onOpenThemeModal={() => setIsThemeModalOpen(true)}
+                onSelectTheme={handleSelectTheme}
+              />
+            )}
 
-          {activeTab === "schedule" && (
-            <ScheduleView onNavigateToChat={() => setActiveTab("chat")} />
-          )}
+            {/* Screen 4: Schedule */}
+            {activeTab === "schedule" && (
+              <ScheduleView
+                onNavigateToChat={() => setActiveTab("chat")}
+                onOpenAddAssignment={() => setIsAddAssignmentOpen(true)}
+              />
+            )}
 
-          {activeTab === "summary" && (
-            <SummaryView onNavigateToChat={() => setActiveTab("chat")} />
-          )}
-        </div>
+            {/* Screen 5: Summary */}
+            {activeTab === "summary" && (
+              <SummaryView
+                onNavigateToChat={() => setActiveTab("chat")}
+                onNavigateToMilestones={() => setActiveTab("milestones")}
+                onOpenReflection={() => setIsReflectionOpen(true)}
+              />
+            )}
+
+            {/* Screen 6: Growth Journal & Milestones */}
+            {activeTab === "milestones" && (
+              <MilestonesBadgesView
+                onNavigateBack={() => setActiveTab("home")}
+                onOpenReflection={() => setIsReflectionOpen(true)}
+              />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
-      {/* Bottom Navigation Bar (Matching all screenshots) */}
+      {/* Floating Unlumen UI Motion Dock */}
       <BottomNavigation
-        activeTab={activeTab === "snapshot" ? "chat" : (activeTab as any)}
+        activeTab={activeTab}
         onTabChange={(tab) => setActiveTab(tab)}
         onOpenVoiceModal={() => setIsVoiceModalOpen(true)}
       />
 
-      {/* Voice Nudge Companion Modal (Image 2) */}
+      {/* Modals */}
       <VoiceNudgeModal
         isOpen={isVoiceModalOpen}
         onClose={() => setIsVoiceModalOpen(false)}
@@ -471,13 +615,11 @@ export default function App() {
         }}
       />
 
-      {/* Security Architecture Explainer Modal */}
       <SecurityExplainerModal
         isOpen={isSecurityModalOpen}
         onClose={() => setIsSecurityModalOpen(false)}
       />
 
-      {/* Notifications & Reminders Modal */}
       <NotificationRemindersModal
         isOpen={isRemindersModalOpen}
         onClose={() => setIsRemindersModalOpen(false)}
@@ -491,6 +633,47 @@ export default function App() {
         onSendTestNotification={remindersSystem.sendTestNotification}
         onClearCompleted={remindersSystem.clearCompleted}
         snapshot={snapshot}
+      />
+
+      <GeminiTesterModal
+        isOpen={isGeminiTesterOpen}
+        onClose={() => setIsGeminiTesterOpen(false)}
+      />
+
+      <ThemeModal
+        isOpen={isThemeModalOpen}
+        onClose={() => setIsThemeModalOpen(false)}
+        currentTheme={currentTheme}
+        onSelectTheme={handleSelectTheme}
+      />
+
+      <QRCodeModal
+        isOpen={isQrModalOpen}
+        onClose={() => setIsQrModalOpen(false)}
+      />
+
+      {/* Newly Imported Stitch Design Modals */}
+      <AddAssignmentModal
+        isOpen={isAddAssignmentOpen}
+        onClose={() => setIsAddAssignmentOpen(false)}
+        onAddAssignment={handleAddAssignment}
+        snapshot={snapshot}
+      />
+
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        currentTheme={currentTheme}
+        onSelectTheme={handleSelectTheme}
+        snapshot={snapshot}
+        onClearChatHistory={handleClearHistory}
+      />
+
+      <ReflectionNoteModal
+        isOpen={isReflectionOpen}
+        onClose={() => setIsReflectionOpen(false)}
+        snapshot={snapshot}
+        onSaveReflection={handleSaveReflection}
       />
     </div>
   );

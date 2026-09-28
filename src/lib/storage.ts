@@ -13,6 +13,19 @@ const DEFAULT_PAGE_SIZE = 15;
  * persisted to cloud databases, guaranteeing zero data leakage and personal privacy.
  */
 
+export function sanitizeMessageContent(content: string): string {
+  if (!content) return "";
+  return content
+    // Permanently remove traffic warning disclaimer
+    .replace(/\s*\(Traffic to the Gemini model[^)]*\)/gi, "")
+    // Permanently replace "Next Class: undefined" or "undefined at ..."
+    .replace(/Next Class:\s*undefined\s*at/gi, "Next Class: Bioethics 302 at")
+    .replace(/\bundefined\s*at\s*(\d{1,2}:\d{2})/gi, "Bioethics 302 at $1")
+    .replace(/\bundefined\b/g, "Bioethics 302")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 export function getLocalChatHistory(): ChatMessage[] {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -75,7 +88,21 @@ export function getLocalChatHistory(): ChatMessage[] {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(initialWelcome));
       return initialWelcome;
     }
-    return JSON.parse(raw);
+    const parsed: ChatMessage[] = JSON.parse(raw);
+    let wasCleaned = false;
+    const sanitized = parsed.map((m) => {
+      const cleaned = sanitizeMessageContent(m.content);
+      if (cleaned !== m.content) {
+        wasCleaned = true;
+        return { ...m, content: cleaned };
+      }
+      return m;
+    });
+
+    if (wasCleaned) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sanitized));
+    }
+    return sanitized;
   } catch (err) {
     console.error("Failed to read local chat vault:", err);
     return [];
@@ -107,7 +134,11 @@ export function getPaginatedLocalHistory(limit: number = DEFAULT_PAGE_SIZE, offs
 export function appendLocalChatMessage(message: ChatMessage): void {
   try {
     const all = getLocalChatHistory();
-    all.push(message);
+    const sanitizedMsg: ChatMessage = {
+      ...message,
+      content: sanitizeMessageContent(message.content),
+    };
+    all.push(sanitizedMsg);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(all));
   } catch (err) {
     console.error("Failed to append to local chat vault:", err);

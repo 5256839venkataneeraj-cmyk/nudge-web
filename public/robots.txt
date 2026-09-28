@@ -1,0 +1,4 @@
+# Disallow indexing on student companion API endpoints
+User-agent: *
+Disallow: /api/
+Allow: /

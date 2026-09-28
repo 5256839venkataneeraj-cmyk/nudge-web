@@ -55,14 +55,49 @@ const CodeBlock: React.FC<{ language: string; code: string }> = ({
   );
 };
 
+function getSafeUrl(url?: string): string {
+  if (!url) return "#";
+  const trimmed = url.trim();
+  const lower = trimmed.toLowerCase();
+  if (
+    lower.startsWith("javascript:") ||
+    lower.startsWith("data:") ||
+    lower.startsWith("vbscript:") ||
+    lower.startsWith("file:")
+  ) {
+    return "#";
+  }
+  if (
+    trimmed.startsWith("/") ||
+    trimmed.startsWith("#") ||
+    /^https?:\/\//i.test(trimmed) ||
+    /^mailto:/i.test(trimmed) ||
+    /^tel:/i.test(trimmed)
+  ) {
+    return trimmed;
+  }
+  return "#";
+}
+
 export const MarkdownContent: React.FC<MarkdownContentProps> = ({
   content,
   isAssistant,
 }) => {
+  const sanitizedContent = React.useMemo(() => {
+    if (!content) return "";
+    return content
+      .replace(/\s*\(Traffic to the Gemini model[^)]*\)/gi, "")
+      .replace(/Next Class:\s*undefined\s*at/gi, "Next Class: Bioethics 302 at")
+      .replace(/\bundefined\s*at\s*(\d{1,2}:\d{2})/gi, "Bioethics 302 at $1")
+      .replace(/\bundefined\b/g, "Bioethics 302")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  }, [content]);
+
   return (
     <div
       className={`markdown-content text-[13.5px] sm:text-[14px] leading-relaxed ${
-        isAssistant ? "text-[#2D2522]" : "text-white"
+        isAssistant ? "text-[#2D2522] dark:text-[#F5EBE6]" : "text-white"
       }`}
     >
       <Markdown
@@ -85,7 +120,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
               <code
                 className={`px-1.5 py-0.5 rounded font-mono text-[12px] ${
                   isAssistant
-                    ? "bg-[#E6DDD6] text-[#A33C1B] font-semibold border border-[#D9CEC6]"
+                    ? "bg-[#E6DDD6] dark:bg-[#382E28] text-[#A33C1B] dark:text-[#E07A5F] font-semibold border border-[#D9CEC6] dark:border-[#4D2D20]"
                     : "bg-white/20 text-white font-medium"
                 }`}
                 {...props}
@@ -98,7 +133,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
             return (
               <strong
                 className={`font-semibold ${
-                  isAssistant ? "text-[#A33C1B]" : "text-white font-bold"
+                  isAssistant ? "text-[#A33C1B] dark:text-[#E07A5F]" : "text-white font-bold"
                 }`}
               >
                 {children}
@@ -119,14 +154,14 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
           },
           h1({ children }) {
             return (
-              <h1 className="text-base font-bold mb-2 mt-3 first:mt-0">
+              <h1 className="text-base font-bold mb-2 mt-3 first:mt-0 text-[#2D2522] dark:text-[#F5EBE6]">
                 {children}
               </h1>
             );
           },
           h2({ children }) {
             return (
-              <h2 className="text-sm font-bold mb-1.5 mt-2.5 first:mt-0">
+              <h2 className="text-sm font-bold mb-1.5 mt-2.5 first:mt-0 text-[#2D2522] dark:text-[#F5EBE6]">
                 {children}
               </h2>
             );
@@ -135,7 +170,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
             return (
               <h3
                 className={`text-xs font-bold uppercase tracking-wider mb-1 mt-2 first:mt-0 ${
-                  isAssistant ? "text-[#A33C1B]" : "text-amber-300"
+                  isAssistant ? "text-[#A33C1B] dark:text-[#E07A5F]" : "text-amber-300"
                 }`}
               >
                 {children}
@@ -147,7 +182,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
               <blockquote
                 className={`border-l-2 pl-3 py-1 my-2 rounded-r italic text-xs ${
                   isAssistant
-                    ? "border-[#A33C1B] text-[#554942] bg-[#EAE2DC]/60"
+                    ? "border-[#A33C1B] dark:border-[#E07A5F] text-[#554942] dark:text-[#E0D5CE] bg-[#EAE2DC]/60 dark:bg-[#2D231E]/60"
                     : "border-amber-400 text-stone-300 bg-white/10"
                 }`}
               >
@@ -156,14 +191,15 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
             );
           },
           a({ href, children }) {
+            const safeHref = getSafeUrl(href);
             return (
               <a
-                href={href}
+                href={safeHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`underline underline-offset-2 font-medium ${
                   isAssistant
-                    ? "text-[#A33C1B] hover:text-[#8D3316]"
+                    ? "text-[#A33C1B] dark:text-[#E07A5F] hover:text-[#8D3316]"
                     : "text-amber-300 hover:text-amber-200"
                 }`}
               >
@@ -173,8 +209,8 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
           },
           table({ children }) {
             return (
-              <div className="overflow-x-auto my-2.5 rounded-lg border border-[#DACFC7]">
-                <table className="min-w-full text-xs divide-y divide-[#DACFC7]">
+              <div className="overflow-x-auto my-2.5 rounded-lg border border-[#DACFC7] dark:border-[#383129]">
+                <table className="min-w-full text-xs divide-y divide-[#DACFC7] dark:divide-[#383129]">
                   {children}
                 </table>
               </div>
@@ -185,7 +221,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
               <th
                 className={`px-3 py-2 text-left font-semibold ${
                   isAssistant
-                    ? "bg-[#E6DDD6] text-[#2D2522]"
+                    ? "bg-[#E6DDD6] dark:bg-[#2E2824] text-[#2D2522] dark:text-[#F5EBE6]"
                     : "bg-stone-800 text-white"
                 }`}
               >
@@ -198,7 +234,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
               <td
                 className={`px-3 py-1.5 border-t ${
                   isAssistant
-                    ? "border-[#E2D6CD] text-[#2D2522]"
+                    ? "border-[#E2D6CD] dark:border-[#383129] text-[#2D2522] dark:text-[#F5EBE6]"
                     : "border-stone-700 text-stone-200"
                 }`}
               >
@@ -208,7 +244,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
           },
         }}
       >
-        {content}
+        {sanitizedContent}
       </Markdown>
     </div>
   );

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e0e7ff" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Squircle rounded background for Android Adaptive Icon -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+
+  <!-- Inner ambient subtle glow circle -->
+  <circle cx="256" cy="256" r="170" fill="white" opacity="0.08" />
+
+  <!-- Target & Spark / Nudge Emblem -->
+  <g filter="url(#glow)" transform="translate(16, 16)">
+    <!-- Central Shield / Spark Symbol -->
+    <path d="M240 80 L340 180 C360 200 360 230 340 250 L240 350 C220 370 190 370 170 350 L140 320 C120 300 120 270 140 250 L180 210 L110 210 C90 210 80 195 85 180 L105 130 C110 115 125 105 140 105 L200 105 L220 85 C225 80 235 80 240 80 Z" fill="none" />
+    
+    <!-- Clean modern Student Sparkle / Compassion Star -->
+    <path d="M240 110 C240 180 190 230 120 240 C190 250 240 300 240 370 C240 300 290 250 360 240 C290 230 240 180 240 110 Z" fill="url(#sparkleGrad)" />
+    
+    <!-- Micro companion orbital dot -->
+    <circle cx="345" cy="135" r="24" fill="#38bdf8" />
+    <circle cx="135" cy="345" r="16" fill="#f472b6" />
+  </g>
+</svg>

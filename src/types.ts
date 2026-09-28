@@ -130,3 +130,17 @@ export interface ReminderItem {
   createdAt: number;
   triggeredAt?: number;
 }
+
+export interface SubjectModule {
+  id: string;
+  name: string;
+  code: string;
+  icon: string;
+  color: string;
+  streakDays: number;
+  studyMinutesToday: number;
+  openTasksCount: number;
+  description: string;
+  nextTopic?: string;
+  targetWeeklyHours?: number;
+}

@@ -29,23 +29,44 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({
   const [qrDataUrl, setQrDataUrl] = useState<string>("");
   const [hasCopiedUrl, setHasCopiedUrl] = useState(false);
   const [hasCopiedPass, setHasCopiedPass] = useState(false);
+  const [isTunnelLoading, setIsTunnelLoading] = useState(false);
 
-  // Network URLs
+  // Dynamic URLs initialized with safe defaults
   const host = typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1" 
     ? window.location.origin 
     : "http://172.16.80.55:3000";
 
-  const apkUrl = `${host}/nudge.apk`;
-  const wifiUrl = host;
-  const tunnelUrl = "https://spicy-nights-dig.loca.lt";
-  const tunnelPassword = "136.233.9.105";
+  const [wifiUrl, setWifiUrl] = useState<string>(host);
+  const [tunnelUrl, setTunnelUrl] = useState<string>("");
+  const [tunnelPassword, setTunnelPassword] = useState<string>("182.66.218.121");
+
+  const apkUrl = `${wifiUrl}/nudge.apk`;
+
+  // Fetch live tunnel details from the server when modal opens
+  useEffect(() => {
+    if (!isOpen) return;
+    setIsTunnelLoading(true);
+    fetch("/api/tunnel")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.tunnelUrl) setTunnelUrl(data.tunnelUrl);
+        if (data.tunnelPassword) setTunnelPassword(data.tunnelPassword);
+        if (data.wifiUrl) setWifiUrl(data.wifiUrl);
+      })
+      .catch((err) => {
+        console.warn("Failed to fetch /api/tunnel:", err);
+      })
+      .finally(() => {
+        setIsTunnelLoading(false);
+      });
+  }, [isOpen]);
 
   const activeUrl = 
     selectedNetwork === "apk" 
       ? apkUrl 
       : selectedNetwork === "wifi" 
       ? wifiUrl 
-      : tunnelUrl;
+      : (tunnelUrl || "https://loca.lt");
 
   useEffect(() => {
     if (!isOpen) return;
@@ -205,42 +226,55 @@ export const QRCodeModal: React.FC<QRCodeModalProps> = ({
                 </>
               ) : (
                 <>
-                  Works on <strong>cellular data / anywhere</strong>. Enter the password below if prompted on first visit.
+                  Works on <strong>mobile cellular data anywhere</strong> (no Wi-Fi needed). Follow the 2 steps below:
                 </>
               )}
             </p>
 
-            {/* Tunnel Password callout if Tunnel is active */}
+            {/* Tunnel Password & Instructions if Tunnel is active */}
             {selectedNetwork === "tunnel" && (
-              <div className="w-full p-2.5 rounded-2xl bg-[#FFF8F5] dark:bg-[#251A15] border border-[#F4CCC1] dark:border-[#4D2D20] flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 text-left">
-                  <Key className="w-3.5 h-3.5 text-[#A33C1B] dark:text-[#E07A5F] shrink-0" />
-                  <div>
-                    <span className="text-[10px] text-[#8F827A] dark:text-[#A89B95] block">
-                      Tunnel Password:
-                    </span>
-                    <span className="font-mono font-bold text-[#2D2522] dark:text-[#F5EBE6]">
-                      {tunnelPassword}
-                    </span>
+              <div className="w-full space-y-2 text-left">
+                {isTunnelLoading && !tunnelUrl && (
+                  <div className="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-[11px] text-amber-800 dark:text-amber-200 text-center animate-pulse">
+                    Connecting live cloud tunnel...
                   </div>
+                )}
+
+                <div className="w-full p-2.5 rounded-2xl bg-[#FFF8F5] dark:bg-[#251A15] border border-[#F4CCC1] dark:border-[#4D2D20] flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2 text-left">
+                    <Key className="w-3.5 h-3.5 text-[#A33C1B] dark:text-[#E07A5F] shrink-0" />
+                    <div>
+                      <span className="text-[10px] text-[#8F827A] dark:text-[#A89B95] block">
+                        Tunnel Password / IP:
+                      </span>
+                      <span className="font-mono font-bold text-[#2D2522] dark:text-[#F5EBE6]">
+                        {tunnelPassword}
+                      </span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={handleCopyPass}
+                    className="px-2.5 py-1 rounded-xl bg-white dark:bg-[#1C1917] hover:bg-[#FAF7F5] dark:hover:bg-[#2E2824] border border-[#EAE2DA] dark:border-[#3D3430] text-[11px] font-semibold text-[#A33C1B] dark:text-[#E07A5F] flex items-center gap-1 shadow-2xs cursor-pointer"
+                  >
+                    {hasCopiedPass ? (
+                      <>
+                        <Check className="w-3 h-3 text-emerald-600" />
+                        <span>Copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3 h-3" />
+                        <span>Copy Password</span>
+                      </>
+                    )}
+                  </button>
                 </div>
 
-                <button
-                  onClick={handleCopyPass}
-                  className="px-2.5 py-1 rounded-xl bg-white dark:bg-[#1C1917] hover:bg-[#FAF7F5] dark:hover:bg-[#2E2824] border border-[#EAE2DA] dark:border-[#3D3430] text-[11px] font-semibold text-[#A33C1B] dark:text-[#E07A5F] flex items-center gap-1 shadow-2xs"
-                >
-                  {hasCopiedPass ? (
-                    <>
-                      <Check className="w-3 h-3 text-emerald-600" />
-                      <span>Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3 h-3" />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
+                <div className="text-[10.5px] text-[#70645D] dark:text-[#A89B95] px-1 space-y-0.5">
+                  <p>1. Scan the QR code or click the link below.</p>
+                  <p>2. If prompted on the reminder page, paste the password (<code className="font-mono font-bold text-[#A33C1B]">{tunnelPassword}</code>) and tap <strong>Click to Submit</strong>.</p>
+                </div>
               </div>
             )}
 

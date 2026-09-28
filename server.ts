@@ -4,6 +4,7 @@ import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
+import localtunnel from "localtunnel";
 import { POST as handleGeminiRoute } from "./app/api/gemini/route";
 
 dotenv.config();
@@ -1055,6 +1056,56 @@ app.get(["/nudge.apk", "/app-debug.apk", "/download/apk"], (req, res) => {
   return res.status(404).json({ error: "APK build not found" });
 });
 
+// Live Tunnel state
+let liveTunnelUrl = "";
+let liveTunnelPassword = "182.66.218.121";
+
+async function refreshPublicIp() {
+  try {
+    const r = await fetch("https://api.ipify.org", { signal: AbortSignal.timeout(4000) });
+    if (r.ok) {
+      liveTunnelPassword = (await r.text()).trim();
+    }
+  } catch {
+    // fallback to known IP
+  }
+}
+
+async function startTunnel() {
+  await refreshPublicIp();
+  try {
+    const tunnel = await localtunnel({ port: PORT });
+    liveTunnelUrl = tunnel.url;
+    console.log(`[Tunnel] Live active tunnel URL: ${liveTunnelUrl} (Password: ${liveTunnelPassword})`);
+
+    tunnel.on("close", () => {
+      console.log("[Tunnel] Tunnel connection closed. Reconnecting in 5s...");
+      setTimeout(startTunnel, 5000);
+    });
+
+    tunnel.on("error", (err: any) => {
+      console.warn("[Tunnel] Tunnel encountered error, reconnecting:", err?.message || err);
+      setTimeout(startTunnel, 5000);
+    });
+  } catch (err: any) {
+    console.warn("[Tunnel] Failed to start tunnel:", err?.message || err);
+    setTimeout(startTunnel, 10000);
+  }
+}
+
+// Live Tunnel API endpoint
+app.get("/api/tunnel", async (req, res) => {
+  if (!liveTunnelPassword) {
+    await refreshPublicIp();
+  }
+  return res.json({
+    tunnelUrl: liveTunnelUrl || null,
+    tunnelPassword: liveTunnelPassword,
+    wifiUrl: `http://172.16.80.55:${PORT}`,
+    apkUrl: `http://172.16.80.55:${PORT}/nudge.apk`,
+  });
+});
+
 // Vite middleware & Static serving
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
@@ -1074,6 +1125,7 @@ async function startServer() {
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Nudge secure server running on http://0.0.0.0:${PORT}`);
     console.log(`Gemini proxy model configured: ${GEMINI_MODEL}`);
+    startTunnel();
   });
 }
 
